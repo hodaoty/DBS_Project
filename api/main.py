@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 import csv
 import os
 import re
@@ -8,6 +8,8 @@ from rich.panel import Panel
 from rich.style import Style
 from rich.prompt import Prompt
 from datetime import datetime
+import pandas as pd
+import matplotlib.pyplot as plt 
 
 #Setup Rich
 # --- Define Other Custom RGB Styles ---
@@ -154,7 +156,7 @@ def logs_baseon_pid() -> list:
         match = pattern.search(line)
         if match:
             timestamp, pid, level, message = match.groups()
-            logs[pid].append(f"{timestamp} | {level}: {message}")
+            logs[pid].append(f"{timestamp} | {level}: {message}") #pid la key 
     return logs 
     
 
@@ -236,10 +238,30 @@ def list_connect_logs(parsed_data: list):
                 list_connect.append(item)
     for item in list_connect:
         time.sleep(0.05)
-        console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
+        console.print(f'\n[{ITEM}]PID[/] :\r{item['pid']}')
         console.print(f'[{ITEM}]Time[/] :\r{item['timestamp']}')
         console.print(f'[{ITEM}]Raw data[/]:\r{item['raw_content']}') 
     console.print(f"[{LINE}]#####[/]" * 30)
+        # Đếm số lượng connect theo database
+    db_counts = Counter(item['user'] for item in list_connect)
+    # Tạo DataFrame từ dữ liệu đếm
+    df = pd.DataFrame.from_dict(db_counts, orient='index', columns=['connect_count'])
+    df = df.sort_values(by='connect_count', ascending=False)
+    # Tạo biểu đồ area chart
+    plt.figure(figsize=(10, 6))
+    plt.fill_between(df.index, df['connect_count'], color='skyblue', alpha=0.5)
+    plt.plot(df.index, df['connect_count'], color='Slateblue', alpha=0.6, linewidth=2)
+    plt.title('Số lượng User connect')
+    plt.xlabel('Tên User')
+    plt.ylabel('Số lần connect')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.grid(True)
+    # Hiển thị số lượng connect trên từng điểm
+    for i, value in enumerate(df['connect_count']):
+        plt.text(i, value + 0.5, str(value), ha='center', va='bottom', fontsize=9)
+
+    plt.show()
 # ----------------------------------------------------
 # Function List Disconnect Log
 # ----------------------------------------------------
@@ -254,10 +276,30 @@ def list_disconnect_logs(parsed_data: list):
                 list_disconnect.append(item)
     for item in list_disconnect:
         time.sleep(0.05)
-        console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
+        console.print(f'\n[{ITEM}]PID[/] :\r{item['pid']}')
         console.print(f'[{ITEM}]Time[/]:{item['timestamp']}')
         console.print(f'[{ITEM}]Raw data[/]:{item['raw_content']}') 
     console.print(f"[{LINE}]#####[/]" * 30)
+    # Đếm số lượng disconnect theo database
+    db_counts = Counter(item['database'] for item in list_disconnect)
+    # Tạo DataFrame từ dữ liệu đếm
+    df = pd.DataFrame.from_dict(db_counts, orient='index', columns=['disconnect_count'])
+    df = df.sort_values(by='disconnect_count', ascending=False)
+    # Tạo biểu đồ area chart
+    plt.figure(figsize=(10, 6))
+    plt.fill_between(df.index, df['disconnect_count'], color='skyblue', alpha=0.5)
+    plt.plot(df.index, df['disconnect_count'], color='Slateblue', alpha=0.6, linewidth=2)
+    plt.title('Số lượng disconnect theo Database')
+    plt.xlabel('Tên Database')
+    plt.ylabel('Số lần disconnect')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.grid(True)
+    # Hiển thị số lượng disconnect trên từng điểm
+    for i, value in enumerate(df['disconnect_count']):
+        plt.text(i, value + 0.5, str(value), ha='center', va='bottom', fontsize=9)
+
+    plt.show()
 # ----------------------------------------------------
 # HÀM CẢNH BÁO Permission Denied
 # ----------------------------------------------------
@@ -301,15 +343,15 @@ def alertPermission(parsed_data: list):
 def display_menu():
     """Displays the menu options."""
     menu_text = (
-        f"[{ITEM}]1 Monitor full logs base on PID & Export to CSV[/]\n"
-        f"[{ITEM}]2 Unauthorized use alert[/]\n"
-        f"[{ITEM}]3 List connection[/]\n"
-        f"[{ITEM}]4 List disconnection[/]\n"
-        f"[{ITEM}]Other Exit application[/]\n"
+        f"[{ITEM}]1 Xem LOG dựa trên PID và xuất ra file CSV[/]\n"
+        f"[{ITEM}]2 Xem cảnh báo quyền không được phép[/]\n"
+        f"[{ITEM}]3 Xem danh sách USER kết nối với DB[/]\n"
+        f"[{ITEM}]4 Xem danh sách USER ngắt kết nối với DB[/]\n"
+        f"[{ITEM}]Khác để THOÁT[/]\n"
     )
     panel = Panel(
         menu_text,
-        title = "[bold red]✨ APPLICATION MAIN MENU ✨[/bold red]",
+        title = "[bold red]✨ DBS401-MENU ✨[/bold red]",
         border_style="green",
         padding=(1,2)
     )
