@@ -127,9 +127,86 @@ def filter_and_parse_logs(logs: list) -> list:
     return parsed_data
 
 # ----------------------------------------------------
-# HÀM CẢNH BÁO
+# Official File End
 # ----------------------------------------------------
+def initial_parse() -> list:
+    """Hàm khởi tạo và phân tích file log ban đầu."""
+    parsed_data = []
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    Log_lines = readFile(log_file_path)
+    if Log_lines: 
+        parsed_data = filter_and_parse_logs(Log_lines)
+    return parsed_data
+# ----------------------------------------------------
+# Function List All Logs
+# ----------------------------------------------------
+def list_all_logs(parsed_data: list):
+    """Liệt kê tất cả các dòng log đã phân tích."""
+    print("\n" + "=" * 60)
+    print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG")
+    print("=" * 60)  
+    for item in parsed_data:
+                #time.sleep(0.1)  # Thêm độ trễ nhỏ để dễ quan sát khi in ra
+        if item.get('level_final') != 'SYSTEM':
+                # In ra chi tiết nếu final_level không phải là SYSTEM
+            print(f"Thời gian: {item['timestamp']}")
+            print(f"Người dùng: {item['user']} | Database: {item['database']}")
+            print(f"CẤP ĐỘ FINAL: {item['level_final']} (L1: {item['level_1']} | L2: {item['level_2']})")
+                
+            # Logic hiển thị chi tiết (đã sửa)
+        if item['level_final'] == 'AUDIT':
+            print(f"Loại hành động: {item['action_type']}")
+            print(f"Query: {item['query'][:70]}...")
+        elif item['level_final'] in ['ERROR', 'FATAL', 'STATEMENT']:
+            print(f"Nội dung: {item['raw_content']}")
+        elif item['level_final'] == 'LOG':
+            print(f"Nội dung: {item['raw_content']}")
+        else:
+            # Trường hợp UNKNOWN
+            print(f"Log thô: {item.get('raw_content', item.get('raw_log', 'N/A'))}")
 
+        print(f"This is the end of list log")        
+        print("-" * 30)
+# ----------------------------------------------------
+# Function List Connect Log
+# ----------------------------------------------------
+def list_connect_logs(parsed_data: list):
+    """Liệt kê tất cả các dòng log kết nối."""
+    time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
+    list_connect = []
+    for item in parsed_data:
+        if item.get('final_level') != 'SYSTEM':
+            raw_data = item.get('raw_content')
+            if raw_data and raw_data.startswith('connection authorized: user'):
+                list_connect.append(item)
+    for item in list_connect:
+        time.sleep(0.05)
+        console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
+        console.print(f'[{ITEM}]Time[/] :\r{item['timestamp']}')
+        console.print(f'[{ITEM}]Raw data[/]:\r{item['raw_content']}') 
+    console.print(f"[{LINE}]#####[/]" * 30)
+# ----------------------------------------------------
+# Function List Disconnect Log
+# ----------------------------------------------------
+def list_disconnect_logs(parsed_data: list):
+    """Liệt kê tất cả các dòng log ngắt kết nối."""
+    time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
+    list_disconnect = []
+    for item in parsed_data:
+        if item.get('final_level') != 'SYSTEM':
+            raw_data = item.get('raw_content')
+            if raw_data and raw_data.startswith('disconnection'):
+                list_disconnect.append(item)
+    for item in list_disconnect:
+        time.sleep(0.05)
+        console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
+        console.print(f'[{ITEM}]Time[/]:{item['timestamp']}')
+        console.print(f'[{ITEM}]Raw data[/]:{item['raw_content']}') 
+    console.print(f"[{LINE}]#####[/]" * 30)
+# ----------------------------------------------------
+# HÀM CẢNH BÁO Permission Denied
+# ----------------------------------------------------
 def alertPermission(parsed_data: list):
     """Tìm kiếm và in ra cảnh báo khi phát hiện lỗi "permission denied"."""
     
@@ -165,7 +242,6 @@ def alertPermission(parsed_data: list):
 #-----------------------------------------------------
 #Menu
 #-----------------------------------------------------
-
 def display_menu():
     """Displays the menu options."""
     menu_text = (
@@ -185,14 +261,7 @@ def display_menu():
 
 
 def menu_choice():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Xây dựng đường dẫn tuyệt đối an toàn: /Project/Log_Example/postgresql_v1.log
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log') # Đã sửa lại tên file log
-
-    Log_lines = readFile(log_file_path)
-    if Log_lines: 
-        parsed_data = filter_and_parse_logs(Log_lines)
+    parsed_data = initial_parse()
 
     while True:
         display_menu()
@@ -203,31 +272,7 @@ def menu_choice():
             console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs ')
                 # Lấy đường dẫn thư mục chứa file Python hiện tại (/api)
 
-
-            print("\n" + "=" * 60)
-            print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG")
-            print("=" * 60)  
-            for item in parsed_data:
-                time.sleep(0.1)  # Thêm độ trễ nhỏ để dễ quan sát khi in ra
-                if item.get('level_final') != 'SYSTEM':
-                # In ra chi tiết nếu final_level không phải là SYSTEM
-                    print(f"Thời gian: {item['timestamp']}")
-                    print(f"Người dùng: {item['user']} | Database: {item['database']}")
-                    print(f"CẤP ĐỘ FINAL: {item['level_final']} (L1: {item['level_1']} | L2: {item['level_2']})")
-                
-            # Logic hiển thị chi tiết (đã sửa)
-                if item['level_final'] == 'AUDIT':
-                    print(f"Loại hành động: {item['action_type']}")
-                    print(f"Query: {item['query'][:70]}...")
-                elif item['level_final'] in ['ERROR', 'FATAL', 'STATEMENT']:
-                    print(f"Nội dung: {item['raw_content']}")
-                elif item['level_final'] == 'LOG':
-                    print(f"Nội dung: {item['raw_content']}")
-                else:
-                    # Trường hợp UNKNOWN
-                    print(f"Log thô: {item.get('raw_content', item.get('raw_log', 'N/A'))}")
-                
-                print("-" * 30)
+            list_all_logs(parsed_data)
 
         elif choice == '2':
             console.print(f'[{H1}]>>>You choose option [2]: Unauthorized use alert ')
@@ -235,33 +280,11 @@ def menu_choice():
             print("-" * 30)
         elif choice == '3':
             console.print(f'[{H1}]>>>You choose option [3]: List connection')
-            time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
-            list_connect = []
-            for item in parsed_data:
-                if item.get('final_level') != 'SYSTEM':
-                    raw_data = item.get('raw_content')
-                    if raw_data and raw_data.startswith('connection authorized: user'):
-                        list_connect.append(item)
-            for item in list_connect:
-                time.sleep(0.05)
-                console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
-                console.print(f'[{ITEM}]Time[/] :\r{item['timestamp']}')
-                console.print(f'[{ITEM}]Raw data[/]:\r{item['raw_content']}') 
-            console.print(f"[{LINE}]#####[/]" * 30)
+            list_connect_logs(parsed_data)
         elif choice == '4':
             console.print(f'[{H1}]>>>You choose option [4]: List disconnection')
             #List Disconnect
-            list_disconnect = []
-            for item in parsed_data:
-                if item.get('final_level') != 'SYSTEM':
-                    raw_data = item.get('raw_content')
-                    if raw_data and raw_data.startswith('disconnection'):
-                        list_disconnect.append(item)
-            for item in list_disconnect:
-                console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
-                console.print(f'[{ITEM}]Time[/]:{item['timestamp']}')
-                console.print(f'[{ITEM}]Raw data[/]:{item['raw_content']}') 
-            print("-" * 30) 
+            list_disconnect_logs(parsed_data)
         else: 
             console.print(f"[{EXIT}]>>>Exiting. Goodbye!")
             break
