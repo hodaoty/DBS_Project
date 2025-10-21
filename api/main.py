@@ -1,5 +1,6 @@
 import os
 import re
+import time
 from rich.console import Console
 from rich.panel import Panel
 from rich.style import Style
@@ -11,12 +12,14 @@ H1_RGB = "#3498DB"  # A vibrant cyan-blue color
 ITEM_RGB = "#F1C40F"    # Vibrant Gold/Yellow (Item Numbers)
 TEXT_RGB = "#9B59B6"    # Deep Purple (Menu Text)
 EXIT_RGB = "#E74C3C"    # Bright Red (Exit/Error)
+LINE_RGB = "#95A5A6"    # Soft Gray (Lines/Separators)
 console = Console()
 # Styles for menu items and general text
 H1 = Style(color=H1_RGB, bold=True)
 ITEM = Style(color=ITEM_RGB)
 ERROR = Style(color=EXIT_RGB, bold=True)
 EXIT = Style(color=EXIT_RGB,bold=True)
+LINE = Style(color=LINE_RGB, bold=True)
 ######################################
 
 # Regex Pattern để trích xuất các trường thông tin chính
@@ -145,10 +148,11 @@ def alertPermission(parsed_data: list):
                 count+=1
                 permission_denied_found = True
                 
-                print(f"[PERMISSION DENIED DETECTED]")
-                print(f"Time: {item['timestamp']}")
-                print(f"User: {item['user']} @ {item['database']}")
-                print(f"Lỗi: {item['raw_content']}")
+                console.print(f"[{H1}][PERMISSION DENIED DETECTED][/]")
+                console.print(f"[{ITEM}]PID[/]: {item['pid']}")
+                console.print(f"[{ITEM}]Time[/]: {item['timestamp']}")
+                console.print(f"[{ITEM}]User[/]: {item['user']} @ {item['database']}")
+                console.print(f"[{ITEM}]Lỗi[/]: {item['raw_content']}")
                 
                 # Nếu có query, in ra lệnh SQL đã cố gắng chạy
                 if item.get('query'):
@@ -204,6 +208,7 @@ def menu_choice():
             print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG")
             print("=" * 60)  
             for item in parsed_data:
+                time.sleep(0.1)  # Thêm độ trễ nhỏ để dễ quan sát khi in ra
                 if item.get('level_final') != 'SYSTEM':
                 # In ra chi tiết nếu final_level không phải là SYSTEM
                     print(f"Thời gian: {item['timestamp']}")
@@ -230,7 +235,7 @@ def menu_choice():
             print("-" * 30)
         elif choice == '3':
             console.print(f'[{H1}]>>>You choose option [3]: List connection')
-            #List Connect
+            time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
             list_connect = []
             for item in parsed_data:
                 if item.get('final_level') != 'SYSTEM':
@@ -238,9 +243,11 @@ def menu_choice():
                     if raw_data and raw_data.startswith('connection authorized: user'):
                         list_connect.append(item)
             for item in list_connect:
-                print(f'Time :{item['timestamp']}')
-                print(f'Raw data:{item['raw_content']}') 
-            print("-" * 30)
+                time.sleep(0.05)
+                console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
+                console.print(f'[{ITEM}]Time[/] :\r{item['timestamp']}')
+                console.print(f'[{ITEM}]Raw data[/]:\r{item['raw_content']}') 
+            console.print(f"[{LINE}]#####[/]" * 30)
         elif choice == '4':
             console.print(f'[{H1}]>>>You choose option [4]: List disconnection')
             #List Disconnect
@@ -251,8 +258,9 @@ def menu_choice():
                     if raw_data and raw_data.startswith('disconnection'):
                         list_disconnect.append(item)
             for item in list_disconnect:
-                print(f'Time:{item['timestamp']}')
-                print(f'Raw data:{item['raw_content']}') 
+                console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
+                console.print(f'[{ITEM}]Time[/]:{item['timestamp']}')
+                console.print(f'[{ITEM}]Raw data[/]:{item['raw_content']}') 
             print("-" * 30) 
         else: 
             console.print(f"[{EXIT}]>>>Exiting. Goodbye!")
