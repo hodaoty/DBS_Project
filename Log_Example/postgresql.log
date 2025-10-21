@@ -1,0 +1,1652 @@
+2025-10-04 20:59:26.037 +07 [7002] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-04 20:59:26.038 +07 [7002] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-04 20:59:26.038 +07 [7002] LOG:  listening on IPv6 address "::", port 5432
+2025-10-04 20:59:26.041 +07 [7002] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-04 20:59:26.092 +07 [7009] LOG:  database system was shut down at 2025-10-04 20:43:19 +07
+2025-10-04 20:59:26.121 +07 [7002] LOG:  database system is ready to accept connections
+2025-10-04 20:59:26.710 +07 [7013] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 20:59:27.262 +07 [7016] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 20:59:27.268 +07 [7016] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 20:59:27.268 +07 [7016] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 20:59:27.344 +07 [7016] postgres@template1 LOG:  disconnection: session time: 0:00:00.083 user=postgres database=template1 host=[local]
+2025-10-04 20:59:27.876 +07 [7019] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 20:59:27.882 +07 [7019] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 20:59:27.882 +07 [7019] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 20:59:27.892 +07 [7019] postgres@template1 LOG:  disconnection: session time: 0:00:00.016 user=postgres database=template1 host=[local]
+2025-10-04 20:59:28.415 +07 [7022] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 20:59:28.416 +07 [7022] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 20:59:28.416 +07 [7022] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 20:59:28.424 +07 [7022] postgres@template1 LOG:  disconnection: session time: 0:00:00.008 user=postgres database=template1 host=[local]
+2025-10-04 20:59:40.209 +07 [7025] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 20:59:40.209 +07 [7025] posgres@hodaoty LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:123)
+2025-10-04 20:59:40.209 +07 [7025] posgres@hodaoty LOG:  provided user name (posgres) and authenticated user name (root) do not match
+2025-10-04 20:59:40.211 +07 [7025] posgres@hodaoty FATAL:  Peer authentication failed for user "posgres"
+2025-10-04 20:59:40.211 +07 [7025] posgres@hodaoty DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 123: "local   all             all                                     peer"
+2025-10-04 20:59:49.319 +07 [7031] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 20:59:49.320 +07 [7031] postgres@hodaoty LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 20:59:49.320 +07 [7031] postgres@hodaoty LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-04 20:59:49.320 +07 [7031] postgres@hodaoty FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 20:59:49.320 +07 [7031] postgres@hodaoty DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:00:08.376 +07 [7048] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:00:08.377 +07 [7048] postgres@postgres LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:00:08.377 +07 [7048] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-04 21:00:08.377 +07 [7048] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:00:08.377 +07 [7048] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:01:04.963 +07 [7068] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:01:04.967 +07 [7068] postgres@postgres LOG:  connection authenticated: identity="hodaoty" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:01:04.967 +07 [7068] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (hodaoty) do not match
+2025-10-04 21:01:04.967 +07 [7068] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:01:04.967 +07 [7068] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:02:18.845 +07 [7002] LOG:  received fast shutdown request
+2025-10-04 21:02:18.850 +07 [7002] LOG:  aborting any active transactions
+2025-10-04 21:02:18.878 +07 [7002] LOG:  background worker "logical replication launcher" (PID 7012) exited with exit code 1
+2025-10-04 21:02:18.878 +07 [7007] LOG:  shutting down
+2025-10-04 21:02:18.883 +07 [7007] LOG:  checkpoint starting: shutdown immediate
+2025-10-04 21:02:18.903 +07 [7007] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.003 s, total=0.024 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C45CC8, redo lsn=0/1C45CC8
+2025-10-04 21:02:18.933 +07 [7002] LOG:  database system is shut down
+2025-10-04 21:02:19.151 +07 [7104] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-04 21:02:19.151 +07 [7104] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-04 21:02:19.151 +07 [7104] LOG:  listening on IPv6 address "::", port 5432
+2025-10-04 21:02:19.165 +07 [7104] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-04 21:02:19.202 +07 [7111] LOG:  database system was shut down at 2025-10-04 21:02:18 +07
+2025-10-04 21:02:19.223 +07 [7104] LOG:  database system is ready to accept connections
+2025-10-04 21:02:19.825 +07 [7115] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:02:20.362 +07 [7118] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:02:20.364 +07 [7118] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:02:20.364 +07 [7118] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:02:20.382 +07 [7118] postgres@template1 LOG:  disconnection: session time: 0:00:00.020 user=postgres database=template1 host=[local]
+2025-10-04 21:02:20.914 +07 [7121] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:02:20.916 +07 [7121] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:02:20.916 +07 [7121] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:02:20.918 +07 [7121] postgres@template1 LOG:  disconnection: session time: 0:00:00.003 user=postgres database=template1 host=[local]
+2025-10-04 21:02:21.440 +07 [7124] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:02:21.441 +07 [7124] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:02:21.441 +07 [7124] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:02:21.444 +07 [7124] postgres@template1 LOG:  disconnection: session time: 0:00:00.004 user=postgres database=template1 host=[local]
+2025-10-04 21:02:25.728 +07 [7129] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:02:25.728 +07 [7129] postgres@hodaoty LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:02:25.728 +07 [7129] postgres@hodaoty LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-04 21:02:25.728 +07 [7129] postgres@hodaoty FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:02:25.728 +07 [7129] postgres@hodaoty DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:02:31.106 +07 [7131] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:02:31.111 +07 [7131] postgres@postgres LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:02:31.111 +07 [7131] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-04 21:02:31.111 +07 [7131] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:02:31.111 +07 [7131] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:02:52.679 +07 [7211] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=49608
+2025-10-04 21:02:52.731 +07 [7211] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-04 21:02:52.731 +07 [7211] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 125: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-04 21:02:52.734 +07 [7212] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=49618
+2025-10-04 21:02:52.760 +07 [7212] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-04 21:02:52.760 +07 [7212] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 125: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-04 21:03:01.384 +07 [7216] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=36868
+2025-10-04 21:03:01.410 +07 [7216] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-04 21:03:01.410 +07 [7216] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 125: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-04 21:03:01.418 +07 [7217] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=36884
+2025-10-04 21:03:01.423 +07 [7217] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-04 21:03:01.423 +07 [7217] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 125: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-04 21:03:08.850 +07 [7221] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=53376
+2025-10-04 21:03:08.885 +07 [7221] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-04 21:03:08.885 +07 [7221] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 125: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-04 21:03:08.895 +07 [7222] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=53382
+2025-10-04 21:03:08.900 +07 [7222] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-04 21:03:08.900 +07 [7222] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 125: "host    all             all             127.0.0.1/32            scram-sha-256"
+2025-10-04 21:03:20.539 +07 [7257] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=60162
+2025-10-04 21:03:20.551 +07 [7257] postgres@postgres LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:03:20.551 +07 [7257] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=pgAdmin 4 - DB:postgres SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:03:25.064 +07 [7270] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=36586
+2025-10-04 21:03:25.069 +07 [7271] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=36600
+2025-10-04 21:03:25.087 +07 [7271] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:03:25.087 +07 [7271] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=pgAdmin 4 - DB:testdb SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:03:25.114 +07 [7270] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:03:25.114 +07 [7270] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=pgAdmin 4 - DB:testdb SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:03:25.235 +07 [7271] postgres@testdb LOG:  disconnection: session time: 0:00:00.166 user=postgres database=testdb host=127.0.0.1 port=36600
+2025-10-04 21:03:41.766 +07 [7320] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:03:41.767 +07 [7320] posgres@posgres LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:123)
+2025-10-04 21:03:41.767 +07 [7320] posgres@posgres LOG:  provided user name (posgres) and authenticated user name (root) do not match
+2025-10-04 21:03:41.767 +07 [7320] posgres@posgres FATAL:  Peer authentication failed for user "posgres"
+2025-10-04 21:03:41.767 +07 [7320] posgres@posgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 123: "local   all             all                                     peer"
+2025-10-04 21:03:49.373 +07 [7323] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:03:49.374 +07 [7323] postgres@postgres LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:03:49.374 +07 [7323] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-04 21:03:49.374 +07 [7323] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:03:49.374 +07 [7323] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:05:30.005 +07 [7356] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:05:30.007 +07 [7356] postgres@postgres LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:05:30.007 +07 [7356] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-04 21:05:30.007 +07 [7356] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:05:30.007 +07 [7356] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:05:58.795 +07 [7391] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:05:58.796 +07 [7391] root@root LOG:  connection authenticated: identity="root" method=peer (/etc/postgresql/18/main/pg_hba.conf:123)
+2025-10-04 21:05:58.798 +07 [7391] root@root LOG:  connection authorized: user=root database=root application_name=psql
+2025-10-04 21:05:58.798 +07 [7391] root@root FATAL:  role "root" does not exist
+2025-10-04 21:06:10.469 +07 [7474] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:06:10.472 +07 [7474] hodaoty@hodaoty LOG:  connection authenticated: identity="hodaoty" method=peer (/etc/postgresql/18/main/pg_hba.conf:123)
+2025-10-04 21:06:10.472 +07 [7474] hodaoty@hodaoty LOG:  connection authorized: user=hodaoty database=hodaoty application_name=psql
+2025-10-04 21:06:10.472 +07 [7474] hodaoty@hodaoty FATAL:  role "hodaoty" does not exist
+2025-10-04 21:06:32.275 +07 [7482] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:06:32.276 +07 [7482] postgres@hodaoty LOG:  connection authenticated: identity="hodaoty" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:06:32.276 +07 [7482] postgres@hodaoty LOG:  provided user name (postgres) and authenticated user name (hodaoty) do not match
+2025-10-04 21:06:32.276 +07 [7482] postgres@hodaoty FATAL:  Peer authentication failed for user "postgres"
+2025-10-04 21:06:32.276 +07 [7482] postgres@hodaoty DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-04 21:07:12.678 +07 [7505] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:07:12.680 +07 [7505] postgres@hodaoty LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:07:12.680 +07 [7505] postgres@hodaoty LOG:  connection authorized: user=postgres database=hodaoty application_name=psql
+2025-10-04 21:07:12.680 +07 [7505] postgres@hodaoty FATAL:  database "hodaoty" does not exist
+2025-10-04 21:07:19.301 +07 [7109] LOG:  checkpoint starting: time
+2025-10-04 21:07:19.390 +07 [7109] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.034 s, sync=0.018 s, total=0.089 s; sync files=2, longest=0.013 s, average=0.009 s; distance=0 kB, estimate=0 kB; lsn=0/1C45DD0, redo lsn=0/1C45D78
+2025-10-04 21:07:22.548 +07 [7510] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:07:22.548 +07 [7510] postgres@postgres LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:07:22.548 +07 [7510] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2025-10-04 21:07:34.031 +07 [7510] postgres@postgres ERROR:  unrecognized configuration parameter "database"
+2025-10-04 21:07:34.031 +07 [7510] postgres@postgres STATEMENT:  show database;
+2025-10-04 21:07:56.263 +07 [7510] postgres@postgres LOG:  disconnection: session time: 0:00:33.715 user=postgres database=postgres host=[local]
+2025-10-04 21:08:05.883 +07 [7551] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:08:05.884 +07 [7551] root@root LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:123)
+2025-10-04 21:08:05.884 +07 [7551] root@root LOG:  provided user name (root) and authenticated user name (postgres) do not match
+2025-10-04 21:08:05.884 +07 [7551] root@root FATAL:  Peer authentication failed for user "root"
+2025-10-04 21:08:05.884 +07 [7551] root@root DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 123: "local   all             all                                     peer"
+2025-10-04 21:08:18.793 +07 [7557] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:08:18.793 +07 [7557] postgres@postgres LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:08:18.793 +07 [7557] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2025-10-04 21:08:25.718 +07 [7557] postgres@postgres ERROR:  syntax error at or near "ls" at character 1
+2025-10-04 21:08:25.718 +07 [7557] postgres@postgres STATEMENT:  ls
+	show database;
+2025-10-04 21:08:31.191 +07 [7557] postgres@postgres ERROR:  unrecognized configuration parameter "database"
+2025-10-04 21:08:31.191 +07 [7557] postgres@postgres STATEMENT:  show database;
+2025-10-04 21:09:28.422 +07 [7557] postgres@postgres LOG:  disconnection: session time: 0:01:09.629 user=postgres database=postgres host=[local]
+2025-10-04 21:09:57.695 +07 [7607] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:09:57.695 +07 [7607] postgres@postgres LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:09:57.695 +07 [7607] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2025-10-04 21:10:18.208 +07 [7607] postgres@postgres ERROR:  syntax error at or near "use" at character 1
+2025-10-04 21:10:18.208 +07 [7607] postgres@postgres STATEMENT:  use testDB;
+2025-10-04 21:10:38.904 +07 [7607] postgres@postgres LOG:  disconnection: session time: 0:00:41.209 user=postgres database=postgres host=[local]
+2025-10-04 21:10:44.191 +07 [7631] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:10:44.192 +07 [7631] postgres@testdb LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:10:44.192 +07 [7631] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql
+2025-10-04 21:12:57.384 +07 [7631] postgres@testdb LOG:  disconnection: session time: 0:02:13.192 user=postgres database=testdb host=[local]
+2025-10-04 21:21:33.420 +07 [7104] LOG:  received fast shutdown request
+2025-10-04 21:21:33.428 +07 [7104] LOG:  aborting any active transactions
+2025-10-04 21:21:33.465 +07 [7270] postgres@testdb FATAL:  terminating connection due to administrator command
+2025-10-04 21:21:33.467 +07 [7270] postgres@testdb LOG:  disconnection: session time: 0:18:08.403 user=postgres database=testdb host=127.0.0.1 port=36586
+2025-10-04 21:21:33.488 +07 [7257] postgres@postgres FATAL:  terminating connection due to administrator command
+2025-10-04 21:21:33.491 +07 [7257] postgres@postgres LOG:  disconnection: session time: 0:18:12.952 user=postgres database=postgres host=127.0.0.1 port=60162
+2025-10-04 21:21:33.534 +07 [7104] LOG:  background worker "logical replication launcher" (PID 7114) exited with exit code 1
+2025-10-04 21:21:33.551 +07 [7109] LOG:  shutting down
+2025-10-04 21:21:33.561 +07 [7109] LOG:  checkpoint starting: shutdown immediate
+2025-10-04 21:21:33.599 +07 [7109] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.049 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1C45E80, redo lsn=0/1C45E80
+2025-10-04 21:21:33.647 +07 [7104] LOG:  database system is shut down
+2025-10-04 21:21:34.244 +07 [7927] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-04 21:21:34.248 +07 [7927] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-04 21:21:34.248 +07 [7927] LOG:  listening on IPv6 address "::", port 5432
+2025-10-04 21:21:34.255 +07 [7927] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-04 21:21:34.329 +07 [7934] LOG:  database system was shut down at 2025-10-04 21:21:33 +07
+2025-10-04 21:21:34.380 +07 [7927] LOG:  database system is ready to accept connections
+2025-10-04 21:21:34.903 +07 [7939] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:21:35.455 +07 [7942] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:21:35.462 +07 [7942] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:21:35.462 +07 [7942] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:21:35.556 +07 [7942] postgres@template1 LOG:  disconnection: session time: 0:00:00.101 user=postgres database=template1 host=[local]
+2025-10-04 21:21:36.081 +07 [7945] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:21:36.085 +07 [7945] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:21:36.085 +07 [7945] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:21:36.093 +07 [7945] postgres@template1 LOG:  disconnection: session time: 0:00:00.013 user=postgres database=template1 host=[local]
+2025-10-04 21:21:36.618 +07 [7948] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:21:36.619 +07 [7948] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:21:36.619 +07 [7948] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:21:36.623 +07 [7948] postgres@template1 LOG:  disconnection: session time: 0:00:00.004 user=postgres database=template1 host=[local]
+2025-10-04 21:21:50.974 +07 [7956] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:21:50.975 +07 [7956] postgres@postgres LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:21:50.975 +07 [7956] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2025-10-04 21:22:12.695 +07 [7956] postgres@postgres LOG:  AUDIT: SESSION,1,1,DDL,CREATE EXTENSION,,,CREATE EXTENSION pgaudit,<none>
+2025-10-04 21:22:31.607 +07 [7956] postgres@postgres LOG:  AUDIT: SESSION,2,1,DDL,CREATE DATABASE,,,CREATE DATABASE auditdb,<none>
+2025-10-04 21:23:04.427 +07 [7956] postgres@postgres LOG:  AUDIT: SESSION,3,1,ROLE,CREATE ROLE,,,CREATE USER audituser WITH PASSWORD <REDACTED>,<none>
+2025-10-04 21:23:28.809 +07 [7956] postgres@postgres LOG:  AUDIT: SESSION,4,1,ROLE,GRANT,,,GRANT ALL PRIVILEGES ON DATABASE auditdb to audituser,<none>
+2025-10-04 21:23:35.935 +07 [7979] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-04 21:23:35.936 +07 [7979] postgres@auditdb LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:23:35.936 +07 [7979] postgres@auditdb LOG:  connection authorized: user=postgres database=auditdb application_name=psql
+2025-10-04 21:23:35.945 +07 [7956] postgres@postgres LOG:  disconnection: session time: 0:01:44.971 user=postgres database=postgres host=[local]
+2025-10-04 21:25:02.459 +07 [7979] postgres@auditdb ERROR:  type "numberic" does not exist at character 64
+2025-10-04 21:25:02.459 +07 [7979] postgres@auditdb STATEMENT:  CREATE TABLE employee(id SERIAL PRIMARY KEY, name TEXT, salary NUMBERIC);
+2025-10-04 21:25:11.646 +07 [7979] postgres@auditdb LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,"CREATE TABLE employee(id SERIAL PRIMARY KEY, name TEXT, salary NUMERIC)",<none>
+2025-10-04 21:25:27.098 +07 [7979] postgres@auditdb LOG:  AUDIT: SESSION,2,1,ROLE,GRANT,,,GRANT ALL ON employee TO audituser,<none>
+2025-10-04 21:26:05.701 +07 [7979] postgres@auditdb LOG:  AUDIT: SESSION,3,1,ROLE,GRANT,,,"GRANT USAGE, SELECT, UPDATE ON SEQUENCE employee_id_seq TO audituser",<none>
+2025-10-04 21:26:13.935 +07 [7979] postgres@auditdb LOG:  disconnection: session time: 0:02:38.000 user=postgres database=auditdb host=[local]
+2025-10-04 21:26:34.416 +07 [7932] LOG:  checkpoint starting: time
+2025-10-04 21:27:20.168 +07 [8047] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=43702
+2025-10-04 21:27:20.192 +07 [8047] audituser@auditdb LOG:  connection authenticated: identity="audituser" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:27:20.192 +07 [8047] audituser@auditdb LOG:  connection authorized: user=audituser database=auditdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:27:33.616 +07 [8047] audituser@auditdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,public.employee,select * from employee,<none>
+2025-10-04 21:28:13.599 +07 [8047] audituser@auditdb LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,TABLE,public.employee,"insert into employee(name, salary) values('Naruto',123456)",<none>
+2025-10-04 21:28:14.479 +07 [7932] LOG:  checkpoint complete: wrote 988 buffers (6.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=99.702 s, sync=0.328 s, total=100.063 s; sync files=332, longest=0.008 s, average=0.001 s; distance=4428 kB, estimate=4428 kB; lsn=0/20A1C88, redo lsn=0/2099108
+2025-10-04 21:28:16.484 +07 [8047] audituser@auditdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.employee,select * from employee,<none>
+2025-10-04 21:28:24.231 +07 [8047] audituser@auditdb LOG:  disconnection: session time: 0:01:04.063 user=audituser database=auditdb host=127.0.0.1 port=43702
+2025-10-04 21:33:41.969 +07 [8256] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=34764
+2025-10-04 21:33:42.041 +07 [8256] postgres@postgres LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:33:42.041 +07 [8256] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=pgAdmin 4 - DB:postgres SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:33:42.066 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,1,1,MISC,SET,,,SET DateStyle=ISO,<none>
+2025-10-04 21:33:42.066 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,2,1,MISC,SET,,,SET client_min_messages=notice,<none>
+2025-10-04 21:33:42.101 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,"SELECT set_config('bytea_output','hex',false) FROM pg_show_all_settings() WHERE name = 'bytea_output'",<none>
+2025-10-04 21:33:42.103 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,4,1,MISC,SET,,,SET client_encoding='utf-8',<none>
+2025-10-04 21:33:42.108 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-04 21:33:42.134 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	    db.oid as did, db.datname, db.datallowconn,
+	    pg_encoding_to_char(db.encoding) AS serverencoding,
+	    has_database_privilege(db.oid, 'CREATE') as cancreate,
+	    datistemplate
+	FROM
+	    pg_catalog.pg_database db
+	WHERE db.datname = current_database()",<none>
+2025-10-04 21:33:42.148 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,7,1,READ,SELECT,VIEW,pg_catalog.pg_stat_gssapi,"SELECT
+	             gss_authenticated, encrypted
+	        FROM
+	            pg_catalog.pg_stat_gssapi
+	        WHERE pid = pg_backend_pid()",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_auth_members,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.180 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:42.193 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	    db.oid as did, db.datname as name, ta.spcname as spcname, db.datallowconn,
+	    db.datistemplate AS is_template,
+	    pg_catalog.has_database_privilege(db.oid, 'CREATE') as cancreate, datdba as owner,
+	    descr.description
+	FROM
+	    pg_catalog.pg_database db
+	    LEFT OUTER JOIN pg_catalog.pg_tablespace ta ON db.dattablespace = ta.oid
+	    LEFT OUTER JOIN pg_catalog.pg_shdescription descr ON (
+	        db.oid=descr.objoid AND descr.classoid='pg_database'::regclass
+	    )
+	WHERE         db.oid > 16383::OID OR db.datname IN ('postgres', 'edb')
+	
+	ORDER BY datname",<none>
+2025-10-04 21:33:42.193 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,pg_catalog.pg_tablespace,"SELECT
+	    db.oid as did, db.datname as name, ta.spcname as spcname, db.datallowconn,
+	    db.datistemplate AS is_template,
+	    pg_catalog.has_database_privilege(db.oid, 'CREATE') as cancreate, datdba as owner,
+	    descr.description
+	FROM
+	    pg_catalog.pg_database db
+	    LEFT OUTER JOIN pg_catalog.pg_tablespace ta ON db.dattablespace = ta.oid
+	    LEFT OUTER JOIN pg_catalog.pg_shdescription descr ON (
+	        db.oid=descr.objoid AND descr.classoid='pg_database'::regclass
+	    )
+	WHERE         db.oid > 16383::OID OR db.datname IN ('postgres', 'edb')
+	
+	ORDER BY datname",<none>
+2025-10-04 21:33:42.193 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,pg_catalog.pg_shdescription,"SELECT
+	    db.oid as did, db.datname as name, ta.spcname as spcname, db.datallowconn,
+	    db.datistemplate AS is_template,
+	    pg_catalog.has_database_privilege(db.oid, 'CREATE') as cancreate, datdba as owner,
+	    descr.description
+	FROM
+	    pg_catalog.pg_database db
+	    LEFT OUTER JOIN pg_catalog.pg_tablespace ta ON db.dattablespace = ta.oid
+	    LEFT OUTER JOIN pg_catalog.pg_shdescription descr ON (
+	        db.oid=descr.objoid AND descr.classoid='pg_database'::regclass
+	    )
+	WHERE         db.oid > 16383::OID OR db.datname IN ('postgres', 'edb')
+	
+	ORDER BY datname",<none>
+2025-10-04 21:33:45.386 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,10,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	    db.oid as did, db.datname, db.datallowconn,
+	    pg_catalog.pg_encoding_to_char(db.encoding) AS serverencoding,
+	    pg_catalog.has_database_privilege(db.oid, 'CREATE') as cancreate,
+	    datistemplate
+	FROM
+	    pg_catalog.pg_database db
+	WHERE db.oid = 16410",<none>
+2025-10-04 21:33:45.387 +07 [8256] postgres@postgres LOG:  AUDIT: SESSION,11,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	    db.oid as did, db.datname, db.datallowconn,
+	    pg_catalog.pg_encoding_to_char(db.encoding) AS serverencoding,
+	    pg_catalog.has_database_privilege(db.oid, 'CREATE') as cancreate,
+	    datistemplate
+	FROM
+	    pg_catalog.pg_database db
+	WHERE db.oid = 16410",<none>
+2025-10-04 21:33:45.389 +07 [8261] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=50744
+2025-10-04 21:33:45.401 +07 [8262] [unknown]@[unknown] LOG:  connection received: host=127.0.0.1 port=50760
+2025-10-04 21:33:45.414 +07 [8261] postgres@auditdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:33:45.414 +07 [8261] postgres@auditdb LOG:  connection authorized: user=postgres database=auditdb application_name=pgAdmin 4 - DB:auditdb SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:33:45.421 +07 [8262] postgres@auditdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:125)
+2025-10-04 21:33:45.421 +07 [8262] postgres@auditdb LOG:  connection authorized: user=postgres database=auditdb application_name=pgAdmin 4 - DB:auditdb SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-04 21:33:45.431 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,1,1,MISC,SET,,,SET DateStyle=ISO,<none>
+2025-10-04 21:33:45.431 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,2,1,MISC,SET,,,SET client_min_messages=notice,<none>
+2025-10-04 21:33:45.433 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,1,1,MISC,SET,,,SET DateStyle=ISO,<none>
+2025-10-04 21:33:45.433 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,2,1,MISC,SET,,,SET client_min_messages=notice,<none>
+2025-10-04 21:33:45.436 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,"SELECT set_config('bytea_output','hex',false) FROM pg_show_all_settings() WHERE name = 'bytea_output'",<none>
+2025-10-04 21:33:45.436 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,"SELECT set_config('bytea_output','hex',false) FROM pg_show_all_settings() WHERE name = 'bytea_output'",<none>
+2025-10-04 21:33:45.437 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,4,1,MISC,SET,,,SET client_encoding='utf-8',<none>
+2025-10-04 21:33:45.438 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,4,1,MISC,SET,,,SET client_encoding='utf-8',<none>
+2025-10-04 21:33:45.438 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-04 21:33:45.439 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,6,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	    db.oid as did, db.datname, db.datallowconn,
+	    pg_encoding_to_char(db.encoding) AS serverencoding,
+	    has_database_privilege(db.oid, 'CREATE') as cancreate,
+	    datistemplate
+	FROM
+	    pg_catalog.pg_database db
+	WHERE db.datname = current_database()",<none>
+2025-10-04 21:33:45.439 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-04 21:33:45.439 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,7,1,READ,SELECT,VIEW,pg_catalog.pg_stat_gssapi,"SELECT
+	             gss_authenticated, encrypted
+	        FROM
+	            pg_catalog.pg_stat_gssapi
+	        WHERE pid = pg_backend_pid()",<none>
+2025-10-04 21:33:45.440 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,6,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	    db.oid as did, db.datname, db.datallowconn,
+	    pg_encoding_to_char(db.encoding) AS serverencoding,
+	    has_database_privilege(db.oid, 'CREATE') as cancreate,
+	    datistemplate
+	FROM
+	    pg_catalog.pg_database db
+	WHERE db.datname = current_database()",<none>
+2025-10-04 21:33:45.440 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,7,1,READ,SELECT,VIEW,pg_catalog.pg_stat_gssapi,"SELECT
+	             gss_authenticated, encrypted
+	        FROM
+	            pg_catalog.pg_stat_gssapi
+	        WHERE pid = pg_backend_pid()",<none>
+2025-10-04 21:33:45.441 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_auth_members,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.442 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_auth_members,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,VIEW,pg_catalog.pg_roles,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_authid,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.444 +07 [8261] postgres@auditdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,pg_catalog.pg_db_role_setting,"SELECT
+	            roles.oid as id, roles.rolname as name,
+	            roles.rolsuper as is_superuser,
+	            CASE WHEN roles.rolsuper THEN true ELSE roles.rolcreaterole END as
+	            can_create_role,
+	            CASE WHEN roles.rolsuper THEN true
+	            ELSE roles.rolcreatedb END as can_create_db,
+	            CASE WHEN 'pg_signal_backend'=ANY(ARRAY(WITH RECURSIVE cte AS (
+	            SELECT pg_roles.oid,pg_roles.rolname FROM pg_roles
+	                WHERE pg_roles.oid = roles.oid
+	            UNION ALL
+	            SELECT m.roleid,pgr.rolname FROM cte cte_1
+	                JOIN pg_auth_members m ON m.member = cte_1.oid
+	                JOIN pg_roles pgr ON pgr.oid = m.roleid)
+	            SELECT rolname  FROM cte)) THEN True
+	            ELSE False END as can_signal_backend
+	        FROM
+	            pg_catalog.pg_roles as roles
+	        WHERE
+	            rolname = current_user",<none>
+2025-10-04 21:33:45.478 +07 [8261] postgres@auditdb LOG:  disconnection: session time: 0:00:00.088 user=postgres database=auditdb host=127.0.0.1 port=50744
+2025-10-04 21:33:45.525 +07 [8262] postgres@auditdb LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,pg_catalog.pg_extension,"SELECT COUNT(*) FROM pg_extension WHERE extname IN (
+	                'edb_job_scheduler', 'dbms_scheduler')",<none>
+2025-10-04 21:33:57.744 +07 [8262] postgres@auditdb LOG:  SSL error: unexpected eof while reading
+2025-10-04 21:33:57.744 +07 [8262] postgres@auditdb LOG:  could not receive data from client: Connection reset by peer
+2025-10-04 21:33:57.745 +07 [8262] postgres@auditdb LOG:  disconnection: session time: 0:00:12.346 user=postgres database=auditdb host=127.0.0.1 port=50760
+2025-10-04 21:33:57.750 +07 [8256] postgres@postgres LOG:  SSL error: unexpected eof while reading
+2025-10-04 21:33:57.750 +07 [8256] postgres@postgres LOG:  could not receive data from client: Connection reset by peer
+2025-10-04 21:33:57.750 +07 [8256] postgres@postgres LOG:  disconnection: session time: 0:00:15.782 user=postgres database=postgres host=127.0.0.1 port=34764
+2025-10-04 21:34:07.048 +07 [7927] LOG:  received fast shutdown request
+2025-10-04 21:34:07.064 +07 [7927] LOG:  aborting any active transactions
+2025-10-04 21:34:07.317 +07 [7927] LOG:  background worker "logical replication launcher" (PID 7937) exited with exit code 1
+2025-10-04 21:34:07.459 +07 [7932] LOG:  shutting down
+2025-10-04 21:34:07.476 +07 [7932] LOG:  checkpoint starting: shutdown immediate
+2025-10-04 21:34:07.737 +07 [7932] LOG:  checkpoint complete: wrote 11 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.132 s, sync=0.047 s, total=0.278 s; sync files=9, longest=0.011 s, average=0.006 s; distance=35 kB, estimate=3989 kB; lsn=0/20A1D38, redo lsn=0/20A1D38
+2025-10-04 21:34:08.412 +07 [7927] LOG:  database system is shut down
+2025-10-05 09:05:51.039 +07 [815] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-05 09:05:51.039 +07 [815] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-05 09:05:51.039 +07 [815] LOG:  listening on IPv6 address "::", port 5432
+2025-10-05 09:05:51.173 +07 [815] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-05 09:05:51.752 +07 [1027] LOG:  database system was shut down at 2025-10-04 21:34:07 +07
+2025-10-05 09:05:52.126 +07 [815] LOG:  database system is ready to accept connections
+2025-10-05 09:05:52.863 +07 [1100] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 09:05:53.715 +07 [1124] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 09:05:53.783 +07 [1124] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-05 09:05:53.783 +07 [1124] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-05 09:05:54.333 +07 [1124] postgres@template1 LOG:  disconnection: session time: 0:00:00.612 user=postgres database=template1 host=[local]
+2025-10-05 09:05:55.072 +07 [1161] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 09:05:55.131 +07 [1161] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-05 09:05:55.132 +07 [1161] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-05 09:05:55.195 +07 [1161] postgres@template1 LOG:  disconnection: session time: 0:00:00.131 user=postgres database=template1 host=[local]
+2025-10-05 09:05:55.915 +07 [1178] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 09:05:55.917 +07 [1178] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-05 09:05:55.917 +07 [1178] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-05 09:05:56.001 +07 [1178] postgres@template1 LOG:  disconnection: session time: 0:00:00.097 user=postgres database=template1 host=[local]
+2025-10-05 09:10:55.416 +07 [1025] LOG:  checkpoint starting: time
+2025-10-05 09:10:55.614 +07 [1025] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.161 s, sync=0.005 s, total=0.224 s; sync files=3, longest=0.002 s, average=0.002 s; distance=8 kB, estimate=8 kB; lsn=0/20A3E88, redo lsn=0/20A3E30
+2025-10-05 09:15:05.047 +07 [5507] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55648
+2025-10-05 09:15:16.476 +07 [5513] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55655
+2025-10-05 09:15:24.746 +07 [5518] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55659
+2025-10-05 09:15:24.791 +07 [5518] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 09:15:24.792 +07 [5518] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 09:15:59.015 +07 [5518] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-05 09:16:04.378 +07 [5518] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-05 09:16:04.378 +07 [5518] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-05 09:16:04.378 +07 [5518] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-05 09:16:11.454 +07 [5518] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-05 09:20:21.217 +07 [5518] postgres@testdb LOG:  disconnection: session time: 0:04:56.470 user=postgres database=testdb host=10.0.2.2 port=55659
+2025-10-05 09:46:34.739 +07 [8597] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=65377
+2025-10-05 09:46:41.441 +07 [8601] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=65379
+2025-10-05 09:46:41.490 +07 [8601] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 09:46:41.490 +07 [8601] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 09:50:48.749 +07 [8601] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-05 09:50:48.751 +07 [8601] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-05 09:50:48.751 +07 [8601] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-05 09:51:04.417 +07 [8601] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-05 09:52:29.762 +07 [8601] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-05 09:54:08.715 +07 [8601] postgres@testdb LOG:  disconnection: session time: 0:07:27.274 user=postgres database=testdb host=10.0.2.2 port=65379
+2025-10-05 09:55:32.283 +07 [9140] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=61305
+2025-10-05 09:55:42.283 +07 [9143] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=61307
+2025-10-05 09:55:42.321 +07 [9143] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 09:55:42.321 +07 [9143] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 10:04:22.063 +07 [9143] postgres@testdb LOG:  disconnection: session time: 0:08:39.780 user=postgres database=testdb host=10.0.2.2 port=61307
+2025-10-05 10:05:05.758 +07 [9259] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=62590
+2025-10-05 10:05:10.894 +07 [9264] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=62592
+2025-10-05 10:05:10.928 +07 [9264] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 10:05:10.928 +07 [9264] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 10:05:37.308 +07 [9264] postgres@testdb LOG:  disconnection: session time: 0:00:26.414 user=postgres database=testdb host=10.0.2.2 port=62592
+2025-10-05 10:08:40.456 +07 [9327] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=57581
+2025-10-05 10:08:45.517 +07 [9328] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=57583
+2025-10-05 10:08:45.559 +07 [9328] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 10:08:45.560 +07 [9328] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 10:09:03.586 +07 [9328] postgres@testdb LOG:  disconnection: session time: 0:00:18.069 user=postgres database=testdb host=10.0.2.2 port=57583
+2025-10-05 10:32:28.632 +07 [815] LOG:  received fast shutdown request
+2025-10-05 10:32:28.717 +07 [815] LOG:  aborting any active transactions
+2025-10-05 10:32:29.643 +07 [815] LOG:  background worker "logical replication launcher" (PID 1065) exited with exit code 1
+2025-10-05 10:32:29.740 +07 [1025] LOG:  shutting down
+2025-10-05 10:32:29.800 +07 [1025] LOG:  checkpoint starting: shutdown immediate
+2025-10-05 10:32:30.357 +07 [1025] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.420 s, sync=0.009 s, total=0.617 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=7 kB; lsn=0/20A3F38, redo lsn=0/20A3F38
+2025-10-05 10:32:30.899 +07 [815] LOG:  database system is shut down
+2025-10-05 19:42:22.450 +07 [804] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-05 19:42:22.451 +07 [804] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-05 19:42:22.451 +07 [804] LOG:  listening on IPv6 address "::", port 5432
+2025-10-05 19:42:22.701 +07 [804] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-05 19:42:23.803 +07 [1004] LOG:  database system was shut down at 2025-10-05 10:32:30 +07
+2025-10-05 19:42:24.622 +07 [804] LOG:  database system is ready to accept connections
+2025-10-05 19:42:25.283 +07 [1042] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 19:42:26.199 +07 [1059] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 19:42:26.253 +07 [1059] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-05 19:42:26.253 +07 [1059] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-05 19:42:26.841 +07 [1059] postgres@template1 LOG:  disconnection: session time: 0:00:00.650 user=postgres database=template1 host=[local]
+2025-10-05 19:42:27.778 +07 [1064] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 19:42:27.854 +07 [1064] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-05 19:42:27.858 +07 [1064] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-05 19:42:27.921 +07 [1064] postgres@template1 LOG:  disconnection: session time: 0:00:00.165 user=postgres database=template1 host=[local]
+2025-10-05 19:42:28.717 +07 [1078] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-05 19:42:28.718 +07 [1078] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-05 19:42:28.728 +07 [1078] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-05 19:42:28.826 +07 [1078] postgres@template1 LOG:  disconnection: session time: 0:00:00.130 user=postgres database=template1 host=[local]
+2025-10-05 19:47:25.140 +07 [999] LOG:  checkpoint starting: time
+2025-10-05 19:47:25.316 +07 [999] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.049 s, sync=0.015 s, total=0.189 s; sync files=2, longest=0.011 s, average=0.008 s; distance=0 kB, estimate=0 kB; lsn=0/20A4058, redo lsn=0/20A3FE8
+2025-10-05 20:49:37.506 +07 [8279] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=51593
+2025-10-05 20:49:47.543 +07 [8331] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=50438
+2025-10-05 20:49:47.622 +07 [8331] [unknown]@[unknown] LOG:  received direct SSL connection request without ALPN protocol negotiation extension
+2025-10-05 20:50:47.576 +07 [8391] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=54068
+2025-10-05 20:50:47.612 +07 [8391] [unknown]@[unknown] LOG:  received direct SSL connection request without ALPN protocol negotiation extension
+2025-10-05 20:50:49.899 +07 [8401] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=54076
+2025-10-05 20:50:49.916 +07 [8401] [unknown]@[unknown] LOG:  received direct SSL connection request without ALPN protocol negotiation extension
+2025-10-05 20:52:32.076 +07 [8691] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=62820
+2025-10-05 21:01:55.742 +07 [11692] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=59088
+2025-10-05 21:01:58.255 +07 [11694] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=59089
+2025-10-05 21:01:58.290 +07 [11694] postgres@postgres LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 21:01:58.290 +07 [11694] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 21:02:04.627 +07 [11694] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-05 21:02:10.766 +07 [11694] postgres@postgres LOG:  disconnection: session time: 0:00:12.511 user=postgres database=postgres host=10.0.2.2 port=59089
+2025-10-05 21:02:15.824 +07 [11700] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=59090
+2025-10-05 21:02:18.729 +07 [11703] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=59092
+2025-10-05 21:02:18.756 +07 [11703] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-05 21:02:18.756 +07 [11703] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-05 21:16:34.490 +07 [11703] postgres@testdb LOG:  disconnection: session time: 0:14:15.758 user=postgres database=testdb host=10.0.2.2 port=59092
+2025-10-05 21:42:41.823 +07 [804] LOG:  received fast shutdown request
+2025-10-05 21:42:41.895 +07 [804] LOG:  aborting any active transactions
+2025-10-05 21:42:43.823 +07 [804] LOG:  background worker "logical replication launcher" (PID 1023) exited with exit code 1
+2025-10-05 21:42:43.945 +07 [999] LOG:  shutting down
+2025-10-05 21:42:43.972 +07 [999] LOG:  checkpoint starting: shutdown immediate
+2025-10-05 21:42:45.000 +07 [999] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.682 s, sync=0.001 s, total=1.047 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/20A4108, redo lsn=0/20A4108
+2025-10-05 21:42:45.517 +07 [804] LOG:  database system is shut down
+2025-10-07 14:27:35.893 +07 [757] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-07 14:27:35.893 +07 [757] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-07 14:27:35.893 +07 [757] LOG:  listening on IPv6 address "::", port 5432
+2025-10-07 14:27:36.003 +07 [757] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-07 14:27:36.977 +07 [906] LOG:  database system was shut down at 2025-10-05 21:42:44 +07
+2025-10-07 14:27:37.811 +07 [757] LOG:  database system is ready to accept connections
+2025-10-07 14:27:38.546 +07 [1009] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:27:39.448 +07 [1055] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:27:39.528 +07 [1055] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:27:39.529 +07 [1055] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:27:40.018 +07 [1055] postgres@template1 LOG:  disconnection: session time: 0:00:00.547 user=postgres database=template1 host=[local]
+2025-10-07 14:27:40.905 +07 [1079] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:27:40.944 +07 [1079] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:27:40.944 +07 [1079] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:27:40.988 +07 [1079] postgres@template1 LOG:  disconnection: session time: 0:00:00.083 user=postgres database=template1 host=[local]
+2025-10-07 14:27:41.687 +07 [1092] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:27:41.852 +07 [1092] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:27:41.905 +07 [1092] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:27:42.069 +07 [1092] postgres@template1 LOG:  disconnection: session time: 0:00:00.382 user=postgres database=template1 host=[local]
+2025-10-07 14:30:11.871 +07 [757] LOG:  received fast shutdown request
+2025-10-07 14:30:11.950 +07 [757] LOG:  aborting any active transactions
+2025-10-07 14:30:12.641 +07 [757] LOG:  background worker "logical replication launcher" (PID 978) exited with exit code 1
+2025-10-07 14:30:12.682 +07 [900] LOG:  shutting down
+2025-10-07 14:30:12.709 +07 [900] LOG:  checkpoint starting: shutdown immediate
+2025-10-07 14:30:12.904 +07 [900] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.117 s, sync=0.006 s, total=0.214 s; sync files=2, longest=0.004 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/20A41B8, redo lsn=0/20A41B8
+2025-10-07 14:30:13.194 +07 [757] LOG:  database system is shut down
+2025-10-07 14:34:25.071 +07 [717] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-07 14:34:25.072 +07 [717] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-07 14:34:25.072 +07 [717] LOG:  listening on IPv6 address "::", port 5432
+2025-10-07 14:34:25.179 +07 [717] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-07 14:34:25.924 +07 [944] LOG:  database system was shut down at 2025-10-07 14:30:12 +07
+2025-10-07 14:34:26.734 +07 [717] LOG:  database system is ready to accept connections
+2025-10-07 14:34:27.613 +07 [1017] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:34:28.557 +07 [1046] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:34:28.627 +07 [1046] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:34:28.627 +07 [1046] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:34:29.233 +07 [1046] postgres@template1 LOG:  disconnection: session time: 0:00:00.684 user=postgres database=template1 host=[local]
+2025-10-07 14:34:30.033 +07 [1065] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:34:30.067 +07 [1065] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:34:30.068 +07 [1065] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:34:30.148 +07 [1065] postgres@template1 LOG:  disconnection: session time: 0:00:00.115 user=postgres database=template1 host=[local]
+2025-10-07 14:34:30.852 +07 [1068] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:34:30.854 +07 [1068] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:34:30.864 +07 [1068] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:34:30.959 +07 [1068] postgres@template1 LOG:  disconnection: session time: 0:00:00.109 user=postgres database=template1 host=[local]
+2025-10-07 14:36:11.222 +07 [694] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-07 14:36:11.256 +07 [694] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-07 14:36:11.256 +07 [694] LOG:  listening on IPv6 address "::", port 5432
+2025-10-07 14:36:11.307 +07 [694] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-07 14:36:11.801 +07 [791] LOG:  database system was interrupted; last known up at 2025-10-07 14:34:26 +07
+2025-10-07 14:36:17.804 +07 [791] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-07 14:36:17.872 +07 [791] LOG:  redo starts at 0/20A4230
+2025-10-07 14:36:17.872 +07 [791] LOG:  invalid record length at 0/20A4268: expected at least 24, got 0
+2025-10-07 14:36:17.872 +07 [791] LOG:  redo done at 0/20A4230 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.03 s
+2025-10-07 14:36:17.937 +07 [783] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-07 14:36:18.094 +07 [783] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.028 s, sync=0.031 s, total=0.168 s; sync files=2, longest=0.028 s, average=0.016 s; distance=0 kB, estimate=0 kB; lsn=0/20A4268, redo lsn=0/20A4268
+2025-10-07 14:36:18.199 +07 [694] LOG:  database system is ready to accept connections
+2025-10-07 14:36:18.882 +07 [1072] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:36:19.780 +07 [1097] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:36:19.818 +07 [1097] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:36:19.819 +07 [1097] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:36:20.172 +07 [1097] postgres@template1 LOG:  disconnection: session time: 0:00:00.399 user=postgres database=template1 host=[local]
+2025-10-07 14:36:21.131 +07 [1135] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:36:21.209 +07 [1135] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:36:21.209 +07 [1135] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:36:21.349 +07 [1135] postgres@template1 LOG:  disconnection: session time: 0:00:00.218 user=postgres database=template1 host=[local]
+2025-10-07 14:36:22.290 +07 [1207] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 14:36:22.291 +07 [1207] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 14:36:22.304 +07 [1207] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 14:36:22.340 +07 [1207] postgres@template1 LOG:  disconnection: session time: 0:00:00.077 user=postgres database=template1 host=[local]
+2025-10-07 15:20:17.184 +07 [694] LOG:  received fast shutdown request
+2025-10-07 15:20:17.256 +07 [694] LOG:  aborting any active transactions
+2025-10-07 15:20:18.297 +07 [694] LOG:  background worker "logical replication launcher" (PID 1064) exited with exit code 1
+2025-10-07 15:20:18.378 +07 [783] LOG:  shutting down
+2025-10-07 15:20:18.414 +07 [783] LOG:  checkpoint starting: shutdown immediate
+2025-10-07 15:20:18.891 +07 [783] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.397 s, sync=0.001 s, total=0.503 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/20A4318, redo lsn=0/20A4318
+2025-10-07 15:20:19.409 +07 [694] LOG:  database system is shut down
+2025-10-07 15:21:23.296 +07 [772] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-07 15:21:23.296 +07 [772] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-07 15:21:23.296 +07 [772] LOG:  listening on IPv6 address "::", port 5432
+2025-10-07 15:21:23.343 +07 [772] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-07 15:21:23.744 +07 [916] LOG:  database system was shut down at 2025-10-07 15:20:18 +07
+2025-10-07 15:21:24.050 +07 [772] LOG:  database system is ready to accept connections
+2025-10-07 15:21:24.714 +07 [1005] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 15:21:25.636 +07 [1047] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 15:21:25.694 +07 [1047] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 15:21:25.694 +07 [1047] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 15:21:26.084 +07 [1047] postgres@template1 LOG:  disconnection: session time: 0:00:00.456 user=postgres database=template1 host=[local]
+2025-10-07 15:21:26.764 +07 [1068] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 15:21:26.793 +07 [1068] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 15:21:26.794 +07 [1068] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 15:21:26.852 +07 [1068] postgres@template1 LOG:  disconnection: session time: 0:00:00.092 user=postgres database=template1 host=[local]
+2025-10-07 15:21:27.575 +07 [1073] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-07 15:21:27.597 +07 [1073] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-07 15:21:27.613 +07 [1073] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-07 15:21:27.662 +07 [1073] postgres@template1 LOG:  disconnection: session time: 0:00:00.098 user=postgres database=template1 host=[local]
+2025-10-07 15:26:25.270 +07 [903] LOG:  checkpoint starting: time
+2025-10-07 15:26:25.397 +07 [903] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.019 s, sync=0.026 s, total=0.140 s; sync files=2, longest=0.017 s, average=0.013 s; distance=0 kB, estimate=0 kB; lsn=0/20A4420, redo lsn=0/20A43C8
+2025-10-07 16:07:34.024 +07 [17693] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=49257
+2025-10-07 16:07:35.709 +07 [17695] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=49258
+2025-10-07 16:07:35.711 +07 [17695] [unknown]@[unknown] LOG:  failed to send SSL negotiation response: Connection reset by peer
+2025-10-07 16:30:34.806 +07 [18774] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=54624
+2025-10-07 16:30:39.021 +07 [18775] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=54625
+2025-10-07 16:30:39.051 +07 [18775] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-07 16:30:39.053 +07 [18775] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-07 16:31:18.265 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-07 16:31:31.991 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-07 16:31:31.992 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-07 16:31:31.992 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-07 16:31:38.848 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:33:23.366 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,4,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:33:38.437 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,5,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:33:39.181 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,6,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:33:39.768 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,7,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:33:40.430 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:33:40.966 +07 [18775] postgres@testdb LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-07 16:34:24.314 +07 [18775] postgres@testdb LOG:  disconnection: session time: 0:03:45.293 user=postgres database=testdb host=10.0.2.2 port=54625
+2025-10-07 16:37:11.527 +07 [772] LOG:  received fast shutdown request
+2025-10-07 16:37:11.624 +07 [772] LOG:  aborting any active transactions
+2025-10-07 16:37:13.482 +07 [772] LOG:  background worker "logical replication launcher" (PID 961) exited with exit code 1
+2025-10-07 16:37:13.630 +07 [903] LOG:  shutting down
+2025-10-07 16:37:13.654 +07 [903] LOG:  checkpoint starting: shutdown immediate
+2025-10-07 16:37:14.371 +07 [903] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.568 s, sync=0.001 s, total=0.704 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/20A44D0, redo lsn=0/20A44D0
+2025-10-07 16:37:15.574 +07 [772] LOG:  database system is shut down
+2025-10-08 11:43:28.003 +07 [6791] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-08 11:43:28.003 +07 [6791] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-08 11:43:28.003 +07 [6791] LOG:  listening on IPv6 address "::", port 5432
+2025-10-08 11:43:28.007 +07 [6791] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-08 11:43:28.082 +07 [6798] LOG:  database system was shut down at 2025-10-07 16:37:14 +07
+2025-10-08 11:43:28.122 +07 [6791] LOG:  database system is ready to accept connections
+2025-10-08 11:43:28.630 +07 [6802] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 11:43:29.162 +07 [6805] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 11:43:29.169 +07 [6805] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-08 11:43:29.170 +07 [6805] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-08 11:43:29.244 +07 [6805] postgres@template1 LOG:  disconnection: session time: 0:00:00.081 user=postgres database=template1 host=[local]
+2025-10-08 11:43:29.760 +07 [6808] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 11:43:29.764 +07 [6808] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-08 11:43:29.764 +07 [6808] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-08 11:43:29.768 +07 [6808] postgres@template1 LOG:  disconnection: session time: 0:00:00.007 user=postgres database=template1 host=[local]
+2025-10-08 11:43:30.288 +07 [6811] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 11:43:30.289 +07 [6811] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-08 11:43:30.289 +07 [6811] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-08 11:43:30.291 +07 [6811] postgres@template1 LOG:  disconnection: session time: 0:00:00.002 user=postgres database=template1 host=[local]
+2025-10-08 11:43:49.854 +07 [6825] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55812
+2025-10-08 11:43:52.598 +07 [6827] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55813
+2025-10-08 11:43:52.626 +07 [6827] postgres@postgres LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-08 11:43:52.627 +07 [6827] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-08 11:44:31.696 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-08 11:45:50.412 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 11:45:50.412 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 11:45:50.412 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 11:46:03.824 +07 [6827] postgres@postgres ERROR:  syntax error at or near "use" at character 1
+2025-10-08 11:46:03.824 +07 [6827] postgres@postgres STATEMENT:  use testdb
+	select * from student;
+2025-10-08 11:46:27.513 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_largeobject_metadata,"SELECT oid as ""ID"",
+	  pg_catalog.pg_get_userbyid(lomowner) as ""Owner"",
+	  pg_catalog.obj_description(oid, 'pg_largeobject') as ""Description""
+	FROM pg_catalog.pg_largeobject_metadata
+	ORDER BY oid",<none>
+2025-10-08 11:46:43.919 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,4,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 11:47:19.769 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 11:47:42.297 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 11:47:49.809 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,7,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 11:48:03.441 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 11:48:28.185 +07 [6796] LOG:  checkpoint starting: time
+2025-10-08 11:48:28.246 +07 [6796] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.014 s, sync=0.011 s, total=0.062 s; sync files=2, longest=0.006 s, average=0.006 s; distance=0 kB, estimate=0 kB; lsn=0/20A45D8, redo lsn=0/20A4580
+2025-10-08 11:52:03.110 +07 [6938] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=51665
+2025-10-08 11:52:05.523 +07 [6941] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=51666
+2025-10-08 11:52:05.553 +07 [6941] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-08 11:52:05.555 +07 [6941] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-08 11:52:40.950 +07 [6941] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 11:52:40.954 +07 [6941] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 11:52:40.954 +07 [6941] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 11:53:08.928 +07 [6941] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-08 11:58:10.610 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:12:53.441 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,10,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:13:00.041 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,11,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:21.209 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,12,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:23.858 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,13,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:25.801 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,14,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:26.512 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,15,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:27.033 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,16,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:27.548 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,17,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:14:28.017 +07 [6827] postgres@postgres LOG:  AUDIT: SESSION,18,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:16:51.317 +07 [6941] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-08 12:17:11.107 +07 [6827] postgres@postgres LOG:  disconnection: session time: 0:33:18.510 user=postgres database=postgres host=10.0.2.2 port=55813
+2025-10-08 12:17:14.730 +07 [7434] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52762
+2025-10-08 12:17:16.795 +07 [7435] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52763
+2025-10-08 12:17:16.827 +07 [7435] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-08 12:17:16.827 +07 [7435] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-08 12:17:16.837 +07 [7436] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52764
+2025-10-08 12:17:16.877 +07 [7436] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-08 12:17:16.877 +07 [7436] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-08 12:17:21.864 +07 [7439] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52766
+2025-10-08 12:17:24.292 +07 [7442] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52767
+2025-10-08 12:17:24.321 +07 [7442] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-08 12:17:24.321 +07 [7442] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-08 12:17:24.326 +07 [7443] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52768
+2025-10-08 12:17:24.350 +07 [7443] postgres@postgres FATAL:  password authentication failed for user "postgres"
+2025-10-08 12:17:24.350 +07 [7443] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-08 12:17:45.186 +07 [7447] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52769
+2025-10-08 12:17:47.395 +07 [7448] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52770
+2025-10-08 12:17:47.425 +07 [7448] postgres@postgres LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-08 12:17:47.425 +07 [7448] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-08 12:18:09.539 +07 [7448] postgres@postgres ERROR:  relation "abc" does not exist at character 15
+2025-10-08 12:18:09.539 +07 [7448] postgres@postgres STATEMENT:  select * from abc;
+2025-10-08 12:19:30.716 +07 [7448] postgres@postgres ERROR:  relation "abc" does not exist at character 15
+2025-10-08 12:19:30.716 +07 [7448] postgres@postgres STATEMENT:  select * from abc;
+2025-10-08 12:19:40.955 +07 [7448] postgres@postgres ERROR:  relation "sinhvien" does not exist at character 15
+2025-10-08 12:19:40.955 +07 [7448] postgres@postgres STATEMENT:  select * from sinhvien;
+2025-10-08 12:19:46.247 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:48.386 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:49.107 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:49.602 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,4,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:50.067 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:50.516 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:51.089 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,7,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:51.594 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,8,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:53.131 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,9,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:53.707 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,10,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:54.227 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,11,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:19:55.090 +07 [7448] postgres@postgres LOG:  AUDIT: SESSION,12,1,READ,SELECT,TABLE,public.student,select * from student,<none>
+2025-10-08 12:20:13.380 +07 [7448] postgres@postgres LOG:  disconnection: session time: 0:02:25.984 user=postgres database=postgres host=10.0.2.2 port=52770
+2025-10-08 12:20:16.029 +07 [6941] postgres@testdb LOG:  disconnection: session time: 0:28:10.506 user=postgres database=testdb host=10.0.2.2 port=51666
+2025-10-08 12:22:42.306 +07 [6791] LOG:  received fast shutdown request
+2025-10-08 12:22:42.358 +07 [6791] LOG:  aborting any active transactions
+2025-10-08 12:22:42.846 +07 [6791] LOG:  background worker "logical replication launcher" (PID 6801) exited with exit code 1
+2025-10-08 12:22:42.867 +07 [6796] LOG:  shutting down
+2025-10-08 12:22:42.923 +07 [6796] LOG:  checkpoint starting: shutdown immediate
+2025-10-08 12:22:43.135 +07 [6796] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.001 s, total=0.249 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/20A4688, redo lsn=0/20A4688
+2025-10-08 12:22:43.676 +07 [6791] LOG:  database system is shut down
+2025-10-08 19:56:59.903 +07 [756] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-08 19:56:59.990 +07 [756] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-08 19:56:59.990 +07 [756] LOG:  listening on IPv6 address "::", port 5432
+2025-10-08 19:57:00.158 +07 [756] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-08 19:57:00.873 +07 [892] LOG:  database system was shut down at 2025-10-08 12:22:43 +07
+2025-10-08 19:57:01.381 +07 [756] LOG:  database system is ready to accept connections
+2025-10-08 19:57:02.172 +07 [964] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 19:57:03.205 +07 [1011] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 19:57:03.302 +07 [1011] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-08 19:57:03.302 +07 [1011] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-08 19:57:03.709 +07 [1011] postgres@template1 LOG:  disconnection: session time: 0:00:00.528 user=postgres database=template1 host=[local]
+2025-10-08 19:57:04.431 +07 [1062] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 19:57:04.470 +07 [1062] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-08 19:57:04.470 +07 [1062] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-08 19:57:04.524 +07 [1062] postgres@template1 LOG:  disconnection: session time: 0:00:00.104 user=postgres database=template1 host=[local]
+2025-10-08 19:57:05.271 +07 [1067] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-08 19:57:05.273 +07 [1067] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-08 19:57:05.315 +07 [1067] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-08 19:57:05.353 +07 [1067] postgres@template1 LOG:  disconnection: session time: 0:00:00.089 user=postgres database=template1 host=[local]
+2025-10-08 20:02:03.362 +07 [890] LOG:  checkpoint starting: time
+2025-10-08 20:02:03.459 +07 [890] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.031 s, sync=0.011 s, total=0.101 s; sync files=2, longest=0.006 s, average=0.005 s; distance=0 kB, estimate=0 kB; lsn=0/20A4790, redo lsn=0/20A4738
+2025-10-08 20:18:15.976 +07 [4632] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=51335
+2025-10-08 20:18:19.703 +07 [4634] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=51336
+2025-10-08 20:18:19.734 +07 [4634] postgres@postgres LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-08 20:18:19.734 +07 [4634] postgres@postgres LOG:  connection authorized: user=postgres database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-08 20:19:05.059 +07 [4634] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_database,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-08 20:20:03.251 +07 [4634] postgres@postgres LOG:  AUDIT: SESSION,2,1,ROLE,CREATE ROLE,,,CREATE USER user1 WITH PASSWORD <REDACTED>,<none>
+2025-10-08 20:21:46.196 +07 [4634] postgres@postgres LOG:  disconnection: session time: 0:03:26.493 user=postgres database=postgres host=10.0.2.2 port=51336
+2025-10-08 20:21:51.135 +07 [4669] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=50865
+2025-10-08 20:21:53.461 +07 [4670] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=50866
+2025-10-08 20:21:53.491 +07 [4670] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-08 20:21:53.492 +07 [4670] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-08 20:22:03.288 +07 [4670] postgres@testdb LOG:  AUDIT: SESSION,1,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO user1,<none>
+2025-10-08 20:22:03.862 +07 [890] LOG:  checkpoint starting: time
+2025-10-08 20:22:04.748 +07 [890] LOG:  checkpoint complete: wrote 8 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.829 s, sync=0.022 s, total=0.889 s; sync files=9, longest=0.011 s, average=0.003 s; distance=6 kB, estimate=6 kB; lsn=0/20A6028, redo lsn=0/20A5FB8
+2025-10-08 20:22:25.481 +07 [4670] postgres@testdb LOG:  AUDIT: SESSION,2,1,ROLE,GRANT,,,GRANT SELECT ON ALL TABLES IN SCHEMA public TO user1,<none>
+2025-10-08 20:22:48.818 +07 [4670] postgres@testdb LOG:  AUDIT: SESSION,3,1,ROLE,ALTER DEFAULT PRIVILEGES,,,ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO user1,<none>
+2025-10-08 20:22:57.859 +07 [4670] postgres@testdb LOG:  disconnection: session time: 0:01:04.397 user=postgres database=testdb host=10.0.2.2 port=50866
+2025-10-08 20:23:10.331 +07 [4684] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=65151
+2025-10-08 20:23:12.549 +07 [4685] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=62564
+2025-10-08 20:23:12.581 +07 [4685] user1@testdb LOG:  connection authenticated: identity="user1" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-08 20:23:12.581 +07 [4685] user1@testdb LOG:  connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-08 20:23:16.307 +07 [4685] user1@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 20:23:16.307 +07 [4685] user1@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 20:23:16.307 +07 [4685] user1@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-08 20:24:24.170 +07 [4685] user1@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb ERROR:  permission denied for table sinhvien
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb STATEMENT:  DELETE FROM sinhvien WHERE id = 1;
+2025-10-08 20:25:38.906 +07 [4685] user1@testdb LOG:  disconnection: session time: 0:02:26.356 user=user1 database=testdb host=10.0.2.2 port=62564
+2025-10-08 20:27:03.848 +07 [890] LOG:  checkpoint starting: time
+2025-10-08 20:27:05.338 +07 [890] LOG:  checkpoint complete: wrote 14 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.424 s, sync=0.036 s, total=1.490 s; sync files=13, longest=0.020 s, average=0.003 s; distance=21 kB, estimate=21 kB; lsn=0/20AB508, redo lsn=0/20AB4B0
+2025-10-08 21:13:31.375 +07 [756] LOG:  received fast shutdown request
+2025-10-08 21:13:31.394 +07 [756] LOG:  aborting any active transactions
+2025-10-08 21:13:31.989 +07 [756] LOG:  background worker "logical replication launcher" (PID 939) exited with exit code 1
+2025-10-08 21:13:31.990 +07 [890] LOG:  shutting down
+2025-10-08 21:13:32.012 +07 [890] LOG:  checkpoint starting: shutdown immediate
+2025-10-08 21:13:32.224 +07 [890] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.130 s, sync=0.001 s, total=0.223 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=19 kB; lsn=0/20AB5B8, redo lsn=0/20AB5B8
+2025-10-08 21:13:32.502 +07 [756] LOG:  database system is shut down
+2025-10-09 09:39:25.921 +07 [789] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg22.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0, 64-bit
+2025-10-09 09:39:25.952 +07 [789] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-09 09:39:25.952 +07 [789] LOG:  listening on IPv6 address "::", port 5432
+2025-10-09 09:39:26.024 +07 [789] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-09 09:39:26.960 +07 [945] LOG:  database system was shut down at 2025-10-08 21:13:32 +07
+2025-10-09 09:39:27.413 +07 [789] LOG:  database system is ready to accept connections
+2025-10-09 09:39:28.137 +07 [1024] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-09 09:39:29.164 +07 [1056] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-09 09:39:29.231 +07 [1056] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-09 09:39:29.237 +07 [1056] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-09 09:39:29.796 +07 [1056] postgres@template1 LOG:  disconnection: session time: 0:00:00.641 user=postgres database=template1 host=[local]
+2025-10-09 09:39:30.620 +07 [1075] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-09 09:39:30.672 +07 [1075] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-09 09:39:30.672 +07 [1075] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-09 09:39:30.739 +07 [1075] postgres@template1 LOG:  disconnection: session time: 0:00:00.131 user=postgres database=template1 host=[local]
+2025-10-09 09:39:31.472 +07 [1078] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-09 09:39:31.475 +07 [1078] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-09 09:39:31.544 +07 [1078] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-09 09:39:31.612 +07 [1078] postgres@template1 LOG:  disconnection: session time: 0:00:00.147 user=postgres database=template1 host=[local]
+2025-10-09 09:44:29.626 +07 [938] LOG:  checkpoint starting: time
+2025-10-09 09:44:29.706 +07 [938] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.027 s, sync=0.006 s, total=0.085 s; sync files=2, longest=0.004 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/20AB6C0, redo lsn=0/20AB668

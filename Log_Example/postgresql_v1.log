@@ -1,0 +1,14 @@
+2025-10-04 21:02:20.364 +07 [7118] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-04 21:02:20.364 +07 [7118] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-04 21:02:20.382 +07 [7118] postgres@template1 LOG:  disconnection: session time: 0:00:00.020 user=postgres database=template1 host=[local]
+2025-10-04 21:25:02.459 +07 [7979] postgres@auditdb ERROR:  type "numberic" does not exist at character 64
+2025-10-04 21:25:02.459 +07 [7979] postgres@auditdb STATEMENT:  CREATE TABLE employee(id SERIAL PRIMARY KEY, name TEXT, salary NUMBERIC);
+2025-10-04 21:25:11.646 +07 [7979] postgres@auditdb LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,"CREATE TABLE employee(id SERIAL PRIMARY KEY, name TEXT, salary NUMERIC)",<none>
+2025-10-04 21:25:27.098 +07 [7979] postgres@auditdb LOG:  AUDIT: SESSION,2,1,ROLE,GRANT,,,GRANT ALL ON employee TO audituser,<none>
+2025-10-04 21:26:05.701 +07 [7979] postgres@auditdb LOG:  AUDIT: SESSION,3,1,ROLE,GRANT,,,"GRANT USAGE, SELECT, UPDATE ON SEQUENCE employee_id_seq TO audituser",<none>
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb ERROR:  permission denied for table sinhvien
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb ERROR:  permission denied for table sinhvien
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb ERROR:  permission denied for table sinhvien
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb ERROR:  permission denied for table sinhvien
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb ERROR:  permission denied for table sinhvien
+2025-10-08 20:25:00.151 +07 [4685] user1@testdb STATEMENT:  DELETE FROM sinhvien WHERE id = 1;
