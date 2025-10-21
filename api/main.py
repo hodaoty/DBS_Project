@@ -1,4 +1,5 @@
 from collections import defaultdict
+import csv
 import os
 import re
 import time
@@ -143,7 +144,7 @@ def initial_parse() -> list:
 # ----------------------------------------------------
 # Function List All Logs base on PID: 
 # ----------------------------------------------------
-def list_all_logs_baseon_pid() -> None:
+def logs_baseon_pid() -> list:
     logs = defaultdict(list)
     base_dir = os.path.dirname(os.path.abspath(__file__))
     log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
@@ -154,11 +155,42 @@ def list_all_logs_baseon_pid() -> None:
         if match:
             timestamp, pid, level, message = match.groups()
             logs[pid].append(f"{timestamp} | {level}: {message}")
+    return logs 
+    
+
+def print_logs_by_pid(logs: dict):
+    print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG THEO PID")
+    print("=" * 60)
     for pid, actions in logs.items():
         console.print(f"\n[{ITEM}]PID[/]: {pid}")
         for action in actions:
             console.print(f"[{ITEM}]*[/]:  {action}")
     
+def export_logs_to_csv():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    timestamp_str = datetime.now().strftime("%Y%m%d")
+    csv_file_name = f'logs-{timestamp_str}.csv'
+    output_file_path = os.path.join(base_dir, '..', 'CSV_FILE', csv_file_name)
+    Log_lines = readFile(log_file_path) 
+    # Nếu file đã tồn tại thì xóa
+    if os.path.exists(output_file_path):
+        os.remove(output_file_path)
+
+    pattern = re.compile(r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) .*?\[\s*(\d+)\s*\].*?\s(LOG|FATAL|ERROR|DETAIL):\s+(.*)")
+    extraced_logs = []
+    for line in Log_lines:
+        match = pattern.search(line)
+        if match:
+            timestamp, pid, level, message = match.groups()
+            extraced_logs.append([timestamp, pid, level, message])
+
+        with open(output_file_path, 'w', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['Timestamp', 'PID', 'Level', 'Message'])
+            writer.writerows(extraced_logs)
+    print(f"Logs đã được xuất thành công vào file: {output_file_path}")
+
 
 # ----------------------------------------------------
 # Function List All Logs
@@ -230,6 +262,7 @@ def list_disconnect_logs(parsed_data: list):
 # HÀM CẢNH BÁO Permission Denied
 # ----------------------------------------------------
 def alertPermission(parsed_data: list):
+    
     """Tìm kiếm và in ra cảnh báo khi phát hiện lỗi "permission denied"."""
     
     permission_denied_found = False
@@ -268,7 +301,7 @@ def alertPermission(parsed_data: list):
 def display_menu():
     """Displays the menu options."""
     menu_text = (
-        f"[{ITEM}]1 Monitor full logs[/]\n"
+        f"[{ITEM}]1 Monitor full logs base on PID & Export to CSV[/]\n"
         f"[{ITEM}]2 Unauthorized use alert[/]\n"
         f"[{ITEM}]3 List connection[/]\n"
         f"[{ITEM}]4 List disconnection[/]\n"
@@ -292,12 +325,12 @@ def menu_choice():
         console.print("\n" + "="*20)
 
         if choice == '1':
-            console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs base on PID ')
+            console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs base on PID & Export to CSV')
             time.sleep(1)
-                # Lấy đường dẫn thư mục chứa file Python hiện tại (/api)
-
             #list_all_logs(parsed_data)
-            list_all_logs_baseon_pid()
+            logs = logs_baseon_pid()
+            print_logs_by_pid(logs)
+            export_logs_to_csv()
 
         elif choice == '2':
             console.print(f'[{H1}]>>>You choose option [2]: Unauthorized use alert ')
