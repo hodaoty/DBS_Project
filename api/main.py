@@ -1,3 +1,4 @@
+from collections import defaultdict
 import os
 import re
 import time
@@ -5,6 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.style import Style
 from rich.prompt import Prompt
+from datetime import datetime
 
 #Setup Rich
 # --- Define Other Custom RGB Styles ---
@@ -139,6 +141,26 @@ def initial_parse() -> list:
         parsed_data = filter_and_parse_logs(Log_lines)
     return parsed_data
 # ----------------------------------------------------
+# Function List All Logs base on PID: 
+# ----------------------------------------------------
+def list_all_logs_baseon_pid() -> None:
+    logs = defaultdict(list)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    Log_lines = readFile(log_file_path)
+    pattern = re.compile(r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) .*?\[\s*(\d+)\s*\].*?\s(LOG|FATAL|ERROR|DETAIL):\s+(.*)")
+    for line in Log_lines:
+        match = pattern.search(line)
+        if match:
+            timestamp, pid, level, message = match.groups()
+            logs[pid].append(f"{timestamp} | {level}: {message}")
+    for pid, actions in logs.items():
+        console.print(f"\n[{ITEM}]PID[/]: {pid}")
+        for action in actions:
+            console.print(f"[{ITEM}]*[/]:  {action}")
+    
+
+# ----------------------------------------------------
 # Function List All Logs
 # ----------------------------------------------------
 def list_all_logs(parsed_data: list):
@@ -242,6 +264,7 @@ def alertPermission(parsed_data: list):
 #-----------------------------------------------------
 #Menu
 #-----------------------------------------------------
+
 def display_menu():
     """Displays the menu options."""
     menu_text = (
@@ -269,10 +292,12 @@ def menu_choice():
         console.print("\n" + "="*20)
 
         if choice == '1':
-            console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs ')
+            console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs base on PID ')
+            time.sleep(1)
                 # Lấy đường dẫn thư mục chứa file Python hiện tại (/api)
 
-            list_all_logs(parsed_data)
+            #list_all_logs(parsed_data)
+            list_all_logs_baseon_pid()
 
         elif choice == '2':
             console.print(f'[{H1}]>>>You choose option [2]: Unauthorized use alert ')
