@@ -1,179 +1,140 @@
-# ----------------------------------------------------------------------
-import pandas as pd 
-import numpy as np
-import os 
-from sklearn.preprocessing import StandardScaler
-import joblib   
+import pandas as pd
+import os
+import joblib
 from datetime import datetime
+from sklearn.preprocessing import StandardScaler
 
 # ----------------------------------------------------------------------
 # A. CẤU HÌNH VÀ THIẾT LẬP ĐƯỜNG DẪN
 # ----------------------------------------------------------------------
-# Thiết lập đường dẫn cơ bản
-timestamp_str = datetime.now().strftime("%Y%m%d")
-csv_file_name = f'processed_scaled_features-{timestamp_str}.csv'
-scaler_file_name = f'scaler-{timestamp_str}.pkl'
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CSV_DIR = os.path.join(BASE_DIR, '..','CSV_FILE','OUTPUT_CSVFILE','LOG_EVENT')
-MODEL_DIR = os.path.join(BASE_DIR,'trained_model')
-OUTPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR,'..','TRAIN_AI', csv_file_name)
-SCALER_PATH = os.path.join(MODEL_DIR, scaler_file_name)
-
-# Tần suất tổng hợp: Chọn cửa sổ thời gian (ví dụ: 5 phút)S
+# Tần suất gom nhóm (5 phút)
 RESAMPLE_FREQUENCY = '5T'
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+timestamp_str = datetime.now().strftime("%Y%m%d")
+
+# Đường dẫn đến file sự kiện thô (từ bước 01)
+CSV_DIR = os.path.join(base_dir, '..', 'CSV_FILE', 'OUTPUT_CSVFILE')
+INPUT_EVENTS_FILE = f'postgresql_events-{timestamp_str}.csv'
+INPUT_EVENTS_PATH = os.path.join(CSV_DIR,'LOG_EVENT', INPUT_EVENTS_FILE)
+
+# Thư mục lưu scaler và output
+MODEL_DIR = os.path.join(base_dir, '..', 'trained_model') # Nơi lưu scaler
+if not os.path.exists(MODEL_DIR): os.makedirs(MODEL_DIR)
+
+OUTPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR,'TRAIN_AI', f'processed_scaled_features-{timestamp_str}.csv')
+OUTPUT_SCALER_PATH = os.path.join(MODEL_DIR, f'scaler-{timestamp_str}.pkl')
+
 # ----------------------------------------------------------------------
-# B. HÀM TẠO ĐẶC TRƯNG CHUỖI THỜI GIAN
+# B. HÀM TẢI DỮ LIỆU VÀ CHUẨN BỊ INDEX
 # ----------------------------------------------------------------------
-def create_time_series_features(events_df, freq):
+def load_and_prepare_data(filepath):
+    """Tải dữ liệu sự kiện và đặt cột timestamp làm index."""
+    if not os.path.exists(filepath):
+        print(f"LỖI: Không tìm thấy file sự kiện tại: {filepath}")
+        return None
+        
+    print(f"Đang tải dữ liệu từ: {filepath}")
+    
+    # 1. Đọc CSV và Parse Dates
+    # Đọc cột 'timestamp' dưới dạng datetime object.
+    df = pd.read_csv(filepath, parse_dates=['timestamp'])
+    
+    # 2. Đặt Index
+    # Đảm bảo cột timestamp được đặt làm index cho Resampling.
+    df = df.set_index('timestamp')
+    
+    print(f"Tải thành công. Kích thước dữ liệu: {df.shape}")
+    return df
+
+# ----------------------------------------------------------------------
+# C. HÀM KỸ THUẬT ĐẶC TRƯNG CHUỖI THỜI GIAN (FEATURE ENGINEERING)
+# ----------------------------------------------------------------------
+def create_time_series_features(df):
     """
-    Tổng hợp các sự kiện rời rạc thành các đặc trưng chuỗi thời gian (5 phút/điểm).
+    Tạo các đặc trưng chuỗi thời gian bằng cách gom nhóm dữ liệu log 
+    theo tần suất RESAMPLE_FREQUENCY (5 phút).
     """
-    if events_df.empty:
-        return pd.DataFrame()
+    # ⚠️ BƯỚC SỬA LỖI: Loại bỏ các cột ID không phải đặc trưng khỏi quá trình thống kê
+    # user, database, pid là các ID/nhãn, không nên được tính toán thống kê.
+    # Ta chỉ giữ lại các cột số (session_duration_sec) và các cột đếm (event_type).
+    features_df = df.drop(columns=['pid', 'user', 'database', 'query_command', 'query_text'], errors='ignore')
 
-    # Đảm bảo cột timestamp là index
-    events_df.set_index('timestamp', inplace=True)
+    # 1. Tạo Đặc trưng Đếm (Count Features)
+    # Gom nhóm theo event_type để đếm các loại sự kiện
+    count_features = features_df['event_type'].groupby(level=0).value_counts().unstack(fill_value=0)
+    
+    # Đổi tên cột để dễ đọc hơn (ví dụ: FATAL -> count_fatal_errors)
+    count_features.columns = [f'count_{col.lower().replace(" ", "_")}' for col in count_features.columns]
+    
+    # Thêm tổng số sự kiện
+    count_features['count_total_events'] = count_features.sum(axis=1)
 
-    print(f"Bắt đầu tổng hợp dữ liệu theo chu kỳ: {freq}...")
+    # 2. Tạo Đặc trưng Thời gian (Time Features)
+    # Tính toán thống kê trên session_duration_sec
+    time_features = features_df['session_duration_sec'].resample(RESAMPLE_FREQUENCY).agg({
+        'avg_session_duration': 'mean',
+        'max_session_duration': 'max',
+        'total_session_time': 'sum'
+    }).fillna(0) # Điền 0 cho các cửa sổ không có sự kiện.
 
-    # 1. TẠO CÁC ĐẶC TRƯNG TỪ SỐ LƯỢNG SỰ KIỆN (EVENTS COUNTS)
-    
-    # SỬA LỖI: Sử dụng groupby(pd.Grouper) để đếm các giá trị phân loại
-    event_counts = events_df.groupby(pd.Grouper(freq=freq))['event_type'].value_counts().unstack(fill_value=0)
-    
-    event_counts.columns = [f'count_{col.lower()}' for col in event_counts.columns]
-    
-    # 2. TẠO CÁC ĐẶC TRƯNG TỪ THỜI GIAN PHIÊN (SESSION DURATION)
-    
-    duration_stats = events_df[events_df['event_type'] == 'DISCONNECT']['session_duration_sec'].resample(freq).agg(
-        avg_session_duration='mean',
-        max_session_duration='max',
-        total_session_time='sum'
+    # 3. Gom nhóm Đặc trưng
+    # Nối các đặc trưng đếm và thời gian
+    final_features_df = count_features.resample(RESAMPLE_FREQUENCY).sum().fillna(0)
+    final_features_df = final_features_df.join(time_features)
+
+    # 4. Tạo Đặc trưng Tỷ lệ (Ratio Features)
+    # Tỷ lệ lỗi fatal trên tổng số sự kiện (chỉ cho các cửa sổ có sự kiện)
+    final_features_df['ratio_fatal_to_total'] = (
+        final_features_df.get('count_fatal', 0) / final_features_df['count_total_events']
     ).fillna(0)
     
-    # 3. TẠO CÁC ĐẶC TRƯNG LỖI VÀ TỶ LỆ (ERROR & RATIOS)
+    # Loại bỏ cột tổng số sự kiện ban đầu khỏi danh sách các cột đếm cụ thể 
+    # (Để mô hình chỉ học trên 20 cột đặc trưng mà bạn đã sử dụng trước đó)
+    final_features_df = final_features_df.drop(columns=['count_total_events'], errors='ignore')
 
-    # Lỗi xác thực thất bại FATAL 
-    fatal_counts = event_counts.get('count_fatal', pd.Series(0, index=event_counts.index)).rename('count_fatal_errors')
-        
-    # Tổng truy vấn trong cửa sổ thời gian
-    total_queries = events_df['event_type'].resample(freq).count().rename('count_total_events').fillna(0)
-
-    # 4. GHÉP CÁC ĐẶC TRƯNG LẠI
-    
-    features_to_concat = [total_queries.to_frame(), fatal_counts.to_frame(), duration_stats, event_counts]
-    features_df = pd.concat([f for f in features_to_concat if not f.empty], axis=1).fillna(0)
-    
-    # Tính toán tỷ lệ lỗi
-    features_df['ratio_fatal_to_total'] = features_df['count_fatal_errors'] / (features_df['count_total_events'] + 1e-6)
-
-    print("Hoàn thành tổng hợp đặc trưng.")
-    
-    return features_df
+    print(f"Hoàn tất Kỹ thuật Đặc trưng. Số lượng đặc trưng: {len(final_features_df.columns)}")
+    return final_features_df
 
 # ----------------------------------------------------------------------
-# C. CHUẨN HÓA DỮ LIỆU (SCALING)
+# D. CHUẨN HÓA DỮ LIỆU (SCALING)
 # ----------------------------------------------------------------------
-def scale_features(features_df):
-    """
-    Sử dụng StandardScaler để chuẩn hóa dữ liệu.
-    """
-    if features_df.empty:
-        return pd.DataFrame(), None
-        
-    print("Bắt đầu chuẩn hóa dữ liệu...")
-    
-    # Khởi tạo Scaler
+def scale_features(df):
+    """Chuẩn hóa các đặc trưng bằng Standard Scaler và lưu scaler."""
+    # Khởi tạo Standard Scaler
     scaler = StandardScaler()
     
-    # Chỉ chuẩn hóa các cột số (Không cần chuẩn hóa timestamp)
-    X_scaled = scaler.fit_transform(features_df)
+    # Huấn luyện và chuyển đổi dữ liệu
+    scaled_data = scaler.fit_transform(df)
     
-    # Chuyển đổi trở lại DataFrame
-    scaled_df = pd.DataFrame(X_scaled, columns=features_df.columns, index=features_df.index)
+    # Chuyển đổi mảng NumPy trở lại thành DataFrame
+    scaled_df = pd.DataFrame(scaled_data, index=df.index, columns=df.columns)
     
-    print("Hoàn thành chuẩn hóa.")
+    # Lưu scaler để sử dụng lại cho dữ liệu thời gian thực
+    joblib.dump(scaler, OUTPUT_SCALER_PATH)
+    print(f"✅ Standard Scaler đã được lưu tại: {OUTPUT_SCALER_PATH}")
     
-    return scaled_df, scaler
+    return scaled_df
 
 # ----------------------------------------------------------------------
-# D. PHẦN THỰC THI CHÍNH
+# E. LOGIC CHÍNH
 # ----------------------------------------------------------------------
-
 if __name__ == "__main__":
     
-    # 1. TÌM KIẾM VÀ TẢI DỮ LIỆU ĐẦU VÀO
-    try:
-        if not os.path.exists(CSV_DIR):
-            print(f"LỖI: Thư mục CSV_FILE không tồn tại tại {CSV_DIR}.")
-            exit()
-            
-        csv_files = [f for f in os.listdir(CSV_DIR) if f.startswith('postgresql_events-') and f.endswith('.csv')]
-        if not csv_files:
-            print(f"LỖI: Không tìm thấy file sự kiện CSV trong thư mục {CSV_DIR}. Hãy chạy 01_data_extraction.py trước.")
-            exit()
-            
-        # Chọn file gần nhất (Mới nhất)
-        latest_csv_file = os.path.join(CSV_DIR, sorted(csv_files, reverse=True)[0])
-        print(f"Sử dụng file dữ liệu đầu vào: {latest_csv_file}")
-        
-        # Đọc dữ liệu. Cột 'timestamp' phải được đọc đúng kiểu.
-        # Đọc mà không dùng parse_dates trước, để chuyển đổi thủ công sau đó.
-        events_df = pd.read_csv(latest_csv_file) 
-        
-        # ⚠️ KHẮC PHỤC LỖI TẠI ĐÂY: Chuyển đổi cưỡng bức cột timestamp
-        
-        # 1. Chuyển đổi cưỡng bức sang datetime. errors='coerce' sẽ biến lỗi thành NaT.
-        events_df['timestamp'] = pd.to_datetime(events_df['timestamp'], errors='coerce')
-        
-        # 2. Loại bỏ các hàng có timestamp không hợp lệ (NaT)
-        events_df.dropna(subset=['timestamp'], inplace=True)
-        
-        # 3. Xử lý múi giờ: Đảm bảo nó là 'aware' (có múi giờ)
-        if events_df['timestamp'].dt.tz is None:
-             # Gán múi giờ vì biết rằng dữ liệu log là Asia/Ho_Chi_Minh
-             events_df['timestamp'] = events_df['timestamp'].dt.tz_localize('Asia/Ho_Chi_Minh')
-        else:
-             # Nếu đã có múi giờ, chuyển về múi giờ chuẩn của project
-             events_df['timestamp'] = events_df['timestamp'].dt.tz_convert('Asia/Ho_Chi_Minh')
-        
-    except Exception as e:
-        print(f"LỖI khi tải hoặc tiền xử lý dữ liệu: {e}")
-        # In thêm lỗi để dễ debug nếu lỗi không phải do múi giờ
-        # raise 
-        exit()
-
-    # 2. TẠO ĐẶC TRƯNG VÀ CHUẨN HÓA
-    if events_df.empty:
-        print("DataFrame sự kiện trống sau khi làm sạch. Dừng xử lý.")
-        exit()
-        
-    features_df = create_time_series_features(events_df, RESAMPLE_FREQUENCY)
+    # 1. Tải và chuẩn bị dữ liệu
+    events_df = load_and_prepare_data(INPUT_EVENTS_PATH)
     
-    if features_df.empty:
-        print("Không có đặc trưng nào được tạo ra. Dừng xử lý.")
-        exit()
+    if events_df is None or events_df.empty:
+        print("Dữ liệu sự kiện không hợp lệ. Dừng tiền xử lý.")
+    else:
+        # 2. Kỹ thuật Đặc trưng
+        features_df = create_time_series_features(events_df)
         
-    scaled_features_df, scaler = scale_features(features_df)
-    
-    # 3. LƯU KẾT QUẢ ĐẦU RA CHO MÔ HÌNH
-    
-    # Đảm bảo thư mục model tồn tại
-    if not os.path.exists(MODEL_DIR):
-        os.makedirs(MODEL_DIR)
+        # 3. Chuẩn hóa dữ liệu và lưu scaler
+        scaled_features_df = scale_features(features_df)
         
-    # Lưu Scaler
-    joblib.dump(scaler, SCALER_PATH)
-    
-    # Lưu dữ liệu đã chuẩn hóa
-    scaled_features_df.to_csv(OUTPUT_SCALED_DATA_PATH, index=True)
-    
-    print("-" * 50)
-    print(f"✅ Scaler (scaler.pkl) đã được lưu vào: {SCALER_PATH}")
-    print(f"✅ Đặc trưng đã chuẩn hóa được lưu vào: {OUTPUT_SCALED_DATA_PATH}")
-    print("-" * 50)
-    print("Kiểm tra 5 dòng đặc trưng đã chuẩn hóa đầu tiên:")
-    print(scaled_features_df.head())
-# ----------------------------------------------------------------------
+        # 4. Lưu dữ liệu đã chuẩn hóa
+        scaled_features_df.to_csv(OUTPUT_SCALED_DATA_PATH)
+        print(f"✅ Dữ liệu đã chuẩn hóa được lưu tại: {OUTPUT_SCALED_DATA_PATH}")
+        
+        print("\nTiền xử lý hoàn tất. Sẵn sàng cho 03_model_training.py")

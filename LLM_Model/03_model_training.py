@@ -8,15 +8,17 @@ import joblib
 # ----------------------------------------------------------------------
 # A. CẤU HÌNH VÀ THIẾT LẬP ĐƯỜNG DẪN
 # ----------------------------------------------------------------------
-timestamp_srt = datetime.now().strftime('%Y%m%d')
+# Đã sửa lỗi chính tả trong tên biến: timestamp_srt -> timestamp_str
+timestamp_str = datetime.now().strftime('%Y%m%d')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CSV_DIR =  os.path.join(BASE_DIR, '..','CSV_FILE','OUTPUT_CSVFILE','TRAIN_AI')
+# ⚠️ Cập nhật CSV_DIR để trỏ đúng đến thư mục chứa processed_scaled_features
+CSV_DIR = os.path.join(BASE_DIR, '..','CSV_FILE','OUTPUT_CSVFILE','TRAIN_AI') 
 MODEL_DIR = os.path.join(BASE_DIR,'trained_model')
 
 # Đặt tên file input (đã chuẩn hóa) và file output (mô hình đã huấn luyện)
-INPUT_SCALED_DATA_FILE = f'processed_scaled_features-{timestamp_srt}.csv'
-MODEL_FILE_NAME = f'isolation_forest_model-{timestamp_srt}.pkl'
+INPUT_SCALED_DATA_FILE = f'processed_scaled_features-{timestamp_str}.csv'
+MODEL_FILE_NAME = f'isolation_forest_model-{timestamp_str}.pkl'
 
 INPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR, INPUT_SCALED_DATA_FILE)
 MODEL_PATH = os.path.join(MODEL_DIR, MODEL_FILE_NAME)
@@ -46,28 +48,21 @@ def load_scaled_data(file_path):
 # ----------------------------------------------------------------------
 # C. HUẤN LUYỆN MÔ HÌNH
 # ----------------------------------------------------------------------
-def train_anomoly_model(data_df):
+# Đã sửa lỗi chính tả trong tên hàm: train_anomoly_model -> train_anomaly_model
+def train_anomaly_model(data_df):
     """
     Huấn luyện mô hình Isolation Forest cho việc phát hiện bất thường.
-    
-    Args:
-        data_df (pd.DataFrame): DataFrame chứa các đặc trưng đã chuẩn hóa.
-        
-    Returns:
-        IsolationForest: Mô hình đã được huấn luyện.
     """
     print(f"\nBắt đầu huấn luyện mô hình Isolation Forest (Contamination={CONTAMINATION_RATE})...")
 
     # Khởi tạo mô hình Isolation Forest
-    # random_state được đặt để đảm bảo kết quả có thể tái lập
     model = IsolationForest(
         contamination=CONTAMINATION_RATE,
         random_state=42,
         n_estimators=100,
-        n_jobs=-1           
+        n_jobs=-1          
     )
     #Huấn luyện mô hình
-    # Isolation Forest là mô hình không giám sát (unsupervised), chỉ cần truyền dữ liệu đầu vào.
     model.fit(data_df)
 
     print("Hoàn thành huấn luyện mô hình.")
@@ -78,10 +73,6 @@ def train_anomoly_model(data_df):
 def save_model(model, model_path):
     """
     Lưu mô hình đã huấn luyện vào file.
-    
-    Args:
-        model (IsolationForest): Mô hình đã được huấn luyện.
-        model_path (str): Đường dẫn để lưu mô hình.
     """
     if not os.path.exists(os.path.dirname(model_path)):
         os.makedirs(os.path.dirname(model_path))
@@ -102,11 +93,10 @@ if __name__ == "__main__":
         print("Dữ liệu đầu vào không hợp lệ hoặc trống. Dừng quá trình huấn luyện.")
     else:
         # TẠO DATAFRAME CHỈ CHỨA ĐẶC TRƯNG CHO MÔ HÌNH
-        # Đảm bảo chỉ có 20 cột features
         X_features = scaled_data_df.copy()
         
-        # 2. Huấn luyện mô hình
-        anomaly_model = train_anomoly_model(X_features) 
+        # 2. Huấn luyện mô hình (Đã sửa tên hàm)
+        anomaly_model = train_anomaly_model(X_features) 
         
         # 3. Lưu mô hình đã huấn luyện
         save_model(anomaly_model, MODEL_PATH)
@@ -114,7 +104,6 @@ if __name__ == "__main__":
         # 4. Kiểm tra mô hình và trích xuất bất thường
         print("\n--- Kiểm tra nhanh kết quả phân loại trên dữ liệu huấn luyện ---")
         
-        # ⚠️ BƯỚC KHẮC PHỤC: Tính và gán trực tiếp vào scaled_data_df
         # Tính điểm số và phân loại trên X_features, sau đó gán kết quả về scaled_data_df
         scaled_data_df['anomaly_score'] = anomaly_model.decision_function(X_features)
         scaled_data_df['anomaly'] = anomaly_model.predict(X_features)
@@ -128,28 +117,36 @@ if __name__ == "__main__":
         print(f"Tỷ lệ bất thường (Model): {num_anomalies/total_samples:.2%}")
         print(f"Tỷ lệ bất thường (Cấu hình): {CONTAMINATION_RATE:.2%}")
 
-        # 5. LƯU CÁC BẢN GHI BẤT THƯỜNG VÀO FILE CSV
-        # Lọc ra các bản ghi bất thường. anomalies_df LÚC NÀY ĐÃ CÓ CỘT 'anomaly_score'
+        # ----------------------------------------------------------------------
+        # 5. LƯU VÀ HIỂN THỊ CÁC BẢN GHI BẤT THƯỜNG
+        
+        # Lọc ra các bản ghi bất thường.
         anomalies_df = scaled_data_df[scaled_data_df['anomaly'] == -1].copy()
         
         if not anomalies_df.empty:
-            ANOMALY_OUTPUT_PATH = os.path.join(CSV_DIR, f'anomaly_records-{timestamp_srt}.csv')
+            # ⚠️ Đã sửa lại đường dẫn ANOMALY_OUTPUT_PATH để sử dụng CSV_DIR đã cập nhật
+            ANOMALY_OUTPUT_PATH = os.path.join(CSV_DIR, f'anomaly_records-{timestamp_str}.csv')
             
             anomalies_df.to_csv(ANOMALY_OUTPUT_PATH)
             
             print(f"\n✅ Đã lưu {len(anomalies_df)} bản ghi bất thường vào: {ANOMALY_OUTPUT_PATH}")
             
-            # Hiển thị 5 bản ghi bất thường có điểm số thấp nhất (nghiêm trọng nhất)
-            display_cols = [
-                'count_total_events', 'count_fatal_errors', 'avg_session_duration', 
-                'count_connect_authorized', 'count_connect_received', 'ratio_fatal_to_total', 
-                'anomaly_score'
-            ]
+            # --- TỐI ƯU HÓA HIỂN THỊ ĐỂ TRÁNH KEYERROR ---
+            
+            # 1. Xác định các cột thống kê quan trọng (bao gồm score)
+            base_cols = ['avg_session_duration', 'max_session_duration', 'ratio_fatal_to_total', 'anomaly_score']
+            
+            # 2. Tìm các cột đếm liên quan đến lỗi/kết nối trong DataFrame
+            count_cols = [col for col in anomalies_df.columns if col.startswith('count_') and ('error' in col or 'fatal' in col or 'connect' in col)]
+            
+            # 3. Kết hợp danh sách cột hiển thị và chỉ giữ lại những cột THỰC SỰ có
+            display_cols = base_cols + count_cols
+            available_cols = [col for col in display_cols if col in anomalies_df.columns]
             
             print("\n5 bản ghi bất thường nghiêm trọng nhất:")
             
             # Sắp xếp, chọn 5 hàng đầu, và chỉ in ra các cột quan trọng
             top_anomalies = anomalies_df.sort_values(by='anomaly_score').head(5)
-            print(top_anomalies[display_cols])
+            print(top_anomalies[available_cols])
         
         print("\nQuá trình huấn luyện mô hình hoàn tất.")

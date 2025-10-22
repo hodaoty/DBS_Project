@@ -6,21 +6,16 @@ import pandas as pd
 # ----------------------------------------------------------------------
 # A. ĐỊNH NGHĨA BIỂU THỨC CHÍNH QUY (REGEX PATTERNS)
 # ----------------------------------------------------------------------
-# Regex cơ bản để trích xuất các trường cố định ở đầu mỗi dòng log.
-# Regex này phù hợp với định dạng log thô bạn cung cấp.
 LOG_PATTERN = re.compile(
-    r'(?P<timestamp_base>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) '  # Ví dụ: 2025-10-04 20:59:26.037
-    r'(?P<tz_offset>[+-]\d{2}) '                                        # Ví dụ: +07
-    r'\[(?P<pid>\d+)\] '                                                # Ví dụ: [7002]
+    r'(?P<timestamp_base>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3})\s+' # Base time (có khoảng trắng)
+    r'(?P<tz_offset>[+-]\d{2})\s+'                                      # Múi giờ (+07) và khoảng trắng
+    r'\[(?P<pid>\d+)\] '                                                # Ví dụ: [7002] - GIỮ LẠI CỘT NÀY
     r'(?:(?P<user_db>[^ ]+@[^ ]+) )?'                                   # Ví dụ: postgres@template1 (Tùy chọn)
     r'(?P<level>[A-Z]+): (?P<message>.*)'                               # Ví dụ: LOG: message / FATAL: message
 )
-# Regex để trích xuất thông tin chi tiết từ thông báo ngắt kết nối (Disconnection).
 DISCONNECT_PATTERN = re.compile(
     r'disconnection: session time: (?P<session_time>.*?) user=(?P<d_user>.*?) database=(?P<d_db>.*?) host=(?P<d_host>.*)'
 )
-# Regex để trích xuất thông tin từ thông báo kiểm toán (AUDIT) - có thể là từ pgaudit.
-# Đây là nguồn chính để lấy loại hành động (SELECT, INSERT, DDL, v.v.).
 AUDIT_PATTERN = re.compile(
     r'AUDIT: SESSION,\d+,\d+,(?P<audit_class>[^,]+),(?P<audit_type>[^,]+),.*?,.*?"(?P<audit_query>.*?)"'
 )
@@ -30,7 +25,7 @@ AUDIT_PATTERN = re.compile(
 def parse_postgresql_log(filepath):
     """
     Đọc file log thô, phân tích cú pháp từng dòng bằng Regex và trích xuất
-    các trường dữ liệu quan trọng vào danh sách các từ điển.
+    các trường dữ liệu quan trọng, bao gồm PID.
     """
     parsed_data = []
     
@@ -46,7 +41,6 @@ def parse_postgresql_log(filepath):
                 if match:
                     data = match.groupdict()
                     
-                    # Gán múi giờ vào data
                     data['tz'] = data.pop('tz_offset', None)
                     
                     # 1. Phân tách USER@DB
@@ -55,8 +49,10 @@ def parse_postgresql_log(filepath):
                         data['user'] = user_db.split('@')[0]
                         data['database'] = user_db.split('@')[1]
                     else:
-                        data['user'] = data['database'] = None
-                    
+                        # Gán giá trị mặc định cho user/database nếu không có
+                        data['user'] = '[unknown]' if data['level'] == 'LOG' and data.get('pid') else None
+                        data['database'] = '[unknown]' if data['level'] == 'LOG' and data.get('pid') else None
+
                     # Khởi tạo các trường đặc trưng
                     data['event_type'] = data['level']
                     data['session_duration_sec'] = 0.0
@@ -106,10 +102,14 @@ def parse_postgresql_log(filepath):
                     # d) Kết nối
                     elif 'connection received:' in message:
                         data['event_type'] = 'CONNECT_RECEIVED'
+                        # Gán [unknown] cho user/db nếu thiếu để khớp định dạng đầu ra mong muốn
+                        if data['user'] is None: data['user'] = '[unknown]'
+                        if data['database'] is None: data['database'] = '[unknown]'
+
                     elif 'connection authorized:' in message:
                         data['event_type'] = 'CONNECT_AUTHORIZED'
                     
-                    # Loại bỏ các trường không cần thiết
+                    # Loại bỏ các trường không cần thiết từ dict (trước khi tạo DataFrame)
                     data.pop('message', None)
                     data.pop('d_user', None)
                     data.pop('d_db', None)
@@ -127,46 +127,44 @@ def parse_postgresql_log(filepath):
     if df.empty:
         return df
 
-    # --- KHẮC PHỤC LỖI VÀ CHUYỂN ĐỔI TIMESTAMP ---
+    # --- CHUẨN HÓA VÀ TẠO CỘT TIMESTAMP (GIỮ NGUYÊN MÚI GIỜ LOG) ---
     
-    # 1. Ghép timestamp_base và tz lại với định dạng chuẩn ISO (+HH:MM)
-    # df['tz'] là chuỗi '+07'. Ta thêm ':00' để được '+07:00'
-    # Kết quả: 2025-10-04 20:59:26.037+07:00
-    df['iso_timestamp_str'] = df['timestamp_base'].astype(str) + df['tz'].astype(str) + ':00'
+    # 1. Ghép timestamp_base và tz lại thành chuỗi ISO đầy đủ (vd: +07:00)
+    df['timestamp'] = df['timestamp_base'].astype(str) + df['tz'].astype(str) 
+    
+    # 2. Loại bỏ các cột phụ trợ
+    df.drop(columns=['timestamp_base', 'tz', 'level'], inplace=True, errors='ignore')
+    
+    # 3. Chuyển đổi pid sang kiểu số nguyên
+    df['pid'] = pd.to_numeric(df['pid'], errors='coerce').fillna(0).astype(int)
 
-    # 2. Chuyển đổi thành datetime có múi giờ
-    # Sử dụng .str.replace(' ', '') để loại bỏ khoảng trắng dư thừa
-    # Sử dụng format='%Y-%m-%d%H:%M:%S.%f%z'
-    df['timestamp'] = pd.to_datetime(
-        df['iso_timestamp_str'].str.replace(' ', ''), 
-        format='%Y-%m-%d%H:%M:%S.%f%z', 
-        errors='coerce' # Thay thế giá trị không hợp lệ bằng NaT
-    )
+    # 4. Sắp xếp lại cột theo thứ tự yêu cầu
+    final_cols = [
+        'pid', 'user', 'database', 'event_type', 'session_duration_sec', 
+        'query_command', 'query_text', 'timestamp'
+    ]
     
-    # 3. Chuyển đổi sang múi giờ địa phương (Asia/Ho_Chi_Minh)
-    df['timestamp'] = df['timestamp'].dt.tz_convert('Asia/Ho_Chi_Minh')
+    # Đảm bảo các cột thiếu được thêm vào với giá trị None
+    for col in final_cols:
+        if col not in df.columns:
+            df[col] = None
 
-    # Loại bỏ các cột phụ trợ
-    df.drop(columns=['timestamp_base', 'tz', 'iso_timestamp_str', 'pid', 'level'], inplace=True, errors='ignore')
-    
-    return df
-# ----------------------------------------------------------------------
+    return df[final_cols] # Trả về DataFrame đã sắp xếp
 # ----------------------------------------------------------------------
 # C. PHẦN THỰC THI CHÍNH
 # ----------------------------------------------------------------------
 
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.abspath(__file__))
+    # Đảm bảo đường dẫn này trỏ đến file log thô thực tế
     LOG_FILE_PATH = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
     
-    # Hàm thời gian lấy ngày tháng hiện tại để đặt tên file output
     time_str = datetime.now().strftime('%Y%m%d')
+    # Thư mục đầu ra
     CSV_DIR = os.path.join(base_dir, '..', 'CSV_FILE','OUTPUT_CSVFILE','LOG_EVENT')
     
-    # Sửa lỗi: Ghép đường dẫn thư mục và tên file output
     OUTPUT_CSV_PATH = os.path.join(CSV_DIR, f'postgresql_events-{time_str}.csv') 
 
-    # ⚠️ Bổ sung: Kiểm tra và tạo thư mục CSV_FILE nếu chưa tồn tại
     if not os.path.exists(CSV_DIR):
         os.makedirs(CSV_DIR)
         print(f"Đã tạo thư mục đầu ra: {CSV_DIR}")
@@ -180,8 +178,6 @@ if __name__ == "__main__":
         print("Không có sự kiện hợp lệ nào được trích xuất. Dừng xử lý.")
     else:
         print(f"Hoàn thành phân tích. Tổng số sự kiện: {len(events_df)}")
-        print("\nCác loại sự kiện chính được phát hiện (Top 10):")
-        print(events_df['event_type'].value_counts().head(10))
         
         # 2. Lưu kết quả
         events_df.to_csv(OUTPUT_CSV_PATH, index=False)
@@ -189,4 +185,3 @@ if __name__ == "__main__":
         print(f"\nDataFrame sự kiện đã được lưu vào: {OUTPUT_CSV_PATH}")
         print("\nKiểm tra 5 dòng dữ liệu đầu tiên:")
         print(events_df.head())
-                    
