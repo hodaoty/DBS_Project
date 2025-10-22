@@ -1650,3 +1650,1154 @@
 2025-10-09 09:39:31.612 +07 [1078] postgres@template1 LOG:  disconnection: session time: 0:00:00.147 user=postgres database=template1 host=[local]
 2025-10-09 09:44:29.626 +07 [938] LOG:  checkpoint starting: time
 2025-10-09 09:44:29.706 +07 [938] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.027 s, sync=0.006 s, total=0.085 s; sync files=2, longest=0.004 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/20AB6C0, redo lsn=0/20AB668
+2025-10-08 17:02:57.606 +07 [13034] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-08 17:02:57.609 +07 [13034] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-08 17:02:57.610 +07 [13034] LOG:  listening on IPv6 address "::", port 5432
+2025-10-08 17:02:57.614 +07 [13034] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-08 17:02:57.649 +07 [13041] LOG:  database system was shut down at 2025-10-08 16:43:35 +07
+2025-10-08 17:02:57.685 +07 [13034] LOG:  database system is ready to accept connections
+2025-10-08 17:07:57.733 +07 [13039] LOG:  checkpoint starting: time
+2025-10-08 17:07:57.866 +07 [13039] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.110 s, sync=0.008 s, total=0.134 s; sync files=3, longest=0.004 s, average=0.003 s; distance=8 kB, estimate=8 kB; lsn=0/1C7DC58, redo lsn=0/1C7DC00
+2025-10-08 17:24:04.412 +07 [13327] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-08 17:25:33.493 +07 [13327] postgres@postgres LOG:  AUDIT: SESSION,2,1,DDL,CREATE DATABASE,,,CREATE DATABASE companydb,<none>
+2025-10-08 17:25:49.221 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,"CREATE TABLE departments (
+	    id SERIAL PRIMARY KEY,
+	    name VARCHAR(50) NOT NULL
+	)",<none>
+2025-10-08 17:26:32.543 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,"CREATE TABLE employees (
+	    id SERIAL PRIMARY KEY,
+	    name VARCHAR(100) NOT NULL,
+	    position VARCHAR(50),
+	    salary NUMERIC(10,2),
+	    department_id INT REFERENCES departments(id)
+	)",<none>
+2025-10-08 17:26:41.818 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,3,1,DDL,CREATE TABLE,,,"CREATE TABLE projects (
+	    id SERIAL PRIMARY KEY,
+	    name VARCHAR(100) NOT NULL,
+	    budget NUMERIC(10,2),
+	    department_id INT REFERENCES departments(id)
+	)",<none>
+2025-10-08 17:26:48.983 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,4,1,WRITE,INSERT,,,"INSERT INTO departments (name) VALUES
+	('Management'),
+	('IT'),
+	('Human Resources')",<none>
+2025-10-08 17:26:56.490 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,5,1,WRITE,INSERT,,,"INSERT INTO employees (name, position, salary, department_id) VALUES
+	('John Doe', 'Manager', 1500, 1),
+	('Alice Nguyen', 'Developer', 1200, 2),
+	('Bob Tran', 'Tester', 1000, 2),
+	('Lisa Pham', 'HR', 1100, 3)",<none>
+2025-10-08 17:26:56.498 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,5,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-08 17:26:56.501 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,5,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-08 17:26:56.502 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,5,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-08 17:26:56.502 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,5,5,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-08 17:27:03.440 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,6,1,WRITE,INSERT,,,"INSERT INTO projects (name, budget, department_id) VALUES
+	('ERP Upgrade', 10000, 1),
+	('Website Redesign', 8000, 2),
+	('Recruitment Drive', 5000, 3)",<none>
+2025-10-08 17:27:03.442 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,6,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-08 17:27:03.443 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,6,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-08 17:27:03.443 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,6,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-08 17:27:11.745 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,7,1,READ,SELECT,,,"SELECT e.name, e.position, d.name AS department, e.salary
+	FROM employees e
+	JOIN departments d ON e.department_id = d.id",<none>
+2025-10-08 17:27:18.274 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,8,1,READ,SELECT,,,"SELECT p.name AS project, d.name AS department, p.budget
+	FROM projects p
+	JOIN departments d ON p.department_id = d.id",<none>
+2025-10-08 17:27:58.261 +07 [13039] LOG:  checkpoint starting: time
+2025-10-08 17:28:19.548 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,9,1,WRITE,UPDATE,,,UPDATE employees SET salary = salary + 200 WHERE position = 'Developer',<none>
+2025-10-08 17:28:19.554 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,10,1,WRITE,DELETE,,,DELETE FROM projects WHERE id = 3,<none>
+2025-10-08 17:29:37.165 +07 [13039] LOG:  checkpoint complete: wrote 976 buffers (6.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=98.874 s, sync=0.017 s, total=98.904 s; sync files=311, longest=0.002 s, average=0.001 s; distance=4419 kB, estimate=4419 kB; lsn=0/20CEE10, redo lsn=0/20CEA58
+2025-10-08 17:40:55.816 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,11,1,ROLE,CREATE ROLE,,,CREATE ROLE admin_user LOGIN PASSWORD <REDACTED>,<none>
+2025-10-08 17:40:55.824 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,12,1,ROLE,CREATE ROLE,,,CREATE ROLE dev_user LOGIN PASSWORD <REDACTED>,<none>
+2025-10-08 17:40:55.832 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,13,1,ROLE,CREATE ROLE,,,CREATE ROLE analyst_user LOGIN PASSWORD <REDACTED>,<none>
+2025-10-08 17:41:18.036 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,14,1,ROLE,GRANT,,,"GRANT CONNECT ON DATABASE companydb TO admin_user, dev_user, analyst_user",<none>
+2025-10-08 17:41:47.314 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,15,1,ROLE,GRANT,,,"GRANT USAGE ON SCHEMA public TO admin_user, dev_user, analyst_user",<none>
+2025-10-08 17:41:47.319 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,16,1,ROLE,GRANT,,,GRANT SELECT ON ALL TABLES IN SCHEMA public TO analyst_user,<none>
+2025-10-08 17:41:47.321 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,17,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO dev_user",<none>
+2025-10-08 17:41:47.325 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,18,1,ROLE,GRANT,,,GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO admin_user,<none>
+2025-10-08 17:41:47.331 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,19,1,ROLE,GRANT,,,"GRANT CREATE ON SCHEMA public TO admin_user, dev_user",<none>
+2025-10-08 17:42:15.088 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,20,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT ON TABLES TO analyst_user",<none>
+2025-10-08 17:42:15.091 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,21,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO dev_user",<none>
+2025-10-08 17:42:15.094 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,22,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT ALL ON TABLES TO admin_user",<none>
+2025-10-08 17:42:58.466 +07 [13039] LOG:  checkpoint starting: time
+2025-10-08 17:43:00.313 +07 [13039] LOG:  checkpoint complete: wrote 18 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.832 s, sync=0.004 s, total=1.847 s; sync files=17, longest=0.003 s, average=0.001 s; distance=32 kB, estimate=3980 kB; lsn=0/20D6DF8, redo lsn=0/20D6DA0
+2025-10-08 18:16:02.977 +07 [13353] postgres@companydb LOG:  AUDIT: SESSION,23,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-09 10:34:48.500 +07 [16134] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 10:36:22.226 +07 [16134] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,"SELECT rolname, rolcanlogin, rolsuper
+	FROM pg_roles",<none>
+2025-10-09 10:37:19.422 +07 [16134] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,"SELECT rolname, rolsuper
+	FROM pg_roles
+	WHERE rolcanlogin = true",<none>
+2025-10-09 10:56:27.424 +07 [16134] postgres@postgres LOG:  AUDIT: SESSION,4,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-09 10:57:26.892 +07 [16134] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-09 10:57:42.969 +07 [16134] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,,,"SELECT datname FROM pg_catalog.pg_database  WHERE datname LIKE 'compan%'
+	LIMIT 1000",<none>
+2025-10-09 10:57:46.703 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-09 10:57:59.592 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'S' THEN 'sequence' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' END as ""Type"",
+	  CASE WHEN pg_catalog.array_length(c.relacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(c.relacl, E'\n') END AS ""Access privileges"",
+	  pg_catalog.array_to_string(ARRAY(
+	    SELECT attname || E':\n  ' || pg_catalog.array_to_string(attacl, E'\n  ')
+	    FROM pg_catalog.pg_attribute a
+	    WHERE attrelid = c.oid AND NOT attisdropped AND attacl IS NOT NULL
+	  ), E'\n') AS ""Column privileges"",
+	  pg_catalog.array_to_string(ARRAY(
+	    SELECT polname
+	    || CASE WHEN NOT polpermissive THEN
+	       E' (RESTRICTIVE)'
+	       ELSE '' END
+	    || CASE WHEN polcmd != '*' THEN
+	           E' (' || polcmd::pg_catalog.text || E'):'
+	       ELSE E':'
+	       END
+	    || CASE WHEN polqual IS NOT NULL THEN
+	           E'\n  (u): ' || pg_catalog.pg_get_expr(polqual, polrelid)
+	       ELSE E''
+	       END
+	    || CASE WHEN polwithcheck IS NOT NULL THEN
+	           E'\n  (c): ' || pg_catalog.pg_get_expr(polwithcheck, polrelid)
+	       ELSE E''
+	       END    || CASE WHEN polroles <> '{0}' THEN
+	           E'\n  to: ' || pg_catalog.array_to_string(
+	               ARRAY(
+	                   SELECT rolname
+	                   FROM pg_catalog.pg_roles
+	                   WHERE oid = ANY (polroles)
+	                   ORDER BY 1
+	               ), E', ')
+	       ELSE E''
+	       END
+	    FROM pg_catalog.pg_policy pol
+	    WHERE polrelid = c.oid), E'\n')
+	    AS ""Policies""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	WHERE c.relkind IN ('r','v','m','S','f','p')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1, 2",<none>
+2025-10-09 10:58:33.922 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,3,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT ON TABLES TO analyst_user",<none>
+2025-10-09 10:58:33.928 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,4,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO dev_user",<none>
+2025-10-09 10:58:33.931 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,5,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT ALL ON TABLES TO admin_user",<none>
+2025-10-09 10:59:10.927 +07 [13039] LOG:  checkpoint starting: time
+2025-10-09 10:59:11.291 +07 [13039] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.330 s, sync=0.005 s, total=0.371 s; sync files=3, longest=0.003 s, average=0.002 s; distance=14 kB, estimate=3584 kB; lsn=0/20DA870, redo lsn=0/20DA818
+2025-10-09 11:11:01.118 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,6,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT ON TABLES TO analyst_user",<none>
+2025-10-09 11:11:01.121 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,7,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO dev_user",<none>
+2025-10-09 11:11:01.126 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,8,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT ALL ON TABLES TO admin_user",<none>
+2025-10-09 11:12:01.395 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,9,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT ON TABLES TO analyst_user",<none>
+2025-10-09 11:12:01.397 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,10,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO dev_user",<none>
+2025-10-09 11:12:01.401 +07 [16423] postgres@companydb LOG:  AUDIT: SESSION,11,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT ALL ON TABLES TO admin_user",<none>
+2025-10-09 11:14:10.568 +07 [13039] LOG:  checkpoint starting: time
+2025-10-09 11:14:10.691 +07 [13039] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.107 s, sync=0.003 s, total=0.123 s; sync files=2, longest=0.002 s, average=0.002 s; distance=1 kB, estimate=3226 kB; lsn=0/20DB020, redo lsn=0/20DAFC8
+2025-10-09 11:14:51.402 +07 [16666] postgres@ngdinhkhoi FATAL:  database "ngdinhkhoi" does not exist
+2025-10-09 11:14:58.027 +07 [16665] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 11:15:07.965 +07 [16675] postgres@ngdinhkhoi FATAL:  database "ngdinhkhoi" does not exist
+2025-10-09 11:15:43.956 +07 [16687] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 11:18:33.794 +07 [16713] ngdinhkhoi@postgres LOG:  AUDIT: SESSION,1,1,DDL,CREATE DATABASE,,,CREATE DATABASE company_db,<none>
+2025-10-09 11:18:47.445 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,"CREATE TABLE employees (
+	    id SERIAL PRIMARY KEY,
+	    full_name VARCHAR(100),
+	    department VARCHAR(50),
+	    position VARCHAR(50),
+	    salary NUMERIC(10,2),
+	    hire_date DATE
+	)",<none>
+2025-10-09 11:18:52.239 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO employees (full_name, department, position, salary, hire_date)
+	VALUES
+	('Nguyen Van A', 'IT', 'System Admin', 15000000, '2023-02-01'),
+	('Tran Thi B', 'HR', 'HR Manager', 18000000, '2022-10-15'),
+	('Le Van C', 'Finance', 'Accountant', 12000000, '2023-06-20'),
+	('Pham Thi D', 'IT', 'Developer', 20000000, '2024-01-10'),
+	('Do Van E', 'Marketing', 'Content Writer', 11000000, '2023-05-05')",<none>
+2025-10-09 11:19:04.091 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT * FROM employees,<none>
+2025-10-09 11:19:10.781 +07 [13039] LOG:  checkpoint starting: time
+2025-10-09 11:20:48.449 +07 [13039] LOG:  checkpoint complete: wrote 966 buffers (5.9%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=97.638 s, sync=0.020 s, total=97.672 s; sync files=309, longest=0.003 s, average=0.001 s; distance=4385 kB, estimate=4385 kB; lsn=0/25236B8, redo lsn=0/2523628
+2025-10-09 11:22:38.229 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,4,1,READ,SELECT,,,SELECT * FROM employees,<none>
+2025-10-09 11:28:53.763 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,5,1,WRITE,INSERT,,,"INSERT INTO employees (full_name, department, position, salary, hire_date)
+	VALUES ('Nguyen Van F', 'IT', 'Security Engineer', 22000000, '2024-12-01')",<none>
+2025-10-09 11:28:59.203 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,6,1,WRITE,UPDATE,,,"UPDATE employees
+	SET salary = 25000000
+	WHERE full_name = 'Pham Thi D'",<none>
+2025-10-09 11:29:06.946 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,7,1,WRITE,DELETE,,,"DELETE FROM employees
+	WHERE full_name = 'Do Van E'",<none>
+2025-10-09 11:29:10.654 +07 [13039] LOG:  checkpoint starting: time
+2025-10-09 11:29:10.979 +07 [13039] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.308 s, sync=0.004 s, total=0.326 s; sync files=4, longest=0.003 s, average=0.001 s; distance=1 kB, estimate=3947 kB; lsn=0/2523C38, redo lsn=0/2523BE0
+2025-10-09 11:29:11.801 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,8,1,READ,SELECT,,,"SELECT *
+	FROM employees
+	WHERE department = 'IT' AND salary > 15000000",<none>
+2025-10-09 11:29:17.645 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,9,1,READ,SELECT,,,"SELECT department, AVG(salary) AS avg_salary
+	FROM employees
+	GROUP BY department",<none>
+2025-10-09 11:29:22.120 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,10,1,DDL,CREATE TABLE,,,"CREATE TABLE departments (
+	    dept_id SERIAL PRIMARY KEY,
+	    dept_name VARCHAR(50),
+	    location VARCHAR(50)
+	)",<none>
+2025-10-09 11:29:22.125 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,11,1,WRITE,INSERT,,,"INSERT INTO departments (dept_name, location) VALUES
+	('IT', 'Hanoi'),
+	('HR', 'Ho Chi Minh'),
+	('Finance', 'Danang'),
+	('Marketing', 'Can Tho')",<none>
+2025-10-09 11:29:42.054 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,12,1,DDL,ALTER TABLE,,,"ALTER TABLE employees
+	ADD COLUMN dept_id INT REFERENCES departments(dept_id)",<none>
+2025-10-09 11:29:46.220 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,13,1,WRITE,UPDATE,,,"UPDATE employees
+	SET dept_id = d.dept_id
+	FROM departments d
+	WHERE employees.department = d.dept_name",<none>
+2025-10-09 11:29:46.235 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,13,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 11:29:46.237 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,13,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 11:29:46.238 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,13,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 11:29:46.238 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,13,5,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-09 11:29:46.238 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,13,6,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-09 11:29:50.795 +07 [16725] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,14,1,READ,SELECT,,,"SELECT e.full_name, e.position, e.salary, d.dept_name, d.location
+	FROM employees e
+	JOIN departments d ON e.dept_id = d.dept_id
+	ORDER BY e.salary DESC",<none>
+2025-10-09 11:34:11.019 +07 [13039] LOG:  checkpoint starting: time
+2025-10-09 11:34:16.006 +07 [13039] LOG:  checkpoint complete: wrote 49 buffers (0.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=4.966 s, sync=0.007 s, total=4.988 s; sync files=40, longest=0.005 s, average=0.001 s; distance=167 kB, estimate=3569 kB; lsn=0/254DA50, redo lsn=0/254D9F8
+2025-10-09 13:14:42.248 +07 [1340] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-09 13:14:42.248 +07 [1340] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-09 13:14:42.248 +07 [1340] LOG:  listening on IPv6 address "::", port 5432
+2025-10-09 13:14:42.255 +07 [1340] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-09 13:14:42.343 +07 [1458] LOG:  database system was interrupted; last known up at 2025-10-09 11:34:16 +07
+2025-10-09 13:14:42.585 +07 [1458] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-09 13:14:42.615 +07 [1458] LOG:  redo starts at 0/254D9F8
+2025-10-09 13:14:42.615 +07 [1458] LOG:  invalid record length at 0/254DB00: expected at least 24, got 0
+2025-10-09 13:14:42.615 +07 [1458] LOG:  redo done at 0/254DAC8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.01 s
+2025-10-09 13:14:42.630 +07 [1456] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-09 13:14:42.647 +07 [1456] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.019 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/254DB00, redo lsn=0/254DB00
+2025-10-09 13:14:42.671 +07 [1340] LOG:  database system is ready to accept connections
+2025-10-09 13:44:42.124 +07 [4117] postgres@postgres ERROR:  database "company_db" already exists
+2025-10-09 13:44:42.124 +07 [4117] postgres@postgres STATEMENT:  CREATE DATABASE company_db;
+2025-10-09 13:45:54.795 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,1,1,DDL,CREATE DATABASE,,,CREATE DATABASE company_demo,<none>
+2025-10-09 13:46:06.854 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,"CREATE TABLE departments (
+	    dept_id SERIAL PRIMARY KEY,
+	    dept_name VARCHAR(50) NOT NULL,
+	    location VARCHAR(50)
+	)",<none>
+2025-10-09 13:46:06.892 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,3,1,DDL,CREATE TABLE,,,"CREATE TABLE employees (
+	    emp_id SERIAL PRIMARY KEY,
+	    full_name VARCHAR(100) NOT NULL,
+	    email VARCHAR(100) UNIQUE,
+	    phone VARCHAR(20),
+	    position VARCHAR(50),
+	    salary NUMERIC(12,2),
+	    hire_date DATE,
+	    dept_id INT REFERENCES departments(dept_id) ON DELETE SET NULL
+	)",<none>
+2025-10-09 13:46:06.901 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,4,1,DDL,CREATE TABLE,,,"CREATE TABLE projects (
+	    project_id SERIAL PRIMARY KEY,
+	    project_name VARCHAR(100),
+	    start_date DATE,
+	    end_date DATE,
+	    budget NUMERIC(14,2),
+	    dept_id INT REFERENCES departments(dept_id) ON DELETE CASCADE
+	)",<none>
+2025-10-09 13:46:06.904 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,5,1,DDL,CREATE TABLE,,,"CREATE TABLE employee_projects (
+	    emp_id INT REFERENCES employees(emp_id) ON DELETE CASCADE,
+	    project_id INT REFERENCES projects(project_id) ON DELETE CASCADE,
+	    assigned_date DATE,
+	    role_in_project VARCHAR(50),
+	    PRIMARY KEY (emp_id, project_id)
+	)",<none>
+2025-10-09 13:46:13.258 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,6,1,WRITE,INSERT,,,"INSERT INTO departments (dept_name, location) VALUES
+	('IT', 'Hanoi'),
+	('HR', 'Ho Chi Minh'),
+	('Finance', 'Danang'),
+	('Marketing', 'Can Tho'),
+	('R&D', 'Hanoi')",<none>
+2025-10-09 13:46:13.276 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,1,WRITE,INSERT,,,"INSERT INTO employees (full_name, email, phone, position, salary, hire_date, dept_id) VALUES
+	('Nguyen Van A', 'a.nguyen@company.com', '0901000001', 'System Admin', 18000000, '2023-01-10', 1),
+	('Tran Thi B', 'b.tran@company.com', '0902000002', 'HR Manager', 20000000, '2022-07-22', 2),
+	('Le Van C', 'c.le@company.com', '0903000003', 'Accountant', 15000000, '2023-03-15', 3),
+	('Pham Thi D', 'd.pham@company.com', '0904000004', 'Frontend Developer', 22000000, '2024-02-05', 1),
+	('Do Van E', 'e.do@company.com', '0905000005', 'Marketing Specialist', 17000000, '2023-11-01', 4),
+	('Bui Thi F', 'f.bui@company.com', '0906000006', 'Research Engineer', 25000000, '2022-12-12', 5)",<none>
+2025-10-09 13:46:13.291 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 13:46:13.292 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-09 13:46:13.292 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-09 13:46:13.292 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,5,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 13:46:13.292 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,6,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",4
+2025-10-09 13:46:13.292 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,7,7,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",5
+2025-10-09 13:46:13.321 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,8,1,WRITE,INSERT,,,"INSERT INTO projects (project_name, start_date, end_date, budget, dept_id) VALUES
+	('Website Redesign', '2024-01-01', '2024-06-30', 500000000, 1),
+	('Employee Onboarding System', '2023-10-01', '2024-03-31', 300000000, 2),
+	('Financial Audit 2024', '2024-04-01', '2024-12-31', 400000000, 3),
+	('Product Launch Campaign', '2024-05-01', '2024-08-15', 200000000, 4),
+	('AI Research Project', '2023-09-15', '2024-09-15', 800000000, 5)",<none>
+2025-10-09 13:46:13.322 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,8,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 13:46:13.323 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,8,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-09 13:46:13.323 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,8,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-09 13:46:13.323 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,8,5,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",4
+2025-10-09 13:46:13.323 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,8,6,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",5
+2025-10-09 13:46:13.323 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,1,WRITE,INSERT,,,"INSERT INTO employee_projects (emp_id, project_id, assigned_date, role_in_project) VALUES
+	(1, 1, '2024-01-05', 'Network Engineer'),
+	(4, 1, '2024-01-10', 'Frontend Dev'),
+	(2, 2, '2023-10-10', 'HR Lead'),
+	(3, 3, '2024-04-05', 'Accountant'),
+	(5, 4, '2024-05-05', 'Marketing Lead'),
+	(6, 5, '2023-09-20', 'AI Engineer')",<none>
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""employees"" x WHERE ""emp_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""projects"" x WHERE ""project_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""employees"" x WHERE ""emp_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",4
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,5,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""projects"" x WHERE ""project_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,6,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""employees"" x WHERE ""emp_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,7,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""projects"" x WHERE ""project_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,8,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""employees"" x WHERE ""emp_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,9,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""projects"" x WHERE ""project_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,10,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""employees"" x WHERE ""emp_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",5
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,11,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""projects"" x WHERE ""project_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",4
+2025-10-09 13:46:13.325 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,12,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""employees"" x WHERE ""emp_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",6
+2025-10-09 13:46:13.326 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,9,13,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""projects"" x WHERE ""project_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",5
+2025-10-09 13:46:19.082 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,10,1,READ,SELECT,,,"SELECT e.full_name, e.position, e.salary, d.dept_name, d.location
+	FROM employees e
+	JOIN departments d ON e.dept_id = d.dept_id",<none>
+2025-10-09 13:46:23.300 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,11,1,READ,SELECT,,,"SELECT e.full_name, p.project_name, ep.role_in_project, p.budget
+	FROM employee_projects ep
+	JOIN employees e ON ep.emp_id = e.emp_id
+	JOIN projects p ON ep.project_id = p.project_id
+	ORDER BY p.project_name",<none>
+2025-10-09 13:46:27.944 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,12,1,READ,SELECT,,,"SELECT d.dept_name, ROUND(AVG(e.salary), 2) AS avg_salary
+	FROM employees e
+	JOIN departments d ON e.dept_id = d.dept_id
+	GROUP BY d.dept_name
+	ORDER BY avg_salary DESC",<none>
+2025-10-09 13:46:32.216 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,13,1,ROLE,GRANT,,,GRANT CONNECT ON DATABASE company_demo TO analyst_user,<none>
+2025-10-09 13:46:32.217 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,14,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO analyst_user,<none>
+2025-10-09 13:46:32.218 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,15,1,ROLE,GRANT,,,GRANT SELECT ON ALL TABLES IN SCHEMA public TO analyst_user,<none>
+2025-10-09 13:48:24.645 +07 [1456] LOG:  checkpoint starting: time
+2025-10-09 13:49:24.776 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,16,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-09 13:50:08.228 +07 [1456] LOG:  checkpoint complete: wrote 1026 buffers (6.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=103.577 s, sync=0.003 s, total=103.584 s; sync files=353, longest=0.001 s, average=0.001 s; distance=4654 kB, estimate=4654 kB; lsn=0/29D9458, redo lsn=0/29D93C8
+2025-10-09 13:50:19.621 +07 [4117] postgres@postgres ERROR:  role "analyst_user" already exists
+2025-10-09 13:50:19.621 +07 [4117] postgres@postgres STATEMENT:  CREATE ROLE analyst_user LOGIN PASSWORD 'analyst123';
+2025-10-09 13:50:19.631 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,17,1,ROLE,CREATE ROLE,,,CREATE ROLE editor_user LOGIN PASSWORD <REDACTED>,<none>
+2025-10-09 13:50:25.105 +07 [4117] postgres@postgres LOG:  AUDIT: SESSION,18,1,ROLE,GRANT,,,"GRANT CONNECT ON DATABASE company_demo TO analyst_user, editor_user",<none>
+2025-10-09 13:50:30.754 +07 [4149] postgres@company_demo LOG:  AUDIT: SESSION,1,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO analyst_user,<none>
+2025-10-09 13:50:30.755 +07 [4149] postgres@company_demo LOG:  AUDIT: SESSION,2,1,ROLE,GRANT,,,GRANT SELECT ON ALL TABLES IN SCHEMA public TO analyst_user,<none>
+2025-10-09 13:50:38.735 +07 [4149] postgres@company_demo ERROR:  relation "employees" does not exist at character 13
+2025-10-09 13:50:38.735 +07 [4149] postgres@company_demo STATEMENT:  INSERT INTO employees (full_name, email, phone, position, salary, hire_date, dept_id)
+	VALUES ('Nguyen Thi G', 'g.nguyen@company.com', '0907000007', 'Data Analyst', 19000000, '2024-07-01', 3);
+2025-10-09 13:50:38.735 +07 [4149] postgres@company_demo ERROR:  relation "projects" does not exist at character 13
+2025-10-09 13:50:38.735 +07 [4149] postgres@company_demo STATEMENT:  INSERT INTO projects (project_name, start_date, end_date, budget, dept_id)
+	VALUES ('Cloud Migration', '2024-08-01', '2025-01-31', 600000000, 1);
+2025-10-09 13:50:38.736 +07 [4149] postgres@company_demo ERROR:  relation "employee_projects" does not exist at character 13
+2025-10-09 13:50:38.736 +07 [4149] postgres@company_demo STATEMENT:  INSERT INTO employee_projects (emp_id, project_id, assigned_date, role_in_project)
+	VALUES (7, 6, '2024-08-05', 'Data Support');
+2025-10-09 13:50:44.357 +07 [4149] postgres@company_demo LOG:  AUDIT: SESSION,3,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO editor_user,<none>
+2025-10-09 13:50:44.358 +07 [4149] postgres@company_demo LOG:  AUDIT: SESSION,4,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO editor_user",<none>
+2025-10-09 13:50:48.814 +07 [4149] postgres@company_demo ERROR:  relation "employees" does not exist at character 13
+2025-10-09 13:50:48.814 +07 [4149] postgres@company_demo STATEMENT:  INSERT INTO employees (full_name, email, phone, position, salary, hire_date, dept_id)
+	VALUES ('Nguyen Thi G', 'g.nguyen@company.com', '0907000007', 'Data Analyst', 19000000, '2024-07-01', 3);
+2025-10-09 13:50:48.815 +07 [4149] postgres@company_demo ERROR:  relation "projects" does not exist at character 13
+2025-10-09 13:50:48.815 +07 [4149] postgres@company_demo STATEMENT:  INSERT INTO projects (project_name, start_date, end_date, budget, dept_id)
+	VALUES ('Cloud Migration', '2024-08-01', '2025-01-31', 600000000, 1);
+2025-10-09 13:50:48.816 +07 [4149] postgres@company_demo ERROR:  relation "employee_projects" does not exist at character 13
+2025-10-09 13:50:48.816 +07 [4149] postgres@company_demo STATEMENT:  INSERT INTO employee_projects (emp_id, project_id, assigned_date, role_in_project)
+	VALUES (7, 6, '2024-08-05', 'Data Support');
+2025-10-09 13:51:05.982 +07 [4149] postgres@company_demo ERROR:  syntax error at or near "psql" at character 1
+2025-10-09 13:51:05.982 +07 [4149] postgres@company_demo STATEMENT:  psql -U editor_user -d company_demo
+	-- Cập nhật lương
+	UPDATE employees
+	SET salary = salary + 2000000
+	WHERE full_name = 'Nguyen Thi G';
+2025-10-09 13:51:05.982 +07 [4149] postgres@company_demo ERROR:  relation "employees" does not exist at character 13
+2025-10-09 13:51:05.982 +07 [4149] postgres@company_demo STATEMENT:  DELETE FROM employees
+	WHERE full_name = 'Do Van E';
+2025-10-09 13:51:11.342 +07 [4149] postgres@company_demo LOG:  AUDIT: SESSION,5,1,ROLE,REVOKE,,,REVOKE DELETE ON ALL TABLES IN SCHEMA public FROM editor_user,<none>
+2025-10-09 13:53:24.329 +07 [1456] LOG:  checkpoint starting: time
+2025-10-09 13:53:25.244 +07 [1456] LOG:  checkpoint complete: wrote 9 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.910 s, sync=0.002 s, total=0.916 s; sync files=10, longest=0.001 s, average=0.001 s; distance=16 kB, estimate=4190 kB; lsn=0/29DD698, redo lsn=0/29DD640
+2025-10-09 14:05:05.285 +07 [4242] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 15:09:03.248 +07 [1234] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-09 15:09:03.255 +07 [1234] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-09 15:09:03.256 +07 [1234] LOG:  listening on IPv6 address "::", port 5432
+2025-10-09 15:09:03.260 +07 [1234] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-09 15:09:03.400 +07 [1369] LOG:  database system was interrupted; last known up at 2025-10-09 13:53:25 +07
+2025-10-09 15:09:03.693 +07 [1369] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-09 15:09:03.703 +07 [1369] LOG:  redo starts at 0/29DD640
+2025-10-09 15:09:03.703 +07 [1369] LOG:  invalid record length at 0/29DD748: expected at least 24, got 0
+2025-10-09 15:09:03.703 +07 [1369] LOG:  redo done at 0/29DD710 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-10-09 15:09:03.716 +07 [1354] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-09 15:09:03.730 +07 [1354] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.017 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/29DD748, redo lsn=0/29DD748
+2025-10-09 15:09:03.758 +07 [1234] LOG:  database system is ready to accept connections
+2025-10-09 15:14:19.014 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-09 15:14:31.088 +07 [4019] postgres@ngdinhkhoi FATAL:  database "ngdinhkhoi" does not exist
+2025-10-09 15:16:28.739 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-09 15:17:44.469 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT datname FROM pg_database,<none>
+2025-10-09 15:18:54.503 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,4,1,FUNCTION,DO,,,"DO
+	$$
+	DECLARE
+	    r RECORD;
+	BEGIN
+	    FOR r IN (SELECT datname FROM pg_database WHERE datistemplate = false AND datname NOT IN ('postgres'))
+	    LOOP
+	        EXECUTE 'DROP DATABASE IF EXISTS ""' || r.datname || '"";';
+	    END LOOP;
+	END
+	$$",<none>
+2025-10-09 15:18:54.512 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,4,2,READ,SELECT,,,(SELECT datname FROM pg_database WHERE datistemplate = false AND datname NOT IN ('postgres')),<none>
+2025-10-09 15:18:54.513 +07 [4017] postgres@postgres ERROR:  DROP DATABASE cannot be executed from a function
+2025-10-09 15:18:54.513 +07 [4017] postgres@postgres CONTEXT:  SQL statement "DROP DATABASE IF EXISTS "testlogdb";"
+	PL/pgSQL function inline_code_block line 7 at EXECUTE
+2025-10-09 15:18:54.513 +07 [4017] postgres@postgres STATEMENT:  DO
+	$$
+	DECLARE
+	    r RECORD;
+	BEGIN
+	    FOR r IN (SELECT datname FROM pg_database WHERE datistemplate = false AND datname NOT IN ('postgres'))
+	    LOOP
+	        EXECUTE 'DROP DATABASE IF EXISTS "' || r.datname || '";';
+	    END LOOP;
+	END
+	$$;
+2025-10-09 15:19:05.388 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,SELECT datname FROM pg_database,<none>
+2025-10-09 15:19:40.922 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,,,"SELECT 'DROP DATABASE ""' || datname || '"";'
+	FROM pg_database
+	WHERE datistemplate = false AND datname NOT IN ('postgres')",<none>
+2025-10-09 15:19:55.106 +07 [1354] LOG:  checkpoint starting: immediate force wait
+2025-10-09 15:19:55.112 +07 [1354] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.007 s; sync files=3, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=7 kB; lsn=0/29DF640, redo lsn=0/29DF5E8
+2025-10-09 15:19:55.120 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,7,1,DDL,DROP DATABASE,,,"DROP DATABASE ""testlogdb""",<none>
+2025-10-09 15:19:55.121 +07 [1354] LOG:  checkpoint starting: immediate force wait
+2025-10-09 15:19:55.128 +07 [1354] LOG:  checkpoint complete: wrote 2 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.008 s; sync files=3, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=7 kB; lsn=0/29E1410, redo lsn=0/29E13B8
+2025-10-09 15:19:55.136 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,8,1,DDL,DROP DATABASE,,,"DROP DATABASE ""companydb""",<none>
+2025-10-09 15:19:55.137 +07 [1354] LOG:  checkpoint starting: immediate force wait
+2025-10-09 15:19:55.144 +07 [1354] LOG:  checkpoint complete: wrote 2 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.007 s; sync files=3, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=7 kB; lsn=0/29E2FB0, redo lsn=0/29E2F58
+2025-10-09 15:19:55.151 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,9,1,DDL,DROP DATABASE,,,"DROP DATABASE ""company_db""",<none>
+2025-10-09 15:19:55.153 +07 [1354] LOG:  checkpoint starting: immediate force wait
+2025-10-09 15:19:55.159 +07 [1354] LOG:  checkpoint complete: wrote 2 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.007 s; sync files=3, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=7 kB; lsn=0/29E4A38, redo lsn=0/29E49E0
+2025-10-09 15:19:55.167 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,10,1,DDL,DROP DATABASE,,,"DROP DATABASE ""company_demo""",<none>
+2025-10-09 15:20:01.196 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,11,1,READ,SELECT,,,SELECT datname FROM pg_database,<none>
+2025-10-09 15:24:55.249 +07 [1354] LOG:  checkpoint starting: time
+2025-10-09 15:24:55.355 +07 [1354] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.107 s; sync files=2, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=7 kB; lsn=0/29E5850, redo lsn=0/29E57F8
+2025-10-09 15:45:43.623 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,12,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 15:53:42.816 +07 [4017] postgres@postgres LOG:  AUDIT: SESSION,13,1,DDL,CREATE DATABASE,,,CREATE DATABASE company_lab,<none>
+2025-10-09 15:53:54.717 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,"CREATE TABLE departments (
+	    dept_id SERIAL PRIMARY KEY,
+	    dept_name VARCHAR(50) NOT NULL,
+	    location VARCHAR(50)
+	)",<none>
+2025-10-09 15:53:54.724 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,"CREATE TABLE employees (
+	    emp_id SERIAL PRIMARY KEY,
+	    full_name VARCHAR(100) NOT NULL,
+	    email VARCHAR(100) UNIQUE,
+	    position VARCHAR(50),
+	    salary NUMERIC(12,2),
+	    hire_date DATE,
+	    dept_id INT REFERENCES departments(dept_id) ON DELETE SET NULL
+	)",<none>
+2025-10-09 15:53:59.415 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,3,1,WRITE,INSERT,,,"INSERT INTO departments (dept_name, location) VALUES
+	('IT', 'Hanoi'),
+	('HR', 'Ho Chi Minh'),
+	('Finance', 'Danang')",<none>
+2025-10-09 15:53:59.418 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,4,1,WRITE,INSERT,,,"INSERT INTO employees (full_name, email, position, salary, hire_date, dept_id) VALUES
+	('Nguyen Van A', 'a.nguyen@company.com', 'System Admin', 18000000, '2023-01-10', 1),
+	('Tran Thi B', 'b.tran@company.com', 'HR Manager', 20000000, '2022-07-22', 2),
+	('Le Van C', 'c.le@company.com', 'Accountant', 15000000, '2023-03-15', 3)",<none>
+2025-10-09 15:53:59.419 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,4,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 15:53:59.419 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,4,3,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",2
+2025-10-09 15:53:59.419 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,4,4,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",3
+2025-10-09 15:54:04.535 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,5,1,ROLE,GRANT,,,GRANT CONNECT ON DATABASE company_lab TO analyst_user,<none>
+2025-10-09 15:54:04.536 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,6,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO analyst_user,<none>
+2025-10-09 15:54:04.538 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,7,1,ROLE,GRANT,,,GRANT SELECT ON ALL TABLES IN SCHEMA public TO analyst_user,<none>
+2025-10-09 15:54:09.268 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,8,1,ROLE,GRANT,,,GRANT CONNECT ON DATABASE company_lab TO editor_user,<none>
+2025-10-09 15:54:09.269 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,9,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO editor_user,<none>
+2025-10-09 15:54:09.270 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,10,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO editor_user",<none>
+2025-10-09 15:54:15.193 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,11,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT ON TABLES TO analyst_user",<none>
+2025-10-09 15:54:15.194 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,12,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO editor_user",<none>
+2025-10-09 15:54:45.545 +07 [4352] postgres@company_lab ERROR:  syntax error at or near "psql" at character 1
+2025-10-09 15:54:45.545 +07 [4352] postgres@company_lab STATEMENT:  psql -U dinhkhoi543 -d company_lab
+	INSERT INTO employees (full_name, email, position, salary, hire_date, dept_id)
+	VALUES ('Pham Thi D', 'd.pham@company.com', 'Developer', 22000000, '2024-02-05', 1);
+2025-10-09 15:54:55.897 +07 [1354] LOG:  checkpoint starting: time
+2025-10-09 15:55:08.090 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,13,1,WRITE,INSERT,,,"INSERT INTO employees (full_name, email, position, salary, hire_date, dept_id)
+	VALUES ('Pham Thi D', 'd.pham@company.com', 'Developer', 22000000, '2024-02-05', 1)",<none>
+2025-10-09 15:55:08.091 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,13,2,READ,SELECT,,,"SELECT 1 FROM ONLY ""public"".""departments"" x WHERE ""dept_id"" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x",1
+2025-10-09 15:55:13.148 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,14,1,WRITE,UPDATE,,,"UPDATE employees
+	SET salary = salary + 2000000
+	WHERE full_name = 'Le Van C'",<none>
+2025-10-09 15:55:17.600 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,15,1,WRITE,DELETE,,,"DELETE FROM employees
+	WHERE full_name = 'Tran Thi B'",<none>
+2025-10-09 15:55:31.395 +07 [4352] postgres@company_lab ERROR:  syntax error at or near "psql" at character 1
+2025-10-09 15:55:31.395 +07 [4352] postgres@company_lab STATEMENT:  psql -U ngdinhkhoi -d company_lab
+	GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO dinhkhoi543;
+2025-10-09 15:55:36.900 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,16,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO dinhkhoi543",<none>
+2025-10-09 15:55:44.801 +07 [4352] postgres@company_lab LOG:  AUDIT: SESSION,17,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'S' THEN 'sequence' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' END as ""Type"",
+	  CASE WHEN pg_catalog.array_length(c.relacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(c.relacl, E'\n') END AS ""Access privileges"",
+	  pg_catalog.array_to_string(ARRAY(
+	    SELECT attname || E':\n  ' || pg_catalog.array_to_string(attacl, E'\n  ')
+	    FROM pg_catalog.pg_attribute a
+	    WHERE attrelid = c.oid AND NOT attisdropped AND attacl IS NOT NULL
+	  ), E'\n') AS ""Column privileges"",
+	  pg_catalog.array_to_string(ARRAY(
+	    SELECT polname
+	    || CASE WHEN NOT polpermissive THEN
+	       E' (RESTRICTIVE)'
+	       ELSE '' END
+	    || CASE WHEN polcmd != '*' THEN
+	           E' (' || polcmd::pg_catalog.text || E'):'
+	       ELSE E':'
+	       END
+	    || CASE WHEN polqual IS NOT NULL THEN
+	           E'\n  (u): ' || pg_catalog.pg_get_expr(polqual, polrelid)
+	       ELSE E''
+	       END
+	    || CASE WHEN polwithcheck IS NOT NULL THEN
+	           E'\n  (c): ' || pg_catalog.pg_get_expr(polwithcheck, polrelid)
+	       ELSE E''
+	       END    || CASE WHEN polroles <> '{0}' THEN
+	           E'\n  to: ' || pg_catalog.array_to_string(
+	               ARRAY(
+	                   SELECT rolname
+	                   FROM pg_catalog.pg_roles
+	                   WHERE oid = ANY (polroles)
+	                   ORDER BY 1
+	               ), E', ')
+	       ELSE E''
+	       END
+	    FROM pg_catalog.pg_policy pol
+	    WHERE polrelid = c.oid), E'\n')
+	    AS ""Policies""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	WHERE c.relkind IN ('r','v','m','S','f','p')
+	  AND c.relname OPERATOR(pg_catalog.~) '^(employees)$' COLLATE pg_catalog.default
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1, 2",<none>
+2025-10-09 15:56:34.300 +07 [1354] LOG:  checkpoint complete: wrote 979 buffers (6.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=98.396 s, sync=0.002 s, total=98.403 s; sync files=312, longest=0.001 s, average=0.001 s; distance=4415 kB, estimate=4415 kB; lsn=0/2E39160, redo lsn=0/2E35480
+2025-10-09 21:25:15.972 +07 [1085] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-09 21:25:15.979 +07 [1085] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-09 21:25:15.979 +07 [1085] LOG:  listening on IPv6 address "::", port 5432
+2025-10-09 21:25:15.982 +07 [1085] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-09 21:25:16.110 +07 [1251] LOG:  database system was interrupted; last known up at 2025-10-09 15:56:34 +07
+2025-10-09 21:25:16.293 +07 [1251] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-09 21:25:16.300 +07 [1251] LOG:  redo starts at 0/2E35480
+2025-10-09 21:25:16.303 +07 [1251] LOG:  invalid record length at 0/2E39210: expected at least 24, got 0
+2025-10-09 21:25:16.303 +07 [1251] LOG:  redo done at 0/2E391D8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-10-09 21:25:16.313 +07 [1242] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-09 21:25:16.330 +07 [1242] LOG:  checkpoint complete: wrote 10 buffers (0.1%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.005 s, total=0.021 s; sync files=12, longest=0.004 s, average=0.001 s; distance=15 kB, estimate=15 kB; lsn=0/2E39210, redo lsn=0/2E39210
+2025-10-09 21:25:16.361 +07 [1085] LOG:  database system is ready to accept connections
+2025-10-09 22:09:47.609 +07 [3857] postgres@postgres LOG:  AUDIT: SESSION,1,1,MISC,SHOW,,,SHOW shared_preload_libraries,<none>
+2025-10-09 22:09:58.115 +07 [3858] postgres@auditdb FATAL:  database "auditdb" does not exist
+2025-10-09 22:10:25.427 +07 [3857] postgres@postgres LOG:  AUDIT: SESSION,2,1,MISC,SHOW,,,SHOW pgaudit.log,<none>
+2025-10-09 22:10:48.142 +07 [3857] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT * FROM employees,<none>
+2025-10-09 22:10:55.238 +07 [3857] postgres@postgres ERROR:  relation "test_table" does not exist at character 13
+2025-10-09 22:10:55.238 +07 [3857] postgres@postgres STATEMENT:  INSERT INTO test_table VALUES (1, 'test');
+2025-10-09 22:11:07.579 +07 [3857] postgres@postgres ERROR:  column "id" does not exist at character 42
+2025-10-09 22:11:07.579 +07 [3857] postgres@postgres STATEMENT:  UPDATE employees SET name = 'John' WHERE id = 1;
+2025-10-09 22:23:09.875 +07 [4242] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-09 22:27:59.867 +07 [4242] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 22:28:36.560 +07 [4242] postgres@postgres LOG:  AUDIT: SESSION,3,1,ROLE,DROP ROLE,,,DROP USER admin_user,<none>
+2025-10-09 22:28:45.842 +07 [4242] postgres@postgres ERROR:  role "analyst_user" cannot be dropped because some objects depend on it
+2025-10-09 22:28:45.842 +07 [4242] postgres@postgres DETAIL:  privileges for schema public
+	privileges for table testlog
+	privileges for table logs
+	privileges for table departments
+	privileges for table employees
+	privileges for table projects
+	privileges for table employee_projects
+	privileges for database company_lab
+	4 objects in database company_lab
+2025-10-09 22:28:45.842 +07 [4242] postgres@postgres STATEMENT:  DROP USER analyst_user;
+2025-10-09 22:29:01.738 +07 [4242] postgres@postgres LOG:  AUDIT: SESSION,4,1,ROLE,DROP ROLE,,,DROP USER dev_user,<none>
+2025-10-09 22:29:06.761 +07 [4242] postgres@postgres ERROR:  role "analyst_user" cannot be dropped because some objects depend on it
+2025-10-09 22:29:06.761 +07 [4242] postgres@postgres DETAIL:  privileges for schema public
+	privileges for table testlog
+	privileges for table logs
+	privileges for table departments
+	privileges for table employees
+	privileges for table projects
+	privileges for table employee_projects
+	privileges for database company_lab
+	4 objects in database company_lab
+2025-10-09 22:29:06.761 +07 [4242] postgres@postgres STATEMENT:  DROP USER analyst_user;
+2025-10-09 22:29:14.877 +07 [4242] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,"SELECT rolname    FROM pg_catalog.pg_roles   WHERE rolname LIKE 'edit%'
+	LIMIT 1000",<none>
+2025-10-09 22:29:18.746 +07 [4242] postgres@postgres ERROR:  role "editor_user" cannot be dropped because some objects depend on it
+2025-10-09 22:29:18.746 +07 [4242] postgres@postgres DETAIL:  privileges for database company_lab
+	4 objects in database company_lab
+2025-10-09 22:29:18.746 +07 [4242] postgres@postgres STATEMENT:  DROP USER editor_user;
+2025-10-09 22:30:08.253 +07 [4290] postgres@company_lab LOG:  AUDIT: SESSION,1,1,DDL,REASSIGN OWNED,,,REASSIGN OWNED BY analyst_user TO postgres,<none>
+2025-10-09 22:30:08.261 +07 [4290] postgres@company_lab LOG:  AUDIT: SESSION,2,1,DDL,DROP OWNED,,,DROP OWNED BY analyst_user,<none>
+2025-10-09 22:30:15.723 +07 [4290] postgres@company_lab LOG:  AUDIT: SESSION,3,1,DDL,REASSIGN OWNED,,,REASSIGN OWNED BY editor_user TO postgres,<none>
+2025-10-09 22:30:15.732 +07 [4290] postgres@company_lab LOG:  AUDIT: SESSION,4,1,DDL,DROP OWNED,,,DROP OWNED BY editor_user,<none>
+2025-10-09 22:30:17.706 +07 [1242] LOG:  checkpoint starting: time
+2025-10-09 22:30:18.924 +07 [1242] LOG:  checkpoint complete: wrote 12 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.213 s, sync=0.001 s, total=1.219 s; sync files=12, longest=0.001 s, average=0.001 s; distance=42 kB, estimate=42 kB; lsn=0/2E43C78, redo lsn=0/2E43C20
+2025-10-09 22:30:28.042 +07 [4296] postgres@postgres ERROR:  role "analyst_user" cannot be dropped because some objects depend on it
+2025-10-09 22:30:28.042 +07 [4296] postgres@postgres DETAIL:  privileges for schema public
+	privileges for table testlog
+	privileges for table logs
+	privileges for table departments
+	privileges for table employees
+	privileges for table projects
+	privileges for table employee_projects
+2025-10-09 22:30:28.042 +07 [4296] postgres@postgres STATEMENT:  DROP USER analyst_user;
+2025-10-09 22:30:28.043 +07 [4296] postgres@postgres LOG:  AUDIT: SESSION,1,1,ROLE,DROP ROLE,,,DROP USER editor_user,<none>
+2025-10-09 22:31:07.260 +07 [4299] postgres@company_lab LOG:  AUDIT: SESSION,1,1,DDL,REASSIGN OWNED,,,REASSIGN OWNED BY analyst_user TO postgres,<none>
+2025-10-09 22:31:07.261 +07 [4299] postgres@company_lab LOG:  AUDIT: SESSION,2,1,DDL,DROP OWNED,,,DROP OWNED BY analyst_user,<none>
+2025-10-09 22:31:29.988 +07 [4302] postgres@postgres ERROR:  role "analyst_user" cannot be dropped because some objects depend on it
+2025-10-09 22:31:29.988 +07 [4302] postgres@postgres DETAIL:  privileges for schema public
+	privileges for table testlog
+	privileges for table logs
+	privileges for table departments
+	privileges for table employees
+	privileges for table projects
+	privileges for table employee_projects
+2025-10-09 22:31:29.988 +07 [4302] postgres@postgres STATEMENT:  DROP USER analyst_user;
+2025-10-09 22:31:38.722 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 22:31:52.506 +07 [4302] postgres@postgres ERROR:  role "grafana_user" cannot be dropped because some objects depend on it
+2025-10-09 22:31:52.506 +07 [4302] postgres@postgres DETAIL:  privileges for schema public
+	privileges for table testlog
+	privileges for table logs
+2025-10-09 22:31:52.506 +07 [4302] postgres@postgres STATEMENT:  DROP USER  grafana_user;
+2025-10-09 22:32:15.634 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,2,1,ROLE,REVOKE,,,REVOKE ALL PRIVILEGES ON SCHEMA public FROM analyst_user,<none>
+2025-10-09 22:32:15.639 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,3,1,ROLE,REVOKE,,,REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM analyst_user,<none>
+2025-10-09 22:32:15.640 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,4,1,ROLE,REVOKE,,,REVOKE ALL PRIVILEGES ON DATABASE company_lab FROM analyst_user,<none>
+2025-10-09 22:32:22.100 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,5,1,ROLE,DROP ROLE,,,DROP USER analyst_user,<none>
+2025-10-09 22:33:00.642 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-09 22:33:14.170 +07 [4302] postgres@postgres ERROR:  role "grafana_user" cannot be dropped because some objects depend on it
+2025-10-09 22:33:14.170 +07 [4302] postgres@postgres DETAIL:  privileges for schema public
+	privileges for table testlog
+	privileges for table logs
+2025-10-09 22:33:14.170 +07 [4302] postgres@postgres STATEMENT:  drop user grafana_user;
+2025-10-09 22:33:34.038 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,7,1,DDL,REASSIGN OWNED,,,REASSIGN OWNED BY grafana_user TO postgres,<none>
+2025-10-09 22:33:39.708 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,8,1,DDL,DROP OWNED,,,DROP OWNED BY grafana_user,<none>
+2025-10-09 22:33:48.192 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,9,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 22:33:54.757 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,10,1,ROLE,REVOKE,,,REVOKE ALL PRIVILEGES ON SCHEMA public FROM grafana_user,<none>
+2025-10-09 22:33:54.758 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,11,1,ROLE,REVOKE,,,REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM grafana_user,<none>
+2025-10-09 22:33:54.759 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,12,1,ROLE,REVOKE,,,REVOKE ALL PRIVILEGES ON DATABASE company_lab FROM grafana_user,<none>
+2025-10-09 22:34:00.919 +07 [4302] postgres@postgres LOG:  AUDIT: SESSION,13,1,ROLE,DROP ROLE,,,DROP USER grafana_user,<none>
+2025-10-09 22:35:17.993 +07 [1242] LOG:  checkpoint starting: time
+2025-10-09 22:35:19.613 +07 [1242] LOG:  checkpoint complete: wrote 16 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.615 s, sync=0.002 s, total=1.621 s; sync files=16, longest=0.001 s, average=0.001 s; distance=69 kB, estimate=69 kB; lsn=0/2E55350, redo lsn=0/2E552F8
+2025-10-09 22:58:15.586 +07 [4903] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-09 22:58:31.125 +07 [4903] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-09 23:00:18.066 +07 [1242] LOG:  checkpoint starting: time
+2025-10-09 23:00:18.173 +07 [1242] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.108 s; sync files=1, longest=0.002 s, average=0.002 s; distance=5 kB, estimate=63 kB; lsn=0/2E567D8, redo lsn=0/2E56780
+2025-10-10 08:06:18.876 +07 [9920] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-10 08:06:24.989 +07 [9920] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,SELECT current_user,<none>
+2025-10-10 08:06:31.572 +07 [9920] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT current_database(),<none>
+2025-10-10 08:11:33.250 +07 [10336] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 'New log at ' || now() as test,<none>
+2025-10-10 08:22:27.251 +07 [11012] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 'Test at ' || now(),<none>
+2025-10-10 08:23:20.618 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 'Test 1 at ' || now(),<none>
+2025-10-10 08:23:20.619 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-10 08:23:20.620 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT current_user,<none>
+2025-10-10 08:23:20.622 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,4,1,READ,SELECT,,,SELECT current_database(),<none>
+2025-10-10 08:23:20.674 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,5,1,DDL,CREATE TABLE,,,CREATE TABLE test_labels (id int),<none>
+2025-10-10 08:23:20.679 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,6,1,WRITE,INSERT,,,INSERT INTO test_labels VALUES (1),<none>
+2025-10-10 08:23:20.690 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,7,1,READ,SELECT,,,SELECT * FROM test_labels,<none>
+2025-10-10 08:23:20.705 +07 [11150] postgres@postgres LOG:  AUDIT: SESSION,8,1,DDL,DROP TABLE,,,DROP TABLE test_labels,<none>
+2025-10-10 08:25:27.237 +07 [1242] LOG:  checkpoint starting: time
+2025-10-10 08:25:28.973 +07 [1242] LOG:  checkpoint complete: wrote 17 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.723 s, sync=0.002 s, total=1.740 s; sync files=16, longest=0.001 s, average=0.001 s; distance=101 kB, estimate=101 kB; lsn=0/2E6FEA0, redo lsn=0/2E6FE48
+2025-10-10 08:27:19.779 +07 [11537] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 'FRESH LOG ' || now(),<none>
+2025-10-10 08:27:19.795 +07 [11537] postgres@postgres LOG:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,CREATE TABLE fresh_test (id int),<none>
+2025-10-10 08:27:19.798 +07 [11537] postgres@postgres LOG:  AUDIT: SESSION,3,1,DDL,DROP TABLE,,,DROP TABLE fresh_test,<none>
+2025-10-10 08:30:28.072 +07 [1242] LOG:  checkpoint starting: time
+2025-10-10 08:30:29.996 +07 [1242] LOG:  checkpoint complete: wrote 19 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.920 s, sync=0.002 s, total=1.925 s; sync files=17, longest=0.002 s, average=0.001 s; distance=106 kB, estimate=106 kB; lsn=0/2E8A8E8, redo lsn=0/2E8A890
+2025-10-10 08:32:04.156 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 'Setup test at ' || now() as message,<none>
+2025-10-10 08:32:04.157 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-10 08:32:04.158 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,"SELECT current_user, current_database()",<none>
+2025-10-10 08:32:04.201 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,4,1,DDL,CREATE TABLE,,,"CREATE TABLE IF NOT EXISTS setup_test (id serial, created_at timestamp default now())",<none>
+2025-10-10 08:32:04.203 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,5,1,WRITE,INSERT,,,INSERT INTO setup_test DEFAULT VALUES,<none>
+2025-10-10 08:32:04.205 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,,,SELECT * FROM setup_test,<none>
+2025-10-10 08:32:04.206 +07 [12118] postgres@postgres LOG:  AUDIT: SESSION,7,1,DDL,DROP TABLE,,,DROP TABLE setup_test,<none>
+2025-10-10 08:35:29.094 +07 [1242] LOG:  checkpoint starting: time
+2025-10-10 08:35:32.129 +07 [1242] LOG:  checkpoint complete: wrote 30 buffers (0.2%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=3.028 s, sync=0.002 s, total=3.036 s; sync files=29, longest=0.002 s, average=0.001 s; distance=150 kB, estimate=150 kB; lsn=0/2EB0430, redo lsn=0/2EB03D8
+2025-10-10 08:35:44.383 +07 [12648] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 'Fresh setup at ' || now() as test_message,<none>
+2025-10-10 08:35:44.384 +07 [12648] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,SELECT version(),<none>
+2025-10-10 08:35:44.401 +07 [12648] postgres@postgres LOG:  AUDIT: SESSION,3,1,DDL,CREATE TABLE,,,"CREATE TABLE fresh_audit_test (id serial, data text)",<none>
+2025-10-10 08:35:44.403 +07 [12648] postgres@postgres LOG:  AUDIT: SESSION,4,1,WRITE,INSERT,,,"INSERT INTO fresh_audit_test VALUES (1, 'test')",<none>
+2025-10-10 08:35:44.405 +07 [12648] postgres@postgres LOG:  AUDIT: SESSION,5,1,READ,SELECT,,,SELECT * FROM fresh_audit_test,<none>
+2025-10-10 08:35:44.407 +07 [12648] postgres@postgres LOG:  AUDIT: SESSION,6,1,DDL,DROP TABLE,,,DROP TABLE fresh_audit_test,<none>
+2025-10-10 08:40:29.196 +07 [1242] LOG:  checkpoint starting: time
+2025-10-10 08:40:32.934 +07 [1242] LOG:  checkpoint complete: wrote 37 buffers (0.2%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=3.733 s, sync=0.002 s, total=3.739 s; sync files=34, longest=0.001 s, average=0.001 s; distance=186 kB, estimate=186 kB; lsn=0/2EDEF40, redo lsn=0/2EDEEB0
+2025-10-10 08:41:05.147 +07 [13062] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT 'BRAND NEW LOG AT ' || to_char(now(), 'YYYY-MM-DD HH24:MI:SS') as message",<none>
+2025-10-10 08:41:05.157 +07 [13062] postgres@postgres LOG:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,"CREATE TABLE completely_new_test (id int, created_ts timestamp default now())",<none>
+2025-10-10 08:41:05.159 +07 [13062] postgres@postgres LOG:  AUDIT: SESSION,3,1,WRITE,INSERT,,,INSERT INTO completely_new_test VALUES (999),<none>
+2025-10-10 08:41:05.160 +07 [13062] postgres@postgres LOG:  AUDIT: SESSION,4,1,READ,SELECT,,,SELECT * FROM completely_new_test,<none>
+2025-10-10 08:41:05.162 +07 [13062] postgres@postgres LOG:  AUDIT: SESSION,5,1,DDL,DROP TABLE,,,DROP TABLE completely_new_test,<none>
+2025-10-10 08:45:30.024 +07 [1242] LOG:  checkpoint starting: time
+2025-10-10 08:45:31.949 +07 [1242] LOG:  checkpoint complete: wrote 19 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.918 s, sync=0.002 s, total=1.926 s; sync files=18, longest=0.002 s, average=0.001 s; distance=101 kB, estimate=178 kB; lsn=0/2EF86A0, redo lsn=0/2EF8610
+2025-10-14 16:46:33.807 +07 [1442] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-14 16:46:33.895 +07 [1442] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-14 16:46:33.901 +07 [1442] LOG:  listening on IPv6 address "::", port 5432
+2025-10-14 16:46:33.916 +07 [1442] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-14 16:46:34.905 +07 [1503] LOG:  database system was interrupted; last known up at 2025-10-10 08:45:31 +07
+2025-10-14 16:46:38.898 +07 [1503] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-14 16:46:38.947 +07 [1503] LOG:  redo starts at 0/2EF8610
+2025-10-14 16:46:38.947 +07 [1503] LOG:  invalid record length at 0/2EF8750: expected at least 24, got 0
+2025-10-14 16:46:38.947 +07 [1503] LOG:  redo done at 0/2EF8718 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.01 s
+2025-10-14 16:46:39.081 +07 [1498] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-14 16:46:39.170 +07 [1498] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.007 s, total=0.114 s; sync files=2, longest=0.006 s, average=0.004 s; distance=0 kB, estimate=0 kB; lsn=0/2EF8750, redo lsn=0/2EF8750
+2025-10-14 16:46:39.392 +07 [1442] LOG:  database system is ready to accept connections
+2025-10-14 16:51:43.828 +07 [1498] LOG:  checkpoint starting: time
+2025-10-14 16:51:43.966 +07 [1498] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.104 s, sync=0.006 s, total=0.138 s; sync files=1, longest=0.006 s, average=0.006 s; distance=6 kB, estimate=6 kB; lsn=0/2EFA220, redo lsn=0/2EFA1C8
+2025-10-14 17:00:37.264 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-14 17:00:49.601 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,2,1,READ,SELECT,,,"SELECT
+	  d.datname as ""Name"",
+	  pg_catalog.pg_get_userbyid(d.datdba) as ""Owner"",
+	  pg_catalog.pg_encoding_to_char(d.encoding) as ""Encoding"",
+	  CASE d.datlocprovider WHEN 'b' THEN 'builtin' WHEN 'c' THEN 'libc' WHEN 'i' THEN 'icu' END AS ""Locale Provider"",
+	  d.datcollate as ""Collate"",
+	  d.datctype as ""Ctype"",
+	  d.datlocale as ""Locale"",
+	  d.daticurules as ""ICU Rules"",
+	  CASE WHEN pg_catalog.array_length(d.datacl, 1) = 0 THEN '(none)' ELSE pg_catalog.array_to_string(d.datacl, E'\n') END AS ""Access privileges""
+	FROM pg_catalog.pg_database d
+	ORDER BY 1",<none>
+2025-10-14 17:01:02.297 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-14 17:08:47.383 +07 [7505] postgres@postgres ERROR:  database "mydb" does not exist
+2025-10-14 17:08:47.383 +07 [7505] postgres@postgres STATEMENT:  GRANT CONNECT ON DATABASE mydb TO dinhkhoi543;
+2025-10-14 17:08:47.406 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,4,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO dinhkhoi543,<none>
+2025-10-14 17:08:47.417 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,5,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO dinhkhoi543",<none>
+2025-10-14 17:09:06.972 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,6,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-14 17:09:22.235 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,7,1,ROLE,GRANT,,,GRANT CONNECT ON DATABASE postgres TO dinhkhoi543,<none>
+2025-10-14 17:09:22.243 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,8,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO dinhkhoi543,<none>
+2025-10-14 17:09:22.249 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,9,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO dinhkhoi543",<none>
+2025-10-14 17:09:24.889 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,10,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-14 17:09:38.386 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,11,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname OPERATOR(pg_catalog.~) '^(dinhkhoi543)$' COLLATE pg_catalog.default
+	ORDER BY 1",<none>
+2025-10-14 17:09:55.440 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,12,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO dinhkhoi543",<none>
+2025-10-14 17:09:59.082 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,13,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-14 17:10:15.448 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,14,1,ROLE,ALTER ROLE,,,ALTER ROLE dinhkhoi543 WITH SUPERUSER CREATEDB CREATEROLE REPLICATION BYPASSRLS,<none>
+2025-10-14 17:10:17.719 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,15,1,READ,SELECT,,,"SELECT r.rolname, r.rolsuper, r.rolinherit,
+	  r.rolcreaterole, r.rolcreatedb, r.rolcanlogin,
+	  r.rolconnlimit, r.rolvaliduntil
+	, r.rolreplication
+	, r.rolbypassrls
+	FROM pg_catalog.pg_roles r
+	WHERE r.rolname !~ '^pg_'
+	ORDER BY 1",<none>
+2025-10-14 17:11:44.288 +07 [1498] LOG:  checkpoint starting: time
+2025-10-14 17:11:46.292 +07 [1498] LOG:  checkpoint complete: wrote 19 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.963 s, sync=0.008 s, total=2.006 s; sync files=17, longest=0.004 s, average=0.001 s; distance=67 kB, estimate=67 kB; lsn=0/2F0AFC8, redo lsn=0/2F0AF70
+2025-10-15 06:28:09.445 +07 [13035] dinhkhoi543@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT current_user,<none>
+2025-10-15 06:37:55.058 +07 [13191] ngdinhkhoi@postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-15 06:42:02.485 +07 [7505] postgres@postgres LOG:  AUDIT: SESSION,16,1,DDL,CREATE DATABASE,,,CREATE DATABASE company_db,<none>
+2025-10-15 06:42:16.132 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,"CREATE TABLE employees (
+	    id SERIAL PRIMARY KEY,
+	    name VARCHAR(50),
+	    position VARCHAR(50),
+	    salary NUMERIC(10,2)
+	)",<none>
+2025-10-15 06:42:16.149 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO employees (name, position, salary)
+	VALUES
+	('Alice', 'Manager', 1500.00),
+	('Bob', 'Developer', 1200.00),
+	('Charlie', 'Intern', 500.00)",<none>
+2025-10-15 06:42:24.203 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,3,1,ROLE,GRANT,,,GRANT CONNECT ON DATABASE company_db TO dinhkhoi543,<none>
+2025-10-15 06:42:24.215 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,4,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO dinhkhoi543,<none>
+2025-10-15 06:42:24.228 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,5,1,ROLE,GRANT,,,"GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO dinhkhoi543",<none>
+2025-10-15 06:42:24.242 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,6,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO dinhkhoi543",<none>
+2025-10-15 06:42:30.312 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,7,1,ROLE,GRANT,,,GRANT CONNECT ON DATABASE company_db TO ngdinhkhoi,<none>
+2025-10-15 06:42:30.318 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,8,1,ROLE,GRANT,,,GRANT USAGE ON SCHEMA public TO ngdinhkhoi,<none>
+2025-10-15 06:42:30.328 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,9,1,ROLE,GRANT,,,GRANT SELECT ON ALL TABLES IN SCHEMA public TO ngdinhkhoi,<none>
+2025-10-15 06:42:30.334 +07 [13210] postgres@company_db LOG:  AUDIT: SESSION,10,1,ROLE,ALTER DEFAULT PRIVILEGES,,,"ALTER DEFAULT PRIVILEGES IN SCHEMA public
+	GRANT SELECT ON TABLES TO ngdinhkhoi",<none>
+2025-10-15 06:42:53.156 +07 [13216] dinhkhoi543@company_db LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT * FROM employees,<none>
+2025-10-15 06:43:01.467 +07 [13216] dinhkhoi543@company_db LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO employees (name, position, salary) VALUES ('David', 'Tester', 900)",<none>
+2025-10-15 06:43:25.186 +07 [13220] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT * FROM employees,<none>
+2025-10-15 06:43:32.878 +07 [13220] ngdinhkhoi@company_db LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,"INSERT INTO employees (name, position, salary) VALUES ('David', 'Tester', 900)",<none>
+2025-10-15 06:46:58.450 +07 [1498] LOG:  checkpoint starting: time
+2025-10-15 06:48:37.381 +07 [1498] LOG:  checkpoint complete: wrote 968 buffers (5.9%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=98.821 s, sync=0.062 s, total=98.938 s; sync files=308, longest=0.006 s, average=0.001 s; distance=4394 kB, estimate=4394 kB; lsn=0/3355848, redo lsn=0/33557B8
+2025-10-20 13:42:04.646 +07 [1109] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-20 13:42:04.662 +07 [1109] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-20 13:42:04.662 +07 [1109] LOG:  listening on IPv6 address "::", port 5432
+2025-10-20 13:42:04.664 +07 [1109] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-20 13:42:04.820 +07 [1231] LOG:  database system was interrupted; last known up at 2025-10-15 06:48:37 +07
+2025-10-20 13:42:05.116 +07 [1231] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-20 13:42:05.136 +07 [1231] LOG:  redo starts at 0/33557B8
+2025-10-20 13:42:05.136 +07 [1231] LOG:  invalid record length at 0/33558F8: expected at least 24, got 0
+2025-10-20 13:42:05.136 +07 [1231] LOG:  redo done at 0/33558C0 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-10-20 13:42:05.146 +07 [1229] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-20 13:42:05.155 +07 [1229] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.010 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/33558F8, redo lsn=0/33558F8
+2025-10-20 13:42:05.181 +07 [1109] LOG:  database system is ready to accept connections
+2025-10-20 14:00:53.660 +07 [3837] postgres@postgres LOG:  AUDIT: SESSION,1,1,MISC,SHOW,,,SHOW log_directory,<none>
+2025-10-20 14:01:22.470 +07 [3842] postgres@postgres LOG:  AUDIT: SESSION,1,1,MISC,SHOW,,,SHOW log_filename,<none>
+2025-10-21 14:44:58.322 +07 [1284] LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-21 14:44:58.322 +07 [1284] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 14:44:58.322 +07 [1284] LOG:  listening on IPv6 address "::", port 5432
+2025-10-21 14:44:58.336 +07 [1284] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 14:44:58.541 +07 [1443] LOG:  database system was interrupted; last known up at 2025-10-20 13:42:05 +07
+2025-10-21 14:44:59.064 +07 [1443] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-21 14:44:59.098 +07 [1443] LOG:  redo starts at 0/3355970
+2025-10-21 14:44:59.099 +07 [1443] LOG:  invalid record length at 0/33559A8: expected at least 24, got 0
+2025-10-21 14:44:59.099 +07 [1443] LOG:  redo done at 0/3355970 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-10-21 14:44:59.125 +07 [1434] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-21 14:44:59.157 +07 [1434] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.034 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/33559A8, redo lsn=0/33559A8
+2025-10-21 14:44:59.223 +07 [1284] LOG:  database system is ready to accept connections
+2025-10-21 15:07:57.462 +07 [4280] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (khoind) do not match
+2025-10-21 15:07:57.465 +07 [4280] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-21 15:07:57.465 +07 [4280] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-21 15:08:11.740 +07 [4285] postgres@postgres LOG:  provided user name (postgres) and authenticated user name (root) do not match
+2025-10-21 15:08:11.740 +07 [4285] postgres@postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-21 15:08:11.740 +07 [4285] postgres@postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-21 15:10:27.978 +07 [1284] LOG:  received fast shutdown request
+2025-10-21 15:10:27.981 +07 [1284] LOG:  aborting any active transactions
+2025-10-21 15:10:28.002 +07 [1284] LOG:  background worker "logical replication launcher" (PID 1527) exited with exit code 1
+2025-10-21 15:10:28.003 +07 [1434] LOG:  shutting down
+2025-10-21 15:10:28.006 +07 [1434] LOG:  checkpoint starting: shutdown immediate
+2025-10-21 15:10:28.025 +07 [1434] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.001 s, total=0.022 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/3355A58, redo lsn=0/3355A58
+2025-10-21 15:10:28.073 +07 [1284] LOG:  database system is shut down
+2025-10-21 15:10:28.340 +07 [4443] user= db= LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-21 15:10:28.341 +07 [4443] user= db= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 15:10:28.341 +07 [4443] user= db= LOG:  listening on IPv6 address "::", port 5432
+2025-10-21 15:10:28.343 +07 [4443] user= db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 15:10:28.356 +07 [4450] user= db= LOG:  database system was shut down at 2025-10-21 15:10:28 +07
+2025-10-21 15:10:28.365 +07 [4443] user= db= LOG:  database system is ready to accept connections
+2025-10-21 15:13:17.634 +07 [4443] user= db= LOG:  received fast shutdown request
+2025-10-21 15:13:17.635 +07 [4443] user= db= LOG:  aborting any active transactions
+2025-10-21 15:13:17.641 +07 [4443] user= db= LOG:  background worker "logical replication launcher" (PID 4453) exited with exit code 1
+2025-10-21 15:13:17.643 +07 [4448] user= db= LOG:  shutting down
+2025-10-21 15:13:17.644 +07 [4448] user= db= LOG:  checkpoint starting: shutdown immediate
+2025-10-21 15:13:17.650 +07 [4448] user= db= LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.007 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/3355B08, redo lsn=0/3355B08
+2025-10-21 15:13:17.662 +07 [4443] user= db= LOG:  database system is shut down
+2025-10-21 15:13:17.843 +07 [4504] user= db= LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-21 15:13:17.843 +07 [4504] user= db= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 15:13:17.843 +07 [4504] user= db= LOG:  listening on IPv6 address "::", port 5432
+2025-10-21 15:13:17.844 +07 [4504] user= db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 15:13:17.853 +07 [4511] user= db= LOG:  database system was shut down at 2025-10-21 15:13:17 +07
+2025-10-21 15:13:17.857 +07 [4504] user= db= LOG:  database system is ready to accept connections
+2025-10-21 15:13:18.933 +07 [4518] user=postgres db=template1 LOG:  statement: 
+2025-10-21 15:13:19.451 +07 [4521] user=postgres db=template1 LOG:  statement: 
+2025-10-21 15:13:19.970 +07 [4524] user=postgres db=template1 LOG:  statement: 
+2025-10-21 15:13:29.030 +07 [4529] user=postgres db=postgres LOG:  provided user name (postgres) and authenticated user name (khoind) do not match
+2025-10-21 15:13:29.030 +07 [4529] user=postgres db=postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-21 15:13:29.030 +07 [4529] user=postgres db=postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-21 15:13:52.909 +07 [4533] user=postgres db=postgres LOG:  statement: SELECT 1;
+2025-10-21 15:13:52.917 +07 [4533] user=postgres db=postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 1,<none>
+2025-10-21 15:17:42.750 +07 [4504] user= db= LOG:  received fast shutdown request
+2025-10-21 15:17:42.752 +07 [4504] user= db= LOG:  aborting any active transactions
+2025-10-21 15:17:42.759 +07 [4504] user= db= LOG:  background worker "logical replication launcher" (PID 4514) exited with exit code 1
+2025-10-21 15:17:42.759 +07 [4509] user= db= LOG:  shutting down
+2025-10-21 15:17:42.760 +07 [4509] user= db= LOG:  checkpoint starting: shutdown immediate
+2025-10-21 15:17:42.767 +07 [4509] user= db= LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.008 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/3355BB8, redo lsn=0/3355BB8
+2025-10-21 15:17:42.781 +07 [4504] user= db= LOG:  database system is shut down
+2025-10-21 15:17:42.957 +07 [4576] user= db= LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-21 15:17:42.958 +07 [4576] user= db= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 15:17:42.958 +07 [4576] user= db= LOG:  listening on IPv6 address "::", port 5432
+2025-10-21 15:17:42.959 +07 [4576] user= db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 15:17:42.967 +07 [4583] user= db= LOG:  database system was shut down at 2025-10-21 15:17:42 +07
+2025-10-21 15:17:42.971 +07 [4576] user= db= LOG:  database system is ready to accept connections
+2025-10-21 15:18:02.713 +07 [4627] user=postgres db=postgres FATAL:  password authentication failed for user "postgres"
+2025-10-21 15:18:02.713 +07 [4627] user=postgres db=postgres DETAIL:  User "postgres" has no password assigned.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                md5"
+2025-10-21 15:18:42.051 +07 [4631] user=postgres db=postgres FATAL:  password authentication failed for user "postgres"
+2025-10-21 15:18:42.051 +07 [4631] user=postgres db=postgres DETAIL:  User "postgres" has no password assigned.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                md5"
+2025-10-21 15:19:14.418 +07 [4638] user=postgres db=postgres FATAL:  password authentication failed for user "postgres"
+2025-10-21 15:19:14.418 +07 [4638] user=postgres db=postgres DETAIL:  User "postgres" has no password assigned.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                md5"
+2025-10-21 15:19:53.738 +07 [4576] user= db= LOG:  received fast shutdown request
+2025-10-21 15:19:53.739 +07 [4576] user= db= LOG:  aborting any active transactions
+2025-10-21 15:19:53.745 +07 [4576] user= db= LOG:  background worker "logical replication launcher" (PID 4586) exited with exit code 1
+2025-10-21 15:19:53.747 +07 [4581] user= db= LOG:  shutting down
+2025-10-21 15:19:53.749 +07 [4581] user= db= LOG:  checkpoint starting: shutdown immediate
+2025-10-21 15:19:53.755 +07 [4581] user= db= LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.008 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/3355C68, redo lsn=0/3355C68
+2025-10-21 15:19:53.769 +07 [4576] user= db= LOG:  database system is shut down
+2025-10-21 15:19:53.964 +07 [4660] user= db= LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-21 15:19:53.965 +07 [4660] user= db= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 15:19:53.965 +07 [4660] user= db= LOG:  listening on IPv6 address "::", port 5432
+2025-10-21 15:19:53.966 +07 [4660] user= db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 15:19:53.975 +07 [4667] user= db= LOG:  database system was shut down at 2025-10-21 15:19:53 +07
+2025-10-21 15:19:53.980 +07 [4660] user= db= LOG:  database system is ready to accept connections
+2025-10-21 15:19:55.047 +07 [4674] user=postgres db=template1 LOG:  statement: 
+2025-10-21 15:19:55.565 +07 [4677] user=postgres db=template1 LOG:  statement: 
+2025-10-21 15:19:56.082 +07 [4680] user=postgres db=template1 LOG:  statement: 
+2025-10-21 15:22:08.229 +07 [4695] user=postgres db=postgres LOG:  statement: ALTER USER postgres WITH PASSWORD '123456';
+2025-10-21 15:22:08.235 +07 [4695] user=postgres db=postgres LOG:  AUDIT: SESSION,1,1,ROLE,ALTER ROLE,,,ALTER USER postgres WITH PASSWORD <REDACTED>,<none>
+2025-10-21 15:22:46.862 +07 [4703] user=postgres db=postgres LOG:  provided user name (postgres) and authenticated user name (khoind) do not match
+2025-10-21 15:22:46.862 +07 [4703] user=postgres db=postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-21 15:22:46.862 +07 [4703] user=postgres db=postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-21 15:23:02.335 +07 [4707] user=postgres db=postgres LOG:  provided user name (postgres) and authenticated user name (khoind) do not match
+2025-10-21 15:23:02.335 +07 [4707] user=postgres db=postgres FATAL:  Peer authentication failed for user "postgres"
+2025-10-21 15:23:02.335 +07 [4707] user=postgres db=postgres DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 118: "local   all             postgres                                peer"
+2025-10-21 15:23:12.681 +07 [4660] user= db= LOG:  received fast shutdown request
+2025-10-21 15:23:12.682 +07 [4660] user= db= LOG:  aborting any active transactions
+2025-10-21 15:23:12.692 +07 [4660] user= db= LOG:  background worker "logical replication launcher" (PID 4670) exited with exit code 1
+2025-10-21 15:23:12.692 +07 [4665] user= db= LOG:  shutting down
+2025-10-21 15:23:12.693 +07 [4665] user= db= LOG:  checkpoint starting: shutdown immediate
+2025-10-21 15:23:12.702 +07 [4665] user= db= LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.002 s, total=0.010 s; sync files=3, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=5 kB; lsn=0/3357308, redo lsn=0/3357308
+2025-10-21 15:23:12.716 +07 [4660] user= db= LOG:  database system is shut down
+2025-10-21 15:23:12.886 +07 [4725] user= db= LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-21 15:23:12.888 +07 [4725] user= db= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-21 15:23:12.888 +07 [4725] user= db= LOG:  listening on IPv6 address "::", port 5432
+2025-10-21 15:23:12.889 +07 [4725] user= db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-21 15:23:12.897 +07 [4732] user= db= LOG:  database system was shut down at 2025-10-21 15:23:12 +07
+2025-10-21 15:23:12.902 +07 [4725] user= db= LOG:  database system is ready to accept connections
+2025-10-21 15:23:23.958 +07 [4775] user=postgres db=postgres LOG:  statement: SELECT 1;
+2025-10-21 15:23:23.958 +07 [4775] user=postgres db=postgres LOG:  AUDIT: SESSION,1,1,READ,SELECT,,,SELECT 1,<none>
+2025-10-21 15:28:12.996 +07 [4730] user= db= LOG:  checkpoint starting: time
+2025-10-21 15:28:13.003 +07 [4730] user= db= LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.008 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/3357410, redo lsn=0/33573B8
+2025-10-22 09:06:04.940 +07 [1236] user= db= LOG:  starting PostgreSQL 18.0 (Ubuntu 18.0-1.pgdg24.04+3) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, 64-bit
+2025-10-22 09:06:04.940 +07 [1236] user= db= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-10-22 09:06:04.940 +07 [1236] user= db= LOG:  listening on IPv6 address "::", port 5432
+2025-10-22 09:06:04.947 +07 [1236] user= db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-10-22 09:06:05.041 +07 [1407] user= db= LOG:  database system was interrupted; last known up at 2025-10-21 15:28:13 +07
+2025-10-22 09:06:05.246 +07 [1407] user= db= LOG:  database system was not properly shut down; automatic recovery in progress
+2025-10-22 09:06:05.254 +07 [1407] user= db= LOG:  redo starts at 0/33573B8
+2025-10-22 09:06:05.254 +07 [1407] user= db= LOG:  invalid record length at 0/33574C0: expected at least 24, got 0
+2025-10-22 09:06:05.254 +07 [1407] user= db= LOG:  redo done at 0/3357488 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-10-22 09:06:05.264 +07 [1405] user= db= LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-10-22 09:06:05.274 +07 [1405] user= db= LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.012 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/33574C0, redo lsn=0/33574C0
+2025-10-22 09:06:05.285 +07 [1236] user= db= LOG:  database system is ready to accept connections
+2025-10-22 09:14:26.934 +07 [3926] user=postgres db=postgres LOG:  statement: SHOW log_directory;
+2025-10-22 09:14:26.936 +07 [3926] user=postgres db=postgres LOG:  AUDIT: SESSION,1,1,MISC,SHOW,,,SHOW log_directory,<none>
