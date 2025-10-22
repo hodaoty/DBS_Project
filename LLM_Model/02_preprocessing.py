@@ -15,12 +15,12 @@ csv_file_name = f'processed_scaled_features-{timestamp_str}.csv'
 scaler_file_name = f'scaler-{timestamp_str}.pkl'
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CSV_DIR = os.path.join(BASE_DIR, '..','CSV_FILE','OUTPUT_CSVFILE')
+CSV_DIR = os.path.join(BASE_DIR, '..','CSV_FILE','OUTPUT_CSVFILE','LOG_EVENT')
 MODEL_DIR = os.path.join(BASE_DIR,'trained_model')
-OUTPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR, csv_file_name)
+OUTPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR,'..','TRAIN_AI', csv_file_name)
 SCALER_PATH = os.path.join(MODEL_DIR, scaler_file_name)
 
-# Tần suất tổng hợp: Chọn cửa sổ thời gian (ví dụ: 5 phút)
+# Tần suất tổng hợp: Chọn cửa sổ thời gian (ví dụ: 5 phút)S
 RESAMPLE_FREQUENCY = '5T'
 
 # ----------------------------------------------------------------------

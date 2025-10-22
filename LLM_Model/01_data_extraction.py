@@ -161,7 +161,7 @@ if __name__ == "__main__":
     
     # Hàm thời gian lấy ngày tháng hiện tại để đặt tên file output
     time_str = datetime.now().strftime('%Y%m%d')
-    CSV_DIR = os.path.join(base_dir, '..', 'CSV_FILE','OUTPUT_CSVFILE')
+    CSV_DIR = os.path.join(base_dir, '..', 'CSV_FILE','OUTPUT_CSVFILE','LOG_EVENT')
     
     # Sửa lỗi: Ghép đường dẫn thư mục và tên file output
     OUTPUT_CSV_PATH = os.path.join(CSV_DIR, f'postgresql_events-{time_str}.csv') 
