@@ -1,3 +1,5 @@
+from collections import defaultdict, Counter
+import csv
 import os
 import re
 import time
@@ -5,6 +7,9 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.style import Style
 from rich.prompt import Prompt
+from datetime import datetime
+import pandas as pd
+import matplotlib.pyplot as plt 
 
 #Setup Rich
 # --- Define Other Custom RGB Styles ---
@@ -126,10 +131,179 @@ def filter_and_parse_logs(logs: list) -> list:
     return parsed_data
 
 # ----------------------------------------------------
-# HÀM CẢNH BÁO
+# Official File End
 # ----------------------------------------------------
+def initial_parse() -> list:
+    """Hàm khởi tạo và phân tích file log ban đầu."""
+    parsed_data = []
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    Log_lines = readFile(log_file_path)
+    if Log_lines: 
+        parsed_data = filter_and_parse_logs(Log_lines)
+    return parsed_data
+# ----------------------------------------------------
+# Function List All Logs base on PID: 
+# ----------------------------------------------------
+def logs_baseon_pid() -> list:
+    logs = defaultdict(list)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    Log_lines = readFile(log_file_path)
+    pattern = re.compile(r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) .*?\[\s*(\d+)\s*\].*?\s(LOG|FATAL|ERROR|DETAIL):\s+(.*)")
+    for line in Log_lines:
+        match = pattern.search(line)
+        if match:
+            timestamp, pid, level, message = match.groups()
+            logs[pid].append(f"{timestamp} | {level}: {message}") #pid la key 
+    return logs 
+    
 
+def print_logs_by_pid(logs: dict):
+    print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG THEO PID")
+    print("=" * 60)
+    for pid, actions in logs.items():
+        console.print(f"\n[{ITEM}]PID[/]: {pid}")
+        for action in actions:
+            console.print(f"[{ITEM}]*[/]:  {action}")
+    
+def export_logs_to_csv():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    timestamp_str = datetime.now().strftime("%Y%m%d")
+    csv_file_name = f'logs-{timestamp_str}.csv'
+    output_file_path = os.path.join(base_dir, '..', 'CSV_FILE', csv_file_name)
+    Log_lines = readFile(log_file_path) 
+    # Nếu file đã tồn tại thì xóa
+    if os.path.exists(output_file_path):
+        os.remove(output_file_path)
+
+    pattern = re.compile(r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) .*?\[\s*(\d+)\s*\].*?\s(LOG|FATAL|ERROR|DETAIL):\s+(.*)")
+    extraced_logs = []
+    for line in Log_lines:
+        match = pattern.search(line)
+        if match:
+            timestamp, pid, level, message = match.groups()
+            extraced_logs.append([timestamp, pid, level, message])
+
+        with open(output_file_path, 'w', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['Timestamp', 'PID', 'Level', 'Message'])
+            writer.writerows(extraced_logs)
+    print(f"Logs đã được xuất thành công vào file: {output_file_path}")
+
+
+# ----------------------------------------------------
+# Function List All Logs
+# ----------------------------------------------------
+def list_all_logs(parsed_data: list):
+    """Liệt kê tất cả các dòng log đã phân tích."""
+    print("\n" + "=" * 60)
+    print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG")
+    print("=" * 60)  
+    for item in parsed_data:
+                #time.sleep(0.1)  # Thêm độ trễ nhỏ để dễ quan sát khi in ra
+        if item.get('level_final') != 'SYSTEM':
+                # In ra chi tiết nếu final_level không phải là SYSTEM
+            print(f"Thời gian: {item['timestamp']}")
+            print(f"Người dùng: {item['user']} | Database: {item['database']}")
+            print(f"CẤP ĐỘ FINAL: {item['level_final']} (L1: {item['level_1']} | L2: {item['level_2']})")
+                
+            # Logic hiển thị chi tiết (đã sửa)
+        if item['level_final'] == 'AUDIT':
+            print(f"Loại hành động: {item['action_type']}")
+            print(f"Query: {item['query'][:70]}...")
+        elif item['level_final'] in ['ERROR', 'FATAL', 'STATEMENT']:
+            print(f"Nội dung: {item['raw_content']}")
+        elif item['level_final'] == 'LOG':
+            print(f"Nội dung: {item['raw_content']}")
+        else:
+            # Trường hợp UNKNOWN
+            print(f"Log thô: {item.get('raw_content', item.get('raw_log', 'N/A'))}")
+
+        print(f"This is the end of list log")        
+        print("-" * 30)
+# ----------------------------------------------------
+# Function List Connect Log
+# ----------------------------------------------------
+def list_connect_logs(parsed_data: list):
+    """Liệt kê tất cả các dòng log kết nối."""
+    time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
+    list_connect = []
+    for item in parsed_data:
+        if item.get('final_level') != 'SYSTEM':
+            raw_data = item.get('raw_content')
+            if raw_data and raw_data.startswith('connection authorized: user'):
+                list_connect.append(item)
+    for item in list_connect:
+        time.sleep(0.05)
+        console.print(f'\n[{ITEM}]PID[/] :\r{item['pid']}')
+        console.print(f'[{ITEM}]Time[/] :\r{item['timestamp']}')
+        console.print(f'[{ITEM}]Raw data[/]:\r{item['raw_content']}') 
+    console.print(f"[{LINE}]#####[/]" * 30)
+        # Đếm số lượng connect theo database
+    db_counts = Counter(item['user'] for item in list_connect)
+    # Tạo DataFrame từ dữ liệu đếm
+    df = pd.DataFrame.from_dict(db_counts, orient='index', columns=['connect_count'])
+    df = df.sort_values(by='connect_count', ascending=False)
+    # Tạo biểu đồ area chart
+    plt.figure(figsize=(10, 6))
+    plt.fill_between(df.index, df['connect_count'], color='skyblue', alpha=0.5)
+    plt.plot(df.index, df['connect_count'], color='Slateblue', alpha=0.6, linewidth=2)
+    plt.title('Số lượng User connect')
+    plt.xlabel('Tên User')
+    plt.ylabel('Số lần connect')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.grid(True)
+    # Hiển thị số lượng connect trên từng điểm
+    for i, value in enumerate(df['connect_count']):
+        plt.text(i, value + 0.5, str(value), ha='center', va='bottom', fontsize=9)
+
+    plt.show()
+# ----------------------------------------------------
+# Function List Disconnect Log
+# ----------------------------------------------------
+def list_disconnect_logs(parsed_data: list):
+    """Liệt kê tất cả các dòng log ngắt kết nối."""
+    time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
+    list_disconnect = []
+    for item in parsed_data:
+        if item.get('final_level') != 'SYSTEM':
+            raw_data = item.get('raw_content')
+            if raw_data and raw_data.startswith('disconnection'):
+                list_disconnect.append(item)
+    for item in list_disconnect:
+        time.sleep(0.05)
+        console.print(f'\n[{ITEM}]PID[/] :\r{item['pid']}')
+        console.print(f'[{ITEM}]Time[/]:{item['timestamp']}')
+        console.print(f'[{ITEM}]Raw data[/]:{item['raw_content']}') 
+    console.print(f"[{LINE}]#####[/]" * 30)
+    # Đếm số lượng disconnect theo database
+    db_counts = Counter(item['database'] for item in list_disconnect)
+    # Tạo DataFrame từ dữ liệu đếm
+    df = pd.DataFrame.from_dict(db_counts, orient='index', columns=['disconnect_count'])
+    df = df.sort_values(by='disconnect_count', ascending=False)
+    # Tạo biểu đồ area chart
+    plt.figure(figsize=(10, 6))
+    plt.fill_between(df.index, df['disconnect_count'], color='skyblue', alpha=0.5)
+    plt.plot(df.index, df['disconnect_count'], color='Slateblue', alpha=0.6, linewidth=2)
+    plt.title('Số lượng disconnect theo Database')
+    plt.xlabel('Tên Database')
+    plt.ylabel('Số lần disconnect')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.grid(True)
+    # Hiển thị số lượng disconnect trên từng điểm
+    for i, value in enumerate(df['disconnect_count']):
+        plt.text(i, value + 0.5, str(value), ha='center', va='bottom', fontsize=9)
+
+    plt.show()
+# ----------------------------------------------------
+# HÀM CẢNH BÁO Permission Denied
+# ----------------------------------------------------
 def alertPermission(parsed_data: list):
+    
     """Tìm kiếm và in ra cảnh báo khi phát hiện lỗi "permission denied"."""
     
     permission_denied_found = False
@@ -168,15 +342,15 @@ def alertPermission(parsed_data: list):
 def display_menu():
     """Displays the menu options."""
     menu_text = (
-        f"[{ITEM}]1 Monitor full logs[/]\n"
-        f"[{ITEM}]2 Unauthorized use alert[/]\n"
-        f"[{ITEM}]3 List connection[/]\n"
-        f"[{ITEM}]4 List disconnection[/]\n"
-        f"[{ITEM}]Other Exit application[/]\n"
+        f"[{ITEM}]1 Xem LOG dựa trên PID và xuất ra file CSV[/]\n"
+        f"[{ITEM}]2 Xem cảnh báo quyền không được phép[/]\n"
+        f"[{ITEM}]3 Xem danh sách USER kết nối với DB[/]\n"
+        f"[{ITEM}]4 Xem danh sách USER ngắt kết nối với DB[/]\n"
+        f"[{ITEM}]Khác để THOÁT[/]\n"
     )
     panel = Panel(
         menu_text,
-        title = "[bold red]✨ APPLICATION MAIN MENU ✨[/bold red]",
+        title = "[bold red]✨ DBS401-MENU ✨[/bold red]",
         border_style="green",
         padding=(1,2)
     )
@@ -184,14 +358,7 @@ def display_menu():
 
 
 def menu_choice():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Xây dựng đường dẫn tuyệt đối an toàn: /Project/Log_Example/postgresql_v1.log
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log') # Đã sửa lại tên file log
-
-    Log_lines = readFile(log_file_path)
-    if Log_lines: 
-        parsed_data = filter_and_parse_logs(Log_lines)
+    parsed_data = initial_parse()
 
     while True:
         display_menu()
@@ -199,34 +366,12 @@ def menu_choice():
         console.print("\n" + "="*20)
 
         if choice == '1':
-            console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs ')
-                # Lấy đường dẫn thư mục chứa file Python hiện tại (/api)
-
-
-            print("\n" + "=" * 60)
-            print("KẾT QUẢ PHÂN TÍCH CÁC DÒNG LOG")
-            print("=" * 60)  
-            for item in parsed_data:
-                time.sleep(0.1)  # Thêm độ trễ nhỏ để dễ quan sát khi in ra
-                if item.get('level_final') != 'SYSTEM':
-                # In ra chi tiết nếu final_level không phải là SYSTEM
-                    print(f"Thời gian: {item['timestamp']}")
-                    print(f"Người dùng: {item['user']} | Database: {item['database']}")
-                    print(f"CẤP ĐỘ FINAL: {item['level_final']} (L1: {item['level_1']} | L2: {item['level_2']})")
-                
-            # Logic hiển thị chi tiết (đã sửa)
-                if item['level_final'] == 'AUDIT':
-                    print(f"Loại hành động: {item['action_type']}")
-                    print(f"Query: {item['query'][:70]}...")
-                elif item['level_final'] in ['ERROR', 'FATAL', 'STATEMENT']:
-                    print(f"Nội dung: {item['raw_content']}")
-                elif item['level_final'] == 'LOG':
-                    print(f"Nội dung: {item['raw_content']}")
-                else:
-                    # Trường hợp UNKNOWN
-                    print(f"Log thô: {item.get('raw_content', item.get('raw_log', 'N/A'))}")
-                
-                print("-" * 30)
+            console.print(f'[{H1}]>>>You choose option [1]: Monitor full logs base on PID & Export to CSV')
+            time.sleep(1)
+            #list_all_logs(parsed_data)
+            logs = logs_baseon_pid()
+            print_logs_by_pid(logs)
+            export_logs_to_csv()
 
         elif choice == '2':
             console.print(f'[{H1}]>>>You choose option [2]: Unauthorized use alert ')
@@ -234,33 +379,11 @@ def menu_choice():
             print("-" * 30)
         elif choice == '3':
             console.print(f'[{H1}]>>>You choose option [3]: List connection')
-            time.sleep(0.5) # Thêm độ trễ nhỏ để dễ quan sát khi in ra
-            list_connect = []
-            for item in parsed_data:
-                if item.get('final_level') != 'SYSTEM':
-                    raw_data = item.get('raw_content')
-                    if raw_data and raw_data.startswith('connection authorized: user'):
-                        list_connect.append(item)
-            for item in list_connect:
-                time.sleep(0.05)
-                console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
-                console.print(f'[{ITEM}]Time[/] :\r{item['timestamp']}')
-                console.print(f'[{ITEM}]Raw data[/]:\r{item['raw_content']}') 
-            console.print(f"[{LINE}]#####[/]" * 30)
+            list_connect_logs(parsed_data)
         elif choice == '4':
             console.print(f'[{H1}]>>>You choose option [4]: List disconnection')
             #List Disconnect
-            list_disconnect = []
-            for item in parsed_data:
-                if item.get('final_level') != 'SYSTEM':
-                    raw_data = item.get('raw_content')
-                    if raw_data and raw_data.startswith('disconnection'):
-                        list_disconnect.append(item)
-            for item in list_disconnect:
-                console.print(f'[{ITEM}]PID[/] :\r{item['pid']}')
-                console.print(f'[{ITEM}]Time[/]:{item['timestamp']}')
-                console.print(f'[{ITEM}]Raw data[/]:{item['raw_content']}') 
-            print("-" * 30) 
+            list_disconnect_logs(parsed_data)
         else: 
             console.print(f"[{EXIT}]>>>Exiting. Goodbye!")
             break
