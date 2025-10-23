@@ -19,7 +19,7 @@ INPUT_EVENTS_FILE = f'postgresql_events-{timestamp_str}.csv'
 INPUT_EVENTS_PATH = os.path.join(CSV_DIR,'LOG_EVENT', INPUT_EVENTS_FILE)
 
 # Thư mục lưu scaler và output
-MODEL_DIR = os.path.join(base_dir, '..', 'trained_model') # Nơi lưu scaler
+MODEL_DIR = os.path.join(base_dir,'trained_model') # Nơi lưu scaler
 if not os.path.exists(MODEL_DIR): os.makedirs(MODEL_DIR)
 
 OUTPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR,'TRAIN_AI', f'processed_scaled_features-{timestamp_str}.csv')
