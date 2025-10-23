@@ -62,7 +62,6 @@ def filter_and_parse_logs(logs: list) -> list:
     for log_line in logs:
         # Sửa lỗi: Sử dụng re.match() hoặc re.search() với regex chính
         match = POSTGRES_LOG_PATTERN.search(log_line)
-
         if match:
             # Trích xuất 6 nhóm từ regex (Timestamp, PID, User, DB, Level_raw, Content)
             timestamp, pid, user, db, level_raw, content = match.groups()
