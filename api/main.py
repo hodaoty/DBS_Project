@@ -10,6 +10,8 @@ from rich.prompt import Prompt
 from datetime import datetime
 import pandas as pd
 import matplotlib.pyplot as plt 
+import subprocess
+import sys
 
 #Setup Rich
 # --- Define Other Custom RGB Styles ---
@@ -26,6 +28,32 @@ ERROR = Style(color=EXIT_RGB, bold=True)
 EXIT = Style(color=EXIT_RGB,bold=True)
 LINE = Style(color=LINE_RGB, bold=True)
 ######################################
+# --- TẠM THỜI ĐỊNH NGHĨA ĐƯỜNG DẪN CÁC FILE SCRIPT (CẦN ĐIỀU CHỈNH) ---
+BASE_DIR_MAIN = os.path.dirname(os.path.abspath(__file__))
+ML_SCRIPT_DIR = os.path.join(BASE_DIR_MAIN,'..', 'LLM_Model') 
+
+SCRIPT_01 = os.path.join(ML_SCRIPT_DIR, '01_data_extraction.py')
+SCRIPT_02 = os.path.join(ML_SCRIPT_DIR, '02_preprocessing.py')
+SCRIPT_03 = os.path.join(ML_SCRIPT_DIR, '03_model_training.py')
+SCRIPT_04 = os.path.join(ML_SCRIPT_DIR, '04_anomaly_reporting.py')
+SCRIPT_05 = os.path.join(ML_SCRIPT_DIR, '05_realtime_detection.py')
+# Hàm chạy file Python bên ngoài
+def run_python_script(script_path):
+    """Chạy một file Python bên ngoài bằng subprocess."""
+    try:
+        # Sử dụng sys.executable để đảm bảo dùng đúng interpreter
+        process = subprocess.run([sys.executable, script_path], capture_output=True, text=True,encoding='utf-8',errors='replace', check=True)
+        console.print(f"[{H1_RGB}]--- Kết quả chạy {os.path.basename(script_path)} ---[/]", style=LINE)
+        console.print(process.stdout)
+        if process.stderr:
+            console.print(f"[{EXIT_RGB}]LỖI KHI CHẠY SCRIPT:[/]", style=ERROR)
+            console.print(process.stderr)
+    except subprocess.CalledProcessError as e:
+        console.print(f"[{EXIT_RGB}]LỖI HỆ THỐNG khi chạy {os.path.basename(script_path)}:[/]", style=ERROR)
+        console.print(e.stderr)
+    except FileNotFoundError:
+        console.print(f"[{EXIT_RGB}]LỖI: Không tìm thấy file script tại đường dẫn: {script_path}[/]", style=ERROR)
+
 
 # Regex Pattern để trích xuất các trường thông tin chính
 # Nhóm 1: Timestamp
@@ -346,6 +374,17 @@ def display_menu():
         f"[{ITEM}]2 Xem cảnh báo quyền không được phép[/]\n"
         f"[{ITEM}]3 Xem danh sách USER kết nối với DB[/]\n"
         f"[{ITEM}]4 Xem danh sách USER ngắt kết nối với DB[/]\n"
+        f"{'':^40}\n"
+        f"[{H1_RGB}]PHÁT HIỆN BẤT THƯỜNG (ML PIPELINE):[/]\n"
+        f"[{ITEM}]5[/] - CHẠY TOÀN BỘ PIPELINE ML (1 -> 4)\n"
+        f"[{ITEM}]6[/] - [TRAIN] 01. Trích xuất/Làm sạch Log (Tạo Events CSV)\n"
+        f"[{ITEM}]7[/] - [TRAIN] 02. Tiền xử lý/Tạo đặc trưng (Tạo Scaler/Features)\n"
+        f"[{ITEM}]8[/] - [TRAIN] 03. Huấn luyện Mô hình (Tạo Isolation Forest Model)\n"
+        f"[{ITEM}]9[/] - [REPORT] 04. Truy tìm ngược Báo cáo PID bất thường\n"
+        f"{'':-^40}\n"
+        f"[{H1_RGB}]GIÁM SÁT REAL-TIME:[/]\n"
+        f"[{ITEM}]R[/] - [REAL-TIME] Giám sát Log mới nhất (Chạy 05_realtime_detection.py)\n"
+        f"[{ITEM}]X[/] - Khác để THOÁT\n"
         f"[{ITEM}]Khác để THOÁT[/]\n"
     )
     panel = Panel(
@@ -384,6 +423,31 @@ def menu_choice():
             console.print(f'[{H1}]>>>You choose option [4]: List disconnection')
             #List Disconnect
             list_disconnect_logs(parsed_data)
+        #-- ML PIPLINE --
+        elif choice == '5':
+            console.print(f'[{H1}]>>>Bạn chọn [5]: CHẠY TOÀN BỘ PIPELINE ML[/]')
+            run_python_script(SCRIPT_01)
+            run_python_script(SCRIPT_02)
+            run_python_script(SCRIPT_03)
+            run_python_script(SCRIPT_04)
+        elif choice == '6':
+            console.print(f'[{H1}]>>>Bạn chọn [6]: 01. Trích xuất/Làm sạch Log[/]')
+            run_python_script(SCRIPT_01)
+        elif choice == '7': 
+            console.print(f'[{H1}]>>>Bạn chọn [7]: 02. Tiền xử lý/Tạo đặc trưng[/]')
+            run_python_script(SCRIPT_02)
+        elif choice == '8':
+            console.print(f'[{H1}]>>>Bạn chọn [8]: 03. Huấn luyện Mô hình[/]')
+            run_python_script(SCRIPT_03)
+        elif choice == '9':
+            console.print(f'[{H1}]>>>Bạn chọn [9]: 04. Truy tìm ngược Báo cáo PID bất thường[/]')
+            run_python_script(SCRIPT_04)
+
+        #---REAL TIME MONITOR---#
+        elif choice == 'R':
+            console.print(f'[{H1}]>>>Bạn chọn [R]: GIÁM SÁT THỜI GIAN THỰC (Mô phỏng 2 cửa sổ)[/]')
+            run_python_script(SCRIPT_05)
+            pass
         else: 
             console.print(f"[{EXIT}]>>>Exiting. Goodbye!")
             break
