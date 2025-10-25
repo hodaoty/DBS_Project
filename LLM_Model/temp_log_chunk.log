@@ -1,0 +1,1 @@
+2025-10-25 23:00:40.430 +07 [5057] user1@testdb LOG:  disconnection: session time: 0:00:48.487 user=user1 database=testdb host=10.0.2.2 port=50061

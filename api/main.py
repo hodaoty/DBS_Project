@@ -31,12 +31,13 @@ LINE = Style(color=LINE_RGB, bold=True)
 # --- TẠM THỜI ĐỊNH NGHĨA ĐƯỜNG DẪN CÁC FILE SCRIPT (CẦN ĐIỀU CHỈNH) ---
 BASE_DIR_MAIN = os.path.dirname(os.path.abspath(__file__))
 ML_SCRIPT_DIR = os.path.join(BASE_DIR_MAIN,'..', 'LLM_Model') 
+ML_SCRIPT_DIR_SCRIPT05 = os.path.join(BASE_DIR_MAIN,'..', 'LLM_Model','realtime_detect.py') 
 
-SCRIPT_01 = os.path.join(ML_SCRIPT_DIR, '01_data_extraction.py')
-SCRIPT_02 = os.path.join(ML_SCRIPT_DIR, '02_preprocessing.py')
-SCRIPT_03 = os.path.join(ML_SCRIPT_DIR, '03_model_training.py')
-SCRIPT_04 = os.path.join(ML_SCRIPT_DIR, '04_anomaly_reporting.py')
-SCRIPT_05 = os.path.join(ML_SCRIPT_DIR, '05_realtime_detection.py')
+SCRIPT_01 = os.path.join(ML_SCRIPT_DIR, 'data_extraction.py')
+SCRIPT_02 = os.path.join(ML_SCRIPT_DIR, 'preprocessing.py')
+SCRIPT_03 = os.path.join(ML_SCRIPT_DIR, 'model_training.py')
+SCRIPT_04 = os.path.join(ML_SCRIPT_DIR, 'anomaly_reporting.py')
+SCRIPT_05 = os.path.join(ML_SCRIPT_DIR, 'realtime_detect.py')
 # Hàm chạy file Python bên ngoài
 def run_python_script(script_path):
     """Chạy một file Python bên ngoài bằng subprocess."""
@@ -165,7 +166,7 @@ def initial_parse() -> list:
     """Hàm khởi tạo và phân tích file log ban đầu."""
     parsed_data = []
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     Log_lines = readFile(log_file_path)
     if Log_lines: 
         parsed_data = filter_and_parse_logs(Log_lines)
@@ -176,7 +177,7 @@ def initial_parse() -> list:
 def logs_baseon_pid() -> list:
     logs = defaultdict(list)
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     Log_lines = readFile(log_file_path)
     pattern = re.compile(r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) .*?\[\s*(\d+)\s*\].*?\s(LOG|FATAL|ERROR|DETAIL):\s+(.*)")
     for line in Log_lines:
@@ -197,7 +198,7 @@ def print_logs_by_pid(logs: dict):
     
 def export_logs_to_csv():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     timestamp_str = datetime.now().strftime("%Y%m%d")
     csv_file_name = f'logs-{timestamp_str}.csv'
     output_file_path = os.path.join(base_dir, '..', 'CSV_FILE', csv_file_name)
@@ -383,7 +384,7 @@ def display_menu():
         f"[{ITEM}]9[/] - [REPORT] 04. Truy tìm ngược Báo cáo PID bất thường\n"
         f"{'':-^40}\n"
         f"[{H1_RGB}]GIÁM SÁT REAL-TIME:[/]\n"
-        f"[{ITEM}]R[/] - [REAL-TIME] Giám sát Log mới nhất (Chạy 05_realtime_detection.py)\n"
+        f"[{ITEM}]R[/] - [REAL-TIME] Giám sát Log mới nhất (Chạy realtime_detection.py)\n"
         f"[{ITEM}]X[/] - Khác để THOÁT\n"
         f"[{ITEM}]Khác để THOÁT[/]\n"
     )
@@ -446,8 +447,11 @@ def menu_choice():
         #---REAL TIME MONITOR---#
         elif choice == 'R':
             console.print(f'[{H1}]>>>Bạn chọn [R]: GIÁM SÁT THỜI GIAN THỰC (Mô phỏng 2 cửa sổ)[/]')
-            run_python_script(SCRIPT_05)
-            pass
+            #run_python_script(SCRIPT_05)
+            subprocess.Popen(['start', 'cmd', '/k', f'py "{ML_SCRIPT_DIR_SCRIPT05}"'], shell=True)
+
+
+            
         else: 
             console.print(f"[{EXIT}]>>>Exiting. Goodbye!")
             break
