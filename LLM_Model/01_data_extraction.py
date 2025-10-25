@@ -152,7 +152,7 @@ def parse_postgresql_log(filepath):
 
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    LOG_FILE_PATH = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    LOG_FILE_PATH = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     
     time_str = datetime.now().strftime('%Y%m%d')
     # Output directory 

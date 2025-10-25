@@ -165,7 +165,7 @@ def initial_parse() -> list:
     """Hàm khởi tạo và phân tích file log ban đầu."""
     parsed_data = []
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     Log_lines = readFile(log_file_path)
     if Log_lines: 
         parsed_data = filter_and_parse_logs(Log_lines)
@@ -176,7 +176,7 @@ def initial_parse() -> list:
 def logs_baseon_pid() -> list:
     logs = defaultdict(list)
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     Log_lines = readFile(log_file_path)
     pattern = re.compile(r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) .*?\[\s*(\d+)\s*\].*?\s(LOG|FATAL|ERROR|DETAIL):\s+(.*)")
     for line in Log_lines:
@@ -197,7 +197,7 @@ def print_logs_by_pid(logs: dict):
     
 def export_logs_to_csv():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql.log')
+    log_file_path = os.path.join(base_dir, '..', 'Log_Example', 'postgresql-official.log')
     timestamp_str = datetime.now().strftime("%Y%m%d")
     csv_file_name = f'logs-{timestamp_str}.csv'
     output_file_path = os.path.join(base_dir, '..', 'CSV_FILE', csv_file_name)
