@@ -1047,3 +1047,163 @@ Timestamp,PID,Level,Message
 2025-10-25 11:16:23.064,5227,LOG,"connection authorized: user=user1 database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
 2025-10-25 11:16:37.527,5227,ERROR,permission denied for table student
 2025-10-25 11:17:56.524,5227,LOG,disconnection: session time: 0:01:33.504 user=user1 database=postgres host=10.0.2.2 port=62332
+2025-10-25 20:01:54.892,1082,LOG,disconnection: session time: 0:00:00.170 user=postgres database=template1 host=[local]
+2025-10-25 20:01:55.625,1097,LOG,connection received: host=[local]
+2025-10-25 20:01:55.627,1097,LOG,"connection authenticated: identity=""postgres"" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)"
+2025-10-25 20:01:55.627,1097,LOG,connection authorized: user=postgres database=template1 application_name=psql
+2025-10-25 20:01:55.706,1097,LOG,disconnection: session time: 0:00:00.081 user=postgres database=template1 host=[local]
+2025-10-25 20:02:12.246,1764,LOG,connection received: host=10.0.2.2 port=63182
+2025-10-25 20:02:47.007,2574,LOG,connection received: host=10.0.2.2 port=53477
+2025-10-25 20:02:53.569,2579,LOG,connection received: host=10.0.2.2 port=53492
+2025-10-25 20:02:53.604,2579,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 20:02:53.604,2579,LOG,"connection authorized: user=user1 database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 20:03:57.427,2579,LOG,disconnection: session time: 0:01:03.858 user=user1 database=postgres host=10.0.2.2 port=53492
+2025-10-25 20:04:01.592,2627,LOG,connection received: host=10.0.2.2 port=51175
+2025-10-25 20:04:07.660,2629,LOG,connection received: host=10.0.2.2 port=51177
+2025-10-25 20:04:07.684,2629,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 20:04:07.684,2629,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 20:04:07.692,2630,LOG,connection received: host=10.0.2.2 port=51178
+2025-10-25 20:04:07.709,2630,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 20:04:07.709,2630,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 20:05:39.554,2645,LOG,connection received: host=10.0.2.2 port=61327
+2025-10-25 20:05:44.327,2646,LOG,connection received: host=10.0.2.2 port=61329
+2025-10-25 20:05:44.362,2646,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 20:05:44.363,2646,LOG,"connection authorized: user=user1 database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 20:06:07.183,2646,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:06:07.185,2646,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:06:07.185,2646,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:06:14.225,2646,ERROR,permission denied for table student
+2025-10-25 20:06:54.187,944,LOG,checkpoint starting: time
+2025-10-25 20:06:54.232,944,LOG,"checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.015 s, sync=0.009 s, total=0.050 s; sync files=2, longest=0.005 s, average=0.005 s; distance=0 kB, estimate=0 kB; lsn=0/20AC498, redo lsn=0/20AC440"
+2025-10-25 20:10:33.888,2646,ERROR,permission denied for table student
+2025-10-25 20:11:11.356,2646,ERROR,permission denied for table student
+2025-10-25 20:11:11.947,2646,ERROR,permission denied for table student
+2025-10-25 20:11:12.438,2646,ERROR,permission denied for table student
+2025-10-25 20:11:12.919,2646,ERROR,permission denied for table student
+2025-10-25 20:11:13.397,2646,ERROR,permission denied for table student
+2025-10-25 20:11:13.877,2646,ERROR,permission denied for table student
+2025-10-25 20:11:14.358,2646,ERROR,permission denied for table student
+2025-10-25 20:11:14.872,2646,ERROR,permission denied for table student
+2025-10-25 20:16:43.259,2646,ERROR,permission denied for table student
+2025-10-25 20:16:43.780,2646,ERROR,permission denied for table student
+2025-10-25 20:16:44.301,2646,ERROR,permission denied for table student
+2025-10-25 20:16:44.810,2646,ERROR,permission denied for table student
+2025-10-25 20:16:59.714,2646,ERROR,permission denied for table student
+2025-10-25 20:17:00.311,2646,ERROR,permission denied for table student
+2025-10-25 20:17:01.115,2646,ERROR,permission denied for table student
+2025-10-25 20:17:01.807,2646,ERROR,permission denied for table student
+2025-10-25 20:17:02.338,2646,ERROR,permission denied for table student
+2025-10-25 20:17:02.829,2646,ERROR,permission denied for table student
+2025-10-25 20:17:03.352,2646,ERROR,permission denied for table student
+2025-10-25 20:18:03.058,2646,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_database,""SELECT"
+2025-10-25 20:18:10.327,2646,ERROR,"syntax error at or near ""use"" at character 1"
+2025-10-25 20:21:12.557,2646,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_database,""SELECT"
+2025-10-25 20:26:15.541,2646,LOG,disconnection: session time: 0:20:31.214 user=user1 database=postgres host=10.0.2.2 port=61329
+2025-10-25 20:26:27.127,3028,LOG,connection received: host=10.0.2.2 port=60980
+2025-10-25 20:26:31.333,3029,LOG,connection received: host=10.0.2.2 port=60983
+2025-10-25 20:26:31.368,3029,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 20:26:31.369,3029,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 20:26:33.050,3029,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:26:33.050,3029,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:26:33.052,3029,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:26:38.800,3029,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:28:29.971,3029,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:28:30.427,3029,LOG,"AUDIT: SESSION,4,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:28:30.856,3029,LOG,"AUDIT: SESSION,5,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:28:31.301,3029,LOG,"AUDIT: SESSION,6,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:28:31.925,3029,LOG,"AUDIT: SESSION,7,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:29:54.324,3029,LOG,"AUDIT: SESSION,8,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:29:54.830,3029,LOG,"AUDIT: SESSION,9,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:35:27.434,3029,LOG,"AUDIT: SESSION,10,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:35:47.161,3029,LOG,"AUDIT: SESSION,11,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:35:47.941,3029,LOG,"AUDIT: SESSION,12,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:35:48.651,3029,LOG,"AUDIT: SESSION,13,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:35:49.325,3029,LOG,"AUDIT: SESSION,14,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:35:49.877,3029,LOG,"AUDIT: SESSION,15,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:46:21.082,3029,LOG,"AUDIT: SESSION,16,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:50:15.141,3029,LOG,"AUDIT: SESSION,17,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 20:55:07.145,3029,LOG,"AUDIT: SESSION,18,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:55:07.145,3029,LOG,"AUDIT: SESSION,18,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:55:07.145,3029,LOG,"AUDIT: SESSION,18,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 20:56:06.842,3029,LOG,disconnection: session time: 0:29:35.508 user=user1 database=testdb host=10.0.2.2 port=60983
+2025-10-25 22:11:35.258,4271,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:11:35.258,4271,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:11:35.259,4271,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:11:41.850,4271,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 22:11:58.179,4271,LOG,"AUDIT: SESSION,4,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 22:12:33.549,4271,LOG,disconnection: session time: 0:01:46.078 user=user1 database=testdb host=10.0.2.2 port=54644
+2025-10-25 22:12:55.827,4433,LOG,connection received: host=10.0.2.2 port=54925
+2025-10-25 22:12:59.709,4435,LOG,connection received: host=10.0.2.2 port=54927
+2025-10-25 22:12:59.736,4435,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 22:12:59.736,4435,LOG,"connection authorized: user=user1 database=postgres application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 22:13:03.571,4435,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:13:03.571,4435,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:13:03.571,4435,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:13:31.648,4435,ERROR,"syntax error at or near ""table"" at character 15"
+2025-10-25 22:13:40.344,4435,ERROR,"syntax error at or near ""table"" at character 15"
+2025-10-25 22:13:45.681,4435,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:13:45.681,4435,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:13:45.681,4435,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:14:09.542,4435,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_database,""SELECT"
+2025-10-25 22:14:36.649,4435,LOG,"AUDIT: SESSION,4,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:14:36.650,4435,LOG,"AUDIT: SESSION,4,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:14:36.650,4435,LOG,"AUDIT: SESSION,4,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:22:29.924,4435,LOG,disconnection: session time: 0:09:30.215 user=user1 database=postgres host=10.0.2.2 port=54927
+2025-10-25 22:22:35.577,4570,LOG,connection received: host=10.0.2.2 port=57212
+2025-10-25 22:22:39.712,4572,LOG,connection received: host=10.0.2.2 port=57214
+2025-10-25 22:22:39.741,4572,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 22:22:39.741,4572,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 22:22:49.284,4572,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:22:49.284,4572,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:22:49.285,4572,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:23:27.415,4572,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:23:27.415,4572,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:23:27.415,4572,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:33:11.964,4572,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:33:11.965,4572,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:33:11.965,4572,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:33:26.186,4572,ERROR,"syntax error at or near ""select"" at character 25"
+2025-10-25 22:33:37.006,4572,LOG,disconnection: session time: 0:10:57.293 user=user1 database=testdb host=10.0.2.2 port=57214
+2025-10-25 22:33:41.021,4712,LOG,connection received: host=10.0.2.2 port=49840
+2025-10-25 22:33:45.198,4713,LOG,connection received: host=10.0.2.2 port=49843
+2025-10-25 22:33:45.218,4713,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 22:33:45.219,4713,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 22:34:17.646,4713,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 22:34:38.273,4713,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 22:34:38.801,4713,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 22:34:39.233,4713,LOG,"AUDIT: SESSION,4,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-25 22:35:18.412,4713,LOG,disconnection: session time: 0:01:33.214 user=user1 database=testdb host=10.0.2.2 port=49843
+2025-10-25 22:42:55.313,4832,LOG,connection received: host=10.0.2.2 port=63868
+2025-10-25 22:43:41.235,4842,LOG,connection received: host=10.0.2.2 port=63878
+2025-10-25 22:43:41.262,4842,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 22:43:41.262,4842,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 22:43:41.268,4843,LOG,connection received: host=10.0.2.2 port=63879
+2025-10-25 22:43:41.289,4843,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 22:43:41.289,4843,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 22:56:41.692,5010,LOG,connection received: host=10.0.2.2 port=63768
+2025-10-25 22:56:53.498,5013,LOG,connection received: host=10.0.2.2 port=57655
+2025-10-25 22:56:53.518,5013,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 22:56:53.518,5013,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 22:56:53.529,5014,LOG,connection received: host=10.0.2.2 port=57656
+2025-10-25 22:56:53.555,5014,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 22:56:53.555,5014,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 22:57:11.413,5019,LOG,connection received: host=10.0.2.2 port=57658
+2025-10-25 22:57:16.099,5020,LOG,connection received: host=10.0.2.2 port=57661
+2025-10-25 22:57:16.130,5020,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 22:57:16.130,5020,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 22:57:16.134,5021,LOG,connection received: host=10.0.2.2 port=57662
+2025-10-25 22:57:16.155,5021,FATAL,"password authentication failed for user ""user1"""
+2025-10-25 22:57:16.155,5021,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-25 22:57:26.097,5025,LOG,connection received: host=10.0.2.2 port=57669
+2025-10-25 22:57:32.470,5028,LOG,connection received: host=10.0.2.2 port=57671
+2025-10-25 22:57:32.499,5028,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 22:57:32.499,5028,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 22:57:59.453,5028,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:57:59.453,5028,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:57:59.455,5028,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-25 22:58:28.660,5028,LOG,disconnection: session time: 0:00:56.190 user=user1 database=testdb host=10.0.2.2 port=57671
+2025-10-25 22:59:48.149,5054,LOG,connection received: host=10.0.2.2 port=49999
+2025-10-25 22:59:51.943,5057,LOG,connection received: host=10.0.2.2 port=50061
+2025-10-25 22:59:51.976,5057,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-25 22:59:51.976,5057,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-25 23:00:40.430,5057,LOG,disconnection: session time: 0:00:48.487 user=user1 database=testdb host=10.0.2.2 port=50061
