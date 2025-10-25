@@ -1,0 +1,2 @@
+# Trong PowerShell
+ssh -o ServerAliveInterval=60 -p 22 postgres@127.0.0.1 "tail -f /var/lib/postgresql/18/main/log/postgresql.log" | Out-File -FilePath N:\hodaoty\DBS401\Project\Log_Example\postgresql_official.log -Encoding UTF8 -Append
