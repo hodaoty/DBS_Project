@@ -34,7 +34,6 @@ except Exception as e:
     print(f"Error loading model or scaler: {e}")
     sys.exit(1)
 
-# D. MONITORING LOOP
 def monitor_log():
     print("Starting real-time log monitoring. Press Ctrl + C to stop.")
     last_position = 0
@@ -87,18 +86,21 @@ def monitor_log():
                     score = model.decision_function(scaled)[0]
                     prediction = model.predict(scaled)[0]
 
-                    if prediction == -1 and score < -0.8:
-                        print(f"\nCRITICAL RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
+                    if prediction == -1:
+                        risk_level = ""
+                        if score < -0.8:
+                            risk_level = "CRITICAL RISK"
+                        elif score < -0.5:
+                            risk_level = "HIGH RISK"
+                        elif score < -0.2:
+                            risk_level = "MEDIUM RISK"
+                        else:
+                            risk_level = "NORMAL RISK"
+
+                        print(f"\n{risk_level} Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
                         print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
-                    elif prediction == -1 and score < -0.5:
-                        print(f"\nHIGH RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
-                        print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
-                    elif prediction == -1 and score < -0.2:
-                        print(f"\nMEDIMUM RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
-                        print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
-                    elif prediction == -1: 
-                        print(f"\n NORMAL RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
-                        print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
+
+                    
 
             time.sleep(POLL_INTERVAL)
 

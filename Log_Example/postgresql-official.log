@@ -3275,3 +3275,269 @@
 2025-10-25 22:59:51.976 +07 [5057] user1@testdb LOG:  connection authenticated: identity="user1" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
 2025-10-25 22:59:51.976 +07 [5057] user1@testdb LOG:  connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
 2025-10-25 23:00:40.430 +07 [5057] user1@testdb LOG:  disconnection: session time: 0:00:48.487 user=user1 database=testdb host=10.0.2.2 port=50061
+2025-10-26 11:58:32.977 +07 [1086] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-26 11:58:33.507 +07 [1086] postgres@template1 LOG:  disconnection: session time: 0:00:00.636 user=postgres database=template1 host=[local]
+2025-10-26 11:58:34.313 +07 [1103] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-26 11:58:34.350 +07 [1103] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-26 11:58:34.350 +07 [1103] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-26 11:58:34.436 +07 [1103] postgres@template1 LOG:  disconnection: session time: 0:00:00.130 user=postgres database=template1 host=[local]
+2025-10-26 11:58:35.185 +07 [1117] [unknown]@[unknown] LOG:  connection received: host=[local]
+2025-10-26 11:58:35.210 +07 [1117] postgres@template1 LOG:  connection authenticated: identity="postgres" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)
+2025-10-26 11:58:35.230 +07 [1117] postgres@template1 LOG:  connection authorized: user=postgres database=template1 application_name=psql
+2025-10-26 11:58:35.239 +07 [1117] postgres@template1 LOG:  disconnection: session time: 0:00:00.064 user=postgres database=template1 host=[local]
+2025-10-26 12:00:13.052 +07 [2609] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=59716
+2025-10-26 12:00:18.323 +07 [2611] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=59721
+2025-10-26 12:00:18.347 +07 [2611] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-26 12:00:18.348 +07 [2611] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-26 12:00:35.643 +07 [2611] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:00:35.643 +07 [2611] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:00:35.643 +07 [2611] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:00:41.815 +07 [2611] postgres@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>
+2025-10-26 12:01:25.207 +07 [2611] postgres@testdb LOG:  AUDIT: SESSION,3,1,WRITE,DELETE,TABLE,public.sinhvien,delete from sinhvien where id = 1,<none>
+2025-10-26 12:02:32.770 +07 [2611] postgres@testdb ERROR:  invalid input syntax for type integer: "Tran Van A" at character 29
+2025-10-26 12:02:32.770 +07 [2611] postgres@testdb STATEMENT:  insert into sinhvien values('Tran Van A','2004-01-01','ABC');
+2025-10-26 12:02:59.273 +07 [2611] postgres@testdb LOG:  disconnection: session time: 0:02:40.950 user=postgres database=testdb host=10.0.2.2 port=59721
+2025-10-26 12:03:33.220 +07 [958] LOG:  checkpoint starting: time
+2025-10-26 12:03:33.395 +07 [958] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.133 s, sync=0.009 s, total=0.176 s; sync files=3, longest=0.006 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/20AC7B8, redo lsn=0/20AC760
+2025-10-26 12:03:36.486 +07 [2672] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52141
+2025-10-26 12:03:41.079 +07 [2673] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52144
+2025-10-26 12:03:41.118 +07 [2673] hodaoty@testdb FATAL:  password authentication failed for user "hodaoty"
+2025-10-26 12:03:41.118 +07 [2673] hodaoty@testdb DETAIL:  Role "hodaoty" does not exist.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:03:41.126 +07 [2674] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52145
+2025-10-26 12:03:41.147 +07 [2674] hodaoty@testdb FATAL:  password authentication failed for user "hodaoty"
+2025-10-26 12:03:41.147 +07 [2674] hodaoty@testdb DETAIL:  Role "hodaoty" does not exist.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:03:59.993 +07 [2681] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52149
+2025-10-26 12:04:04.364 +07 [2698] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52152
+2025-10-26 12:04:04.398 +07 [2698] hodaoty@testdb FATAL:  password authentication failed for user "hodaoty"
+2025-10-26 12:04:04.398 +07 [2698] hodaoty@testdb DETAIL:  Role "hodaoty" does not exist.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:04:04.409 +07 [2699] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52153
+2025-10-26 12:04:04.442 +07 [2699] hodaoty@testdb FATAL:  password authentication failed for user "hodaoty"
+2025-10-26 12:04:04.442 +07 [2699] hodaoty@testdb DETAIL:  Role "hodaoty" does not exist.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:04:38.728 +07 [2717] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52162
+2025-10-26 12:04:41.825 +07 [2720] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52166
+2025-10-26 12:04:41.874 +07 [2720] hodaoty@testdb FATAL:  password authentication failed for user "hodaoty"
+2025-10-26 12:04:41.874 +07 [2720] hodaoty@testdb DETAIL:  Role "hodaoty" does not exist.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:04:41.893 +07 [2721] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52168
+2025-10-26 12:04:41.919 +07 [2721] hodaoty@testdb FATAL:  password authentication failed for user "hodaoty"
+2025-10-26 12:04:41.919 +07 [2721] hodaoty@testdb DETAIL:  Role "hodaoty" does not exist.
+	Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:05:29.340 +07 [2745] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52194
+2025-10-26 12:05:32.581 +07 [2749] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52201
+2025-10-26 12:05:32.614 +07 [2749] user1@testdb FATAL:  password authentication failed for user "user1"
+2025-10-26 12:05:32.614 +07 [2749] user1@testdb DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:05:32.624 +07 [2750] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52202
+2025-10-26 12:05:32.644 +07 [2750] user1@testdb FATAL:  password authentication failed for user "user1"
+2025-10-26 12:05:32.644 +07 [2750] user1@testdb DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:05:48.790 +07 [2757] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52212
+2025-10-26 12:05:53.401 +07 [2761] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52217
+2025-10-26 12:05:53.426 +07 [2761] postgres@testdb FATAL:  password authentication failed for user "postgres"
+2025-10-26 12:05:53.426 +07 [2761] postgres@testdb DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:05:53.444 +07 [2762] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52218
+2025-10-26 12:05:53.459 +07 [2762] postgres@testdb FATAL:  password authentication failed for user "postgres"
+2025-10-26 12:05:53.459 +07 [2762] postgres@testdb DETAIL:  Connection matched file "/etc/postgresql/18/main/pg_hba.conf" line 126: "host    all             all             0.0.0.0/0               scram-sha-256"
+2025-10-26 12:06:09.667 +07 [2771] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52229
+2025-10-26 12:06:15.566 +07 [2774] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=52235
+2025-10-26 12:06:15.593 +07 [2774] postgres@testdb LOG:  connection authenticated: identity="postgres" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-26 12:06:15.594 +07 [2774] postgres@testdb LOG:  connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-26 12:06:32.050 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:06:32.052 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:06:32.053 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:07:24.545 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,"CREATE TABLE users (
+	    id SERIAL PRIMARY KEY,
+	    username VARCHAR(50) NOT NULL,
+	    email VARCHAR(100) UNIQUE NOT NULL,
+	    password VARCHAR(100) NOT NULL,
+	    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	)",<none>
+2025-10-26 12:07:27.412 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:07:27.412 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:07:27.413 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:08:05.027 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,4,1,WRITE,INSERT,TABLE,public.users,"INSERT INTO users (username, email, password) VALUES
+	  ('alice', 'alice@example.com', 'hashed_pw_1'),
+	  ('bob', 'bob@example.com', 'hashed_pw_2'),
+	  ('charlie', 'charlie@example.com', 'hashed_pw_3'),
+	  ('diana', 'diana@example.com', 'hashed_pw_4'),
+	  ('edward', 'edward@example.com', 'hashed_pw_5'),
+	  ('fiona', 'fiona@example.com', 'hashed_pw_6'),
+	  ('george', 'george@example.com', 'hashed_pw_7'),
+	  ('hannah', 'hannah@example.com', 'hashed_pw_8'),
+	  ('ivan', 'ivan@example.com', 'hashed_pw_9'),
+	  ('julia', 'julia@example.com', 'hashed_pw_10')",<none>
+2025-10-26 12:08:33.496 +07 [958] LOG:  checkpoint starting: time
+2025-10-26 12:08:38.557 +07 [958] LOG:  checkpoint complete: wrote 49 buffers (0.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=4.971 s, sync=0.066 s, total=5.062 s; sync files=40, longest=0.022 s, average=0.002 s; distance=196 kB, estimate=196 kB; lsn=0/20DD978, redo lsn=0/20DD920
+2025-10-26 12:09:41.189 +07 [2774] postgres@testdb LOG:  AUDIT: SESSION,5,1,ROLE,GRANT,,,GRANT SELECT ON TABLE users TO user1,<none>
+2025-10-26 12:10:03.074 +07 [2774] postgres@testdb LOG:  disconnection: session time: 0:03:47.507 user=postgres database=testdb host=10.0.2.2 port=52235
+2025-10-26 12:10:20.427 +07 [2881] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55353
+2025-10-26 12:10:24.677 +07 [2883] [unknown]@[unknown] LOG:  connection received: host=10.0.2.2 port=55357
+2025-10-26 12:10:24.713 +07 [2883] user1@testdb LOG:  connection authenticated: identity="user1" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)
+2025-10-26 12:10:24.713 +07 [2883] user1@testdb LOG:  connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)
+2025-10-26 12:10:27.800 +07 [2883] user1@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:10:27.800 +07 [2883] user1@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:10:27.801 +07 [2883] user1@testdb LOG:  AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,"SELECT n.nspname as ""Schema"",
+	  c.relname as ""Name"",
+	  CASE c.relkind WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 't' THEN 'TOAST table' WHEN 'f' THEN 'foreign table' WHEN 'p' THEN 'partitioned table' WHEN 'I' THEN 'partitioned index' END as ""Type"",
+	  pg_catalog.pg_get_userbyid(c.relowner) as ""Owner""
+	FROM pg_catalog.pg_class c
+	     LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+	     LEFT JOIN pg_catalog.pg_am am ON am.oid = c.relam
+	WHERE c.relkind IN ('r','p','')
+	      AND n.nspname <> 'pg_catalog'
+	      AND n.nspname !~ '^pg_toast'
+	      AND n.nspname <> 'information_schema'
+	  AND pg_catalog.pg_table_is_visible(c.oid)
+	ORDER BY 1,2",<none>
+2025-10-26 12:10:38.080 +07 [2883] user1@testdb LOG:  AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.users,SELECT * FROM users,<none>
+2025-10-26 12:10:57.094 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:10:57.094 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:11:05.567 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:11:05.567 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:11:06.940 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:11:06.940 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:11:08.237 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:11:08.237 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:11:09.629 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:11:09.629 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:11:10.927 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:11:10.927 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:11:12.644 +07 [2883] user1@testdb ERROR:  permission denied for table users
+2025-10-26 12:11:12.644 +07 [2883] user1@testdb STATEMENT:  INSERT INTO users (username, email, password) VALUES ('test', 'test@example.com', '123');
+2025-10-26 12:13:33.658 +07 [958] LOG:  checkpoint starting: time
+2025-10-26 12:13:33.894 +07 [958] LOG:  checkpoint complete: wrote 2 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.206 s, sync=0.012 s, total=0.237 s; sync files=3, longest=0.007 s, average=0.004 s; distance=3 kB, estimate=177 kB; lsn=0/20DE890, redo lsn=0/20DE838
+2025-10-26 12:13:44.591 +07 [2883] user1@testdb LOG:  disconnection: session time: 0:03:19.913 user=user1 database=testdb host=10.0.2.2 port=55357

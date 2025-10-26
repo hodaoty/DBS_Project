@@ -20,6 +20,10 @@ DISCONNECT_PATTERN = re.compile(
 AUDIT_PATTERN = re.compile(
     r'AUDIT: SESSION,\d+,\d+,(?P<audit_class>[^,]+),(?P<audit_type>[^,]+),.*?,.*?"(?P<audit_query>.*?)"'
 )
+PERMISSION_DENIED_PATTERN = re.compile(
+    r'permission denied for (?:relation|table|database|schema) (?P<object_name>\w+)', re.IGNORECASE
+)
+
 # ----------------------------------------------------------------------
 # B. PARSING FUNCTION
 # ----------------------------------------------------------------------
@@ -96,7 +100,12 @@ def parse_postgresql_log(filepath):
                     # c) Fatal/Error
                     elif data['level'] in ['FATAL', 'ERROR']:
                         data['event_type'] = data['level']
-                    
+                            # Kiểm tra lỗi quyền
+                        perm_match = PERMISSION_DENIED_PATTERN.search(message)
+                        if perm_match:
+                            data['event_type'] = 'PERMISSION_DENIED'
+                            data['query_command'] = 'ACCESS_DENIED'
+                            data['query_text'] = f"Denied access to {perm_match.group('object_name')}"
                     # d) Connection
                     elif 'connection received:' in message:
                         data['event_type'] = 'CONNECT_RECEIVED'

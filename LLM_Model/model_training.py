@@ -23,7 +23,7 @@ INPUT_SCALED_DATA_PATH = os.path.join(CSV_DIR, INPUT_SCALED_DATA_FILE)
 MODEL_PATH = os.path.join(MODEL_DIR, MODEL_FILE_NAME)
 
 # Model parameters
-CONTAMINATION_RATE = 0.01
+CONTAMINATION_RATE = 0.1
 
 # ----------------------------------------------------------------------
 # B. DATA LOADING FUNCTION
@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
         # 5. SAVE ANOMALY RECORDS TO CSV
         print(f"Save to the report then item have anomaly_score < -0.15")
-        anomalies_df = scaled_data_df[(scaled_data_df['anomaly'] == -1) & (scaled_data_df['anomaly_score'] < -0.15) ].copy()
+        anomalies_df = scaled_data_df[(scaled_data_df['anomaly'] == -1) ].copy()
         
         if not anomalies_df.empty:
             # Output path for anomaly records (relative to CSV_DIR)

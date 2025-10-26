@@ -87,6 +87,10 @@ def create_time_series_features(df, freq=RESAMPLE_FREQUENCY):
     final_features_df = count_features.resample(freq).sum().fillna(0)
     final_features_df = final_features_df.join(time_features)
 
+    # 🔥 Boost permission_denied impact
+    if 'count_permission_denied' in final_features_df.columns:
+        final_features_df['count_permission_denied'] *= 10
+        print("Applied weight boost to count_permission_denied")
     # 4. Create Ratio Features
     # Ratio of fatal errors to total events
     final_features_df['ratio_fatal_to_total'] = (

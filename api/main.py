@@ -12,7 +12,11 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import subprocess
 import sys
+import requests
 
+#API_TOKEN_TELEGRAM
+TOKEN_TELEGRAM = '8090593461:AAFPvUWUzWKpj1Xsgk_wmZWCeMJGC_eQwHE'
+CHAT_ID = 6271854528
 #Setup Rich
 # --- Define Other Custom RGB Styles ---
 H1_RGB = "#3498DB"  # A vibrant cyan-blue color
@@ -364,6 +368,49 @@ def alertPermission(parsed_data: list):
     if not permission_denied_found:
         print("Không tìm thấy lỗi 'permission denied' nào trong log được phân tích.")
     print("=" * 60)
+
+#-----------------------------------------------------
+#SEND REPORT TO TELEGRAM
+#-----------------------------------------------------
+def send_report(parsed_data: list):
+    """Tìm kiếm và in ra cảnh báo khi phát hiện lỗi "permission denied"."""
+    NOW = datetime.now().strftime('%Y-%m-%d')
+    permission_denied_found = False
+    base_url = f'https://api.telegram.org/bot{TOKEN_TELEGRAM}/sendMessage'
+    print("\n" + "=" * 60)
+    print("CẢNH BÁO BẢO MẬT: LỖI QUYỀN TRUY CẬP")
+    print("=" * 60)
+    
+    for item in parsed_data:
+        
+        # Lọc nhanh chỉ các dòng có cấp độ ERROR hoặc FATAL
+        if item.get('level_1') in ['ERROR', 'FATAL']:
+            # Kiểm tra xem chuỗi "permission denied" có tồn tại trong raw_content không
+            if "permission denied" in item.get('raw_content', '') and NOW in item['timestamp'] :
+                PID = item['pid']
+                TIMESTAMP = item['timestamp']
+                USER = item['user']
+                DATABASE = item['database']
+                CONTENT = item['raw_content']
+                if item.get('query'):
+                    QUERY = item['query']
+                    payload = {
+                        'chat_id': CHAT_ID,
+                        'text': f"PID:{PID}\nTIMESTAMP:{TIMESTAMP}\nUSER:{USER}\nDATABASE:{DATABASE}\nCONTENT:{CONTENT}\nQUERY:{QUERY}" 
+                    }
+                else: 
+                    payload = {
+                        'chat_id': CHAT_ID,
+                        'text': f"PID:{PID}\nTIMESTAMP:{TIMESTAMP}\nUSER:{USER}\nDATABASE:{DATABASE}\nCONTENT:{CONTENT}" 
+                    }
+                response = requests.post(base_url, data=payload)
+                
+                # Nếu có query, in ra lệnh SQL đã cố gắng chạy
+    
+    if not permission_denied_found:
+        print("Không tìm thấy lỗi 'permission denied' nào trong log được phân tích.")
+    print("=" * 60)
+    
 #-----------------------------------------------------
 #Menu
 #-----------------------------------------------------
@@ -384,7 +431,7 @@ def display_menu():
         f"[{ITEM}]9[/] - [REPORT] 04. Truy tìm ngược Báo cáo PID bất thường\n"
         f"{'':-^40}\n"
         f"[{H1_RGB}]GIÁM SÁT REAL-TIME:[/]\n"
-        f"[{ITEM}]R[/] - [REAL-TIME] Giám sát Log mới nhất (Chạy realtime_detection.py)\n"
+        f"[{ITEM}]R[/] - SEND REPORT TO TELEGRAM\n"
         f"[{ITEM}]X[/] - Khác để THOÁT\n"
         f"[{ITEM}]Khác để THOÁT[/]\n"
     )
@@ -446,12 +493,9 @@ def menu_choice():
 
         #---REAL TIME MONITOR---#
         elif choice == 'R':
-            console.print(f'[{H1}]>>>Bạn chọn [R]: GIÁM SÁT THỜI GIAN THỰC (Mô phỏng 2 cửa sổ)[/]')
-            #run_python_script(SCRIPT_05)
-            subprocess.Popen(['start', 'cmd', '/k', f'py "{ML_SCRIPT_DIR_SCRIPT05}"'], shell=True)
+            send_report(parsed_data)
+            console.print(f"[{EXIT}]>>>Send Done!")
 
-
-            
         else: 
             console.print(f"[{EXIT}]>>>Exiting. Goodbye!")
             break

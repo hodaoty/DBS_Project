@@ -1207,3 +1207,95 @@ Timestamp,PID,Level,Message
 2025-10-25 22:59:51.976,5057,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
 2025-10-25 22:59:51.976,5057,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
 2025-10-25 23:00:40.430,5057,LOG,disconnection: session time: 0:00:48.487 user=user1 database=testdb host=10.0.2.2 port=50061
+2025-10-26 11:58:32.977,1086,LOG,connection authorized: user=postgres database=template1 application_name=psql
+2025-10-26 11:58:33.507,1086,LOG,disconnection: session time: 0:00:00.636 user=postgres database=template1 host=[local]
+2025-10-26 11:58:34.313,1103,LOG,connection received: host=[local]
+2025-10-26 11:58:34.350,1103,LOG,"connection authenticated: identity=""postgres"" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)"
+2025-10-26 11:58:34.350,1103,LOG,connection authorized: user=postgres database=template1 application_name=psql
+2025-10-26 11:58:34.436,1103,LOG,disconnection: session time: 0:00:00.130 user=postgres database=template1 host=[local]
+2025-10-26 11:58:35.185,1117,LOG,connection received: host=[local]
+2025-10-26 11:58:35.210,1117,LOG,"connection authenticated: identity=""postgres"" method=peer (/etc/postgresql/18/main/pg_hba.conf:118)"
+2025-10-26 11:58:35.230,1117,LOG,connection authorized: user=postgres database=template1 application_name=psql
+2025-10-26 11:58:35.239,1117,LOG,disconnection: session time: 0:00:00.064 user=postgres database=template1 host=[local]
+2025-10-26 12:00:13.052,2609,LOG,connection received: host=10.0.2.2 port=59716
+2025-10-26 12:00:18.323,2611,LOG,connection received: host=10.0.2.2 port=59721
+2025-10-26 12:00:18.347,2611,LOG,"connection authenticated: identity=""postgres"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-26 12:00:18.348,2611,LOG,"connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-26 12:00:35.643,2611,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:00:35.643,2611,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:00:35.643,2611,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:00:41.815,2611,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.sinhvien,select * from sinhvien,<none>"
+2025-10-26 12:01:25.207,2611,LOG,"AUDIT: SESSION,3,1,WRITE,DELETE,TABLE,public.sinhvien,delete from sinhvien where id = 1,<none>"
+2025-10-26 12:02:32.770,2611,ERROR,"invalid input syntax for type integer: ""Tran Van A"" at character 29"
+2025-10-26 12:02:59.273,2611,LOG,disconnection: session time: 0:02:40.950 user=postgres database=testdb host=10.0.2.2 port=59721
+2025-10-26 12:03:33.220,958,LOG,checkpoint starting: time
+2025-10-26 12:03:33.395,958,LOG,"checkpoint complete: wrote 1 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.133 s, sync=0.009 s, total=0.176 s; sync files=3, longest=0.006 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/20AC7B8, redo lsn=0/20AC760"
+2025-10-26 12:03:36.486,2672,LOG,connection received: host=10.0.2.2 port=52141
+2025-10-26 12:03:41.079,2673,LOG,connection received: host=10.0.2.2 port=52144
+2025-10-26 12:03:41.118,2673,FATAL,"password authentication failed for user ""hodaoty"""
+2025-10-26 12:03:41.118,2673,DETAIL,"Role ""hodaoty"" does not exist."
+2025-10-26 12:03:41.126,2674,LOG,connection received: host=10.0.2.2 port=52145
+2025-10-26 12:03:41.147,2674,FATAL,"password authentication failed for user ""hodaoty"""
+2025-10-26 12:03:41.147,2674,DETAIL,"Role ""hodaoty"" does not exist."
+2025-10-26 12:03:59.993,2681,LOG,connection received: host=10.0.2.2 port=52149
+2025-10-26 12:04:04.364,2698,LOG,connection received: host=10.0.2.2 port=52152
+2025-10-26 12:04:04.398,2698,FATAL,"password authentication failed for user ""hodaoty"""
+2025-10-26 12:04:04.398,2698,DETAIL,"Role ""hodaoty"" does not exist."
+2025-10-26 12:04:04.409,2699,LOG,connection received: host=10.0.2.2 port=52153
+2025-10-26 12:04:04.442,2699,FATAL,"password authentication failed for user ""hodaoty"""
+2025-10-26 12:04:04.442,2699,DETAIL,"Role ""hodaoty"" does not exist."
+2025-10-26 12:04:38.728,2717,LOG,connection received: host=10.0.2.2 port=52162
+2025-10-26 12:04:41.825,2720,LOG,connection received: host=10.0.2.2 port=52166
+2025-10-26 12:04:41.874,2720,FATAL,"password authentication failed for user ""hodaoty"""
+2025-10-26 12:04:41.874,2720,DETAIL,"Role ""hodaoty"" does not exist."
+2025-10-26 12:04:41.893,2721,LOG,connection received: host=10.0.2.2 port=52168
+2025-10-26 12:04:41.919,2721,FATAL,"password authentication failed for user ""hodaoty"""
+2025-10-26 12:04:41.919,2721,DETAIL,"Role ""hodaoty"" does not exist."
+2025-10-26 12:05:29.340,2745,LOG,connection received: host=10.0.2.2 port=52194
+2025-10-26 12:05:32.581,2749,LOG,connection received: host=10.0.2.2 port=52201
+2025-10-26 12:05:32.614,2749,FATAL,"password authentication failed for user ""user1"""
+2025-10-26 12:05:32.614,2749,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-26 12:05:32.624,2750,LOG,connection received: host=10.0.2.2 port=52202
+2025-10-26 12:05:32.644,2750,FATAL,"password authentication failed for user ""user1"""
+2025-10-26 12:05:32.644,2750,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-26 12:05:48.790,2757,LOG,connection received: host=10.0.2.2 port=52212
+2025-10-26 12:05:53.401,2761,LOG,connection received: host=10.0.2.2 port=52217
+2025-10-26 12:05:53.426,2761,FATAL,"password authentication failed for user ""postgres"""
+2025-10-26 12:05:53.426,2761,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-26 12:05:53.444,2762,LOG,connection received: host=10.0.2.2 port=52218
+2025-10-26 12:05:53.459,2762,FATAL,"password authentication failed for user ""postgres"""
+2025-10-26 12:05:53.459,2762,DETAIL,"Connection matched file ""/etc/postgresql/18/main/pg_hba.conf"" line 126: ""host    all             all             0.0.0.0/0               scram-sha-256"""
+2025-10-26 12:06:09.667,2771,LOG,connection received: host=10.0.2.2 port=52229
+2025-10-26 12:06:15.566,2774,LOG,connection received: host=10.0.2.2 port=52235
+2025-10-26 12:06:15.593,2774,LOG,"connection authenticated: identity=""postgres"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-26 12:06:15.594,2774,LOG,"connection authorized: user=postgres database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-26 12:06:32.050,2774,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:06:32.052,2774,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:06:32.053,2774,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:07:24.545,2774,LOG,"AUDIT: SESSION,2,1,DDL,CREATE TABLE,,,""CREATE TABLE users ("
+2025-10-26 12:07:27.412,2774,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:07:27.412,2774,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:07:27.413,2774,LOG,"AUDIT: SESSION,3,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:08:05.027,2774,LOG,"AUDIT: SESSION,4,1,WRITE,INSERT,TABLE,public.users,""INSERT INTO users (username, email, password) VALUES"
+2025-10-26 12:08:33.496,958,LOG,checkpoint starting: time
+2025-10-26 12:08:38.557,958,LOG,"checkpoint complete: wrote 49 buffers (0.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=4.971 s, sync=0.066 s, total=5.062 s; sync files=40, longest=0.022 s, average=0.002 s; distance=196 kB, estimate=196 kB; lsn=0/20DD978, redo lsn=0/20DD920"
+2025-10-26 12:09:41.189,2774,LOG,"AUDIT: SESSION,5,1,ROLE,GRANT,,,GRANT SELECT ON TABLE users TO user1,<none>"
+2025-10-26 12:10:03.074,2774,LOG,disconnection: session time: 0:03:47.507 user=postgres database=testdb host=10.0.2.2 port=52235
+2025-10-26 12:10:20.427,2881,LOG,connection received: host=10.0.2.2 port=55353
+2025-10-26 12:10:24.677,2883,LOG,connection received: host=10.0.2.2 port=55357
+2025-10-26 12:10:24.713,2883,LOG,"connection authenticated: identity=""user1"" method=scram-sha-256 (/etc/postgresql/18/main/pg_hba.conf:126)"
+2025-10-26 12:10:24.713,2883,LOG,"connection authorized: user=user1 database=testdb application_name=psql SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256)"
+2025-10-26 12:10:27.800,2883,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_class,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:10:27.800,2883,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_namespace,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:10:27.801,2883,LOG,"AUDIT: SESSION,1,1,READ,SELECT,TABLE,pg_catalog.pg_am,""SELECT n.nspname as """"Schema"""","
+2025-10-26 12:10:38.080,2883,LOG,"AUDIT: SESSION,2,1,READ,SELECT,TABLE,public.users,SELECT * FROM users,<none>"
+2025-10-26 12:10:57.094,2883,ERROR,permission denied for table users
+2025-10-26 12:11:05.567,2883,ERROR,permission denied for table users
+2025-10-26 12:11:06.940,2883,ERROR,permission denied for table users
+2025-10-26 12:11:08.237,2883,ERROR,permission denied for table users
+2025-10-26 12:11:09.629,2883,ERROR,permission denied for table users
+2025-10-26 12:11:10.927,2883,ERROR,permission denied for table users
+2025-10-26 12:11:12.644,2883,ERROR,permission denied for table users
+2025-10-26 12:13:33.658,958,LOG,checkpoint starting: time
+2025-10-26 12:13:33.894,958,LOG,"checkpoint complete: wrote 2 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.206 s, sync=0.012 s, total=0.237 s; sync files=3, longest=0.007 s, average=0.004 s; distance=3 kB, estimate=177 kB; lsn=0/20DE890, redo lsn=0/20DE838"
+2025-10-26 12:13:44.591,2883,LOG,disconnection: session time: 0:03:19.913 user=user1 database=testdb host=10.0.2.2 port=55357
