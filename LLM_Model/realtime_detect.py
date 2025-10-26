@@ -87,8 +87,17 @@ def monitor_log():
                     score = model.decision_function(scaled)[0]
                     prediction = model.predict(scaled)[0]
 
-                    if prediction == -1:
-                        print(f"\nAnomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
+                    if prediction == -1 and score < -0.8:
+                        print(f"\nCRITICAL RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
+                        print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
+                    elif prediction == -1 and score < -0.5:
+                        print(f"\nHIGH RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
+                        print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
+                    elif prediction == -1 and score < -0.2:
+                        print(f"\nMEDIMUM RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
+                        print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
+                    elif prediction == -1: 
+                        print(f"\n NORMAL RISK Anomaly detected at {datetime.now().strftime('%H:%M:%S')} | Score: {score:.4f}")
                         print(parsed_df[['pid', 'user', 'database', 'query_command']].to_string(index=False))
 
             time.sleep(POLL_INTERVAL)
@@ -96,7 +105,7 @@ def monitor_log():
     except KeyboardInterrupt:
         print("\nMonitoring stopped by user (Ctrl + C). Goodbye!")
 
-# E. MAIN EXECUTION
+# E. MAIN EXECUTION 
 if __name__ == "__main__":
     print('Start Realtime Detection')
     monitor_log()

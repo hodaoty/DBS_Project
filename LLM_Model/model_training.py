@@ -115,7 +115,8 @@ if __name__ == "__main__":
         print(f"Anomaly ratio (Config): {CONTAMINATION_RATE:.2%}")
 
         # 5. SAVE ANOMALY RECORDS TO CSV
-        anomalies_df = scaled_data_df[scaled_data_df['anomaly'] == -1].copy()
+        print(f"Save to the report then item have anomaly_score < -0.15")
+        anomalies_df = scaled_data_df[(scaled_data_df['anomaly'] == -1) & (scaled_data_df['anomaly_score'] < -0.15) ].copy()
         
         if not anomalies_df.empty:
             # Output path for anomaly records (relative to CSV_DIR)
